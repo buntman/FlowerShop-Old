@@ -9,12 +9,32 @@
 <title>Login</title>
 </head>
     <body>
+        <?php
+include "connectMysql.php";
+
+if(isset($_POST['login'])) {
+    $emp_user = $_POST['username'];
+    $emp_pass = $_POST['password'];
+
+
+    $sql = "SELECT * FROM Employees WHERE username = ?";
+    $sql_statement = mysqli_prepare($connect, $sql);
+    mysqli_stmt_bind_param($sql_statement, 's', $emp_user);
+    mysqli_stmt_execute($sql_statement);
+    $result = mysqli_stmt_get_result($sql_statement);
+    $emp = mysqli_fetch_assoc($result);
+
+        if($emp) {
+            header("Location: home.php");
+        }
+}
+?>
 
         <h1>
             Rizza's Flower Shop
         </h1>
         <div class="main-container">
-        <form class="form" action="login.php" method="POST">
+        <form class="form" action="#" method="POST">
         <h2>System Login</h2>
         <p>Please enter your credentials below to continue</p>
         <div class="form-container">
@@ -32,7 +52,7 @@
         <a href="#" class="forgot-password">Forgot Password?</a>
         </div>
         <div class="button-container">
-            <button type="submit" value="Log in">Login</button>
+            <button type="submit" name="login" value="login">Login</button>
         </div>
         <div class="form-signup">
                     <p> 

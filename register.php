@@ -13,7 +13,7 @@
             Rizza's Flower Shop
         </h1>
         <div class="main-container">
-        <form class="form" method="post">
+        <form class="form" action="#" method="POST">
         <h2>System Registration</h2>
         <p>Please enter your credentials below to continue</p>
         <div class="form-container">
@@ -25,7 +25,7 @@
             <input type="password" id="password" placeholder="Password" name="password">
         </div>
         <div class="button-container">
-            <button type="submit" value="Sign up">Sign up</button>
+            <button type="submit" name="signup" value="Sign up">Sign up</button>
         </div>
         <div class="form-login">
                     <p> 

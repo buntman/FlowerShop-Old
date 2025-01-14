@@ -11,13 +11,9 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Rizza Flowershop</a>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" href="login.php">Login</a>
-      <a class="nav-item nav-link" href="register.php">Register</a>
-    </div>
-  </div>
-</nav>
+        </nav>
+
+<p>fdsalfdsafjdsalfjdsalfdsasajfdsa </p>
 
 
 
