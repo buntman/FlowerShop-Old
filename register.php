@@ -9,6 +9,31 @@
 <title>Register</title>
 </head>
 <body>
+
+<?php
+    include "connectMysql.php";
+
+    if(isset($_POST['register'])) {
+        $emp_user = $_POST['username'];
+        $emp_pass = $_POST['password'];
+        
+
+$sql = "INSERT INTO Employees(username,password) VALUES(?, ?)";
+$sql_statement = mysqli_prepare($connect, $sql);
+mysqli_stmt_bind_param($sql_statement, 'ss', $emp_user, $emp_pass);
+
+if(mysqli_stmt_execute($sql_statement)) {
+    echo "Created successfully";
+    header("Location: home.php");
+    }
+        }
+
+
+?>
+
+
+
+
         <h1>
             Rizza's Flower Shop
         </h1>
@@ -25,7 +50,7 @@
             <input type="password" id="password" placeholder="Password" name="password">
         </div>
         <div class="button-container">
-            <button type="submit" name="signup" value="Sign up">Sign up</button>
+            <button type="submit" name="register" value="register">Sign up</button>
         </div>
         <div class="form-login">
                     <p> 
