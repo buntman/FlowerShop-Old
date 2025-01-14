@@ -8,12 +8,13 @@
          <link rel="stylesheet" href="/css/login-style.css">
 <title>Login</title>
 </head>
-<body>
+    <body>
+
         <h1>
             Rizza's Flower Shop
         </h1>
         <div class="main-container">
-        <form class="form" method="post">
+        <form class="form" action="login.php" method="POST">
         <h2>System Login</h2>
         <p>Please enter your credentials below to continue</p>
         <div class="form-container">
@@ -36,7 +37,7 @@
         <div class="form-signup">
                     <p> 
                     Don't have an account?
-        <a href="register.html" class="signup">Sign up</a>
+        <a href="register.php" class="signup">Sign up</a>
                     </p>
         </div>
         </form>
