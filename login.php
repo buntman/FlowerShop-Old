@@ -12,7 +12,7 @@
         <?php
         include "connectMysql.php";
 
-        if (isset($_POST['login'])) {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $emp_user = $_POST['username'];
             $emp_pass = $_POST['password'];
 
