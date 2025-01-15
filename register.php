@@ -13,27 +13,23 @@
 <?php
     include "connectMysql.php";
 
-    if(isset($_POST['register'])) {
-        $emp_user = $_POST['username'];
-        $emp_pass = $_POST['password'];
-        
+if (isset($_POST['register'])) {
+    $emp_user = $_POST['username'];
+    $emp_pass = $_POST['password'];
 
-$sql = "INSERT INTO Employees(username,password) VALUES(?, ?)";
-$sql_statement = mysqli_prepare($connect, $sql);
-mysqli_stmt_bind_param($sql_statement, 'ss', $emp_user, $emp_pass);
+    $encrypted_pass = password_hash($emp_pass, PASSWORD_DEFAULT);
 
-if(mysqli_stmt_execute($sql_statement)) {
-    echo "Created successfully";
-    header("Location: home.php");
+
+    $sql = "INSERT INTO Employees(username,password) VALUES(?, ?)";
+    $sql_statement = mysqli_prepare($connect, $sql);
+    mysqli_stmt_bind_param($sql_statement, 'ss', $emp_user, $encrypted_pass);
+
+    if (mysqli_stmt_execute($sql_statement)) {
+        echo "Created successfully";
+        header("Location: home.php");
     }
-        }
-
-
+}
 ?>
-
-
-
-
         <h1>
             Rizza's Flower Shop
         </h1>
@@ -55,9 +51,9 @@ if(mysqli_stmt_execute($sql_statement)) {
         <div class="form-login">
                     <p> 
                     Already have an account?
-        <a href="login.php" class="login">Login</a>
+    <a href="login.php" class="login">Login</a>
                     </p>
-        </div>
+         </div>
         </form>
         </div>
 </body>
