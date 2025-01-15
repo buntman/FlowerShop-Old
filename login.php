@@ -10,25 +10,28 @@
 </head>
     <body>
         <?php
-include "connectMysql.php";
+        include "connectMysql.php";
 
-if(isset($_POST['login'])) {
-    $emp_user = $_POST['username'];
-    $emp_pass = $_POST['password'];
+        if (isset($_POST['login'])) {
+            $emp_user = $_POST['username'];
+            $emp_pass = $_POST['password'];
 
 
-    $sql = "SELECT * FROM Employees WHERE username = ?";
-    $sql_statement = mysqli_prepare($connect, $sql);
-    mysqli_stmt_bind_param($sql_statement, 's', $emp_user);
-    mysqli_stmt_execute($sql_statement);
-    $result = mysqli_stmt_get_result($sql_statement);
-    $emp = mysqli_fetch_assoc($result);
+            $sql = "SELECT * FROM Employees WHERE username = ?";
+            $sql_statement = mysqli_prepare($connect, $sql);
+            mysqli_stmt_bind_param($sql_statement, 's', $emp_user);
+            mysqli_stmt_execute($sql_statement);
+            $result = mysqli_stmt_get_result($sql_statement);
+            $emp = mysqli_fetch_assoc($result);
+            $password = $emp['password'];
 
-        if($emp) {
-            header("Location: home.php");
+            if ($emp) {
+                if (password_verify($emp_pass, $password)) {
+                    header("Location: home.php");
+                }
+            }
         }
-}
-?>
+        ?>
 
         <h1>
             Rizza's Flower Shop
