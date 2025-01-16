@@ -9,23 +9,34 @@
 <title>Register</title>
 </head>
 <body>
-
         <?php
         include "connectMysql.php";
-        $emp_user = $emp_pass = "";
         $userError = $passError = "";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+            $emp_user = input($_POST['username']);
             if (empty($_POST['username'])) {
                 $userError = "Username is required!";
-            } else {
-                $emp_user = input($_POST['username']);
+            } elseif (!preg_match("/^[a-zA-Z]*$/", $emp_user)) {
+                $userError = "Only letters are allowed";
+            } elseif (strlen($_POST['username']) < 6 || strlen($_POST['username']) > 12) {
+                $userError = "Username must be 6-12 characters long.";
             }
+
+            $emp_pass = input($_POST['password']);
             if (empty($_POST['password'])) {
                 $passError = "Password is required!";
-            } else {
-                $emp_pass = input($_POST['password']);
+            } elseif (!preg_match('/([a-z]{1,})/', $emp_pass)) {
+                $passError = "Password must have one lowercase letter!";
+            } elseif (!preg_match('/([A-Z]{1,})/', $emp_pass)) {
+                $passError = "Password must have one uppercase letter!";
+            } elseif (!preg_match('/([\d]{1,})/', $emp_pass)) {
+                $passError = "Password must have one digit!";
+            } elseif (strlen($_POST['password']) < 8 || strlen($_POST['password']) > 16) {
+                $passError = "Password must be 8-16 characters long.";
             }
+
             if (empty($userError) && empty($passError)) {
                 $encrypted_pass = password_hash($emp_pass, PASSWORD_DEFAULT);
                 $sql = "INSERT INTO Employees(username,password) VALUES(?, ?)";
