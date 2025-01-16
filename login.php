@@ -11,25 +11,41 @@
     <body>
         <?php
         include "connectMysql.php";
+        $userError = $passError = "";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $emp_user = $_POST['username'];
-            $emp_pass = $_POST['password'];
+            $emp_user = input($_POST['username']);
+            if (empty($emp_user)) {
+                $userError = "Username is required!";
+            }
 
+            $emp_pass = input($_POST['password']);
+            if (empty($emp_pass)) {
+                $passError = "Password is required!";
+            }
 
-            $sql = "SELECT * FROM Employees WHERE username = ?";
-            $sql_statement = mysqli_prepare($connect, $sql);
-            mysqli_stmt_bind_param($sql_statement, 's', $emp_user);
-            mysqli_stmt_execute($sql_statement);
-            $result = mysqli_stmt_get_result($sql_statement);
-            $emp = mysqli_fetch_assoc($result);
-            $password = $emp['password'];
+            if (empty($userError) && empty($passError)) {
+                $sql = "SELECT * FROM Employees WHERE username = ?";
+                $sql_statement = mysqli_prepare($connect, $sql);
+                mysqli_stmt_bind_param($sql_statement, 's', $emp_user);
+                mysqli_stmt_execute($sql_statement);
+                $result = mysqli_stmt_get_result($sql_statement);
+                $emp = mysqli_fetch_assoc($result);
+                $password = $emp['password'];
 
-            if ($emp) {
-                if (password_verify($emp_pass, $password)) {
-                    header("Location: home.php");
+                if ($emp) {
+                    if (password_verify($emp_pass, $password)) {
+                        header("Location: home.php");
+                    }
                 }
             }
+        }
+        function input($data)
+        {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
         }
         ?>
 
@@ -43,10 +59,12 @@
         <div class="form-container">
             <label for="username"></label><br>
             <input type="text" id="username" placeholder="Username" name="username">
+                    <span class="error"> <?php echo $userError; ?> </span
         </div>
         <div class="form-container">
             <label for="password"></label><br>
             <input type="password" id="password" placeholder="Password" name="password">
+                    <span class="error"> <?php echo $passError; ?> </span
         </div>
         <div class="form-options">
         <label class="remember-me">
