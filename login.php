@@ -11,7 +11,7 @@
     <body>
         <?php
         include "connectMysql.php";
-        $userError = $passError = "";
+        $userError = $passError = $userpassError = "";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $emp_user = input($_POST['username']);
@@ -32,11 +32,13 @@
                 $result = mysqli_stmt_get_result($sql_statement);
                 $emp = mysqli_fetch_assoc($result);
                 $password = $emp['password'];
-
-                if ($emp) {
-                    if (password_verify($emp_pass, $password)) {
-                        header("Location: home.php");
-                    }
+                if (!$emp) {
+                    $userpassError = "Invalid input. Please try again.";
+                }
+                if (password_verify($emp_pass, $password)) {
+                    header("Location: home.php");
+                } else {
+                    $userpassError = "Invalid input. Please try again.";
                 }
             }
         }
@@ -65,6 +67,7 @@
             <label for="password"></label><br>
             <input type="password" id="password" placeholder="Password" name="password">
                     <span class="error"> <?php echo $passError; ?> </span
+                    <span class="error"> <?php echo $userpassError; ?> </span
         </div>
         <div class="form-options">
         <label class="remember-me">
