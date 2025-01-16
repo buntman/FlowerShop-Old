@@ -24,6 +24,18 @@
                 $userError = "Username must be 6-12 characters long.";
             }
 
+
+            $sql = "SELECT * FROM Employees WHERE username = ?";
+            $sql_statement = mysqli_prepare($connect, $sql);
+            mysqli_stmt_bind_param($sql_statement, 's', $emp_user);
+            mysqli_stmt_execute($sql_statement);
+            $result = mysqli_stmt_get_result($sql_statement);
+            $emp = mysqli_fetch_assoc($result);
+
+            if ($emp) {
+                $userError = "Username already taken.";
+            }
+
             $emp_pass = input($_POST['password']);
             if (empty($_POST['password'])) {
                 $passError = "Password is required!";
