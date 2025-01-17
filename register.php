@@ -12,12 +12,15 @@
         <?php
         include "connectMysql.php";
         include "formValidator.php";
+        include "authenticate.php";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            #$sanitizedData = input($_POST);
-            $validator = new formValidator($_POST);
+            $sanitizedData = input($_POST);
+            $validator = new formValidator($sanitizedData);
             try {
                 $validator->validate();
+                $authenticateUser = new authenticate($sanitizedData, $connect);
+                $authenticateUser->authenticateAccount();
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
