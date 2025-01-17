@@ -21,6 +21,8 @@
 
             try {
                 $validator->validateLogin();
+                $authenticateUser = new authenticate($sanitizedData, $connect);
+                $authenticateUser->authenticateLogin();
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
