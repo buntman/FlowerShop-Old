@@ -19,7 +19,7 @@
             $sanitizedData = input($_POST);
             $validator = new formValidator($sanitizedData);
             try {
-                $validator->validate();
+                $validator->validateRegister();
                 $authenticateUser = new authenticate($sanitizedData, $connect);
                 $authenticateUser->authenticateAccount();
                 $storeData = new store($sanitizedData, $connect);
