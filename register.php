@@ -21,7 +21,7 @@
             try {
                 $validator->validateRegister();
                 $authenticateUser = new authenticate($sanitizedData, $connect);
-                $authenticateUser->authenticateAccount();
+                $authenticateUser->authenticateRegistration();
                 $storeData = new store($sanitizedData, $connect);
                 $storeData->save();
             } catch (Exception $e) {
