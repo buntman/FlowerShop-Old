@@ -11,11 +11,16 @@ class formValidator
     }
 
 
-    public function validate()
+    public function validateRegister()
     {
         $this->validateRequiredFields();
         $this->validateUsername();
         $this->validatePassword();
+    }
+
+    public function validateLogin()
+    {
+        $this->validateRequiredFields();
     }
 
 
@@ -50,7 +55,3 @@ class formValidator
         }
     }
 }
-
-
-
-
