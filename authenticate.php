@@ -57,7 +57,7 @@ class authenticate
         }
 
         if (password_verify($password, $hashed_password)) {
-            header("Location: home.php");
+            header("Location: adminInventory.php");
         } else {
             throw new Exception("Invalid input. Please try again.");
         }
