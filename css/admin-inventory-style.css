@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+.sidenav {
+  height: 100%;
+  width: 177.5px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffa8d4;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+   font-family: Poppins; 
+}
+
+
+.button-container button {
+    font-family: Poppins;
+    font-size: 16px;
+    height: 55px;
+    width: 191px;
+    margin: 30px 10px;
+    background-color: #ec6fad;
+    border-radius: 10px;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1 em;
+    cursor: pointer;
+}
+
+.button-container a{
+    color: #7E4F63;
+    font-family: Poppins;
+}
+
+
+.main-container {
+    display: flex;
+    gap: 20px; /* Space between the two cards */
+    padding: 20px;
+    margin-left: 180px;
+    height: auto;
+}
+
+
+.order {
+    flex: 1; /* Take up one portion of the space */
+    padding: 20px;
+    background-color: #f8c8d8;
+}
+
+.stocks {
+    flex: 2; /* Take up two portions of the space */
+    padding: 20px;
+}
+
+
+
+.card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Poppins;
+}
+
+
+.card-title h2 {
+    font-size: 25px;
+    font-weight: normal;
+}
+
+.current-stocks {
+    background-color: #f8c8d8;
+    height: 900px;
+}
+
+
+.list-stocks button {
+    padding: 10px 20px;
+    background-color: #d81b60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
