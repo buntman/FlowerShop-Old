@@ -81,6 +81,27 @@
 .current-stocks {
     background-color: #f8c8d8;
     height: 900px;
+    padding: 10px;
+}
+
+.item-details img{
+    height: 65px;
+    width: 82px;
+}
+
+.item-details {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 60px;
+}
+
+
+.item-actions {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
 }
 
 
