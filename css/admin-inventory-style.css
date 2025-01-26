@@ -81,7 +81,24 @@
 .current-stocks {
     background-color: #f8c8d8;
     height: 900px;
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
+    margin: 10px auto;
+}
+
+
+.item-details {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+}
+
+
+.item-actions {
+    display: flex;
+    margin-top: 10px;
+    padding: 5px;
 }
 
 .item-details img{
@@ -89,29 +106,7 @@
     width: 82px;
 }
 
-.item-details {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 60px;
-}
 
 
-.item-actions {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 5px;
-}
-
-
-.list-stocks button {
-    padding: 10px 20px;
-    background-color: #d81b60;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
 
