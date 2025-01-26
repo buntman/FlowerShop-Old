@@ -23,6 +23,7 @@
                     </div>
                 </div>
                 <div class="current-stocks">
+                    <div class="card">
                     <div class="item-details">
                          <img src="/images/white-bouquet.png" alt="White bouquet">
                         <h3 class="item-name">White bouquet</h3>
@@ -31,12 +32,13 @@
                         <p class="item-price">500.00</p>
                     </div>
                     <div class="item-actions">
-                        <a href="#" title="edit">
-                         <img src="/images/icon_edit.png" alt="White bouquet">
+                        <a href="#" class="edit" title="edit">
+                         <img src="/images/icon_edit.png" alt="edit">
                         </a>
-                        <a href="#" title="delete">
-                         <img src="/images/icon_delete.png" alt="White bouquet">
+                        <a href="#" class="delete" title="delete">
+                         <img src="/images/icon_delete.png" alt="delete">
                         </a>
+                    </div>
                     </div>
                 </div>
             </div>
