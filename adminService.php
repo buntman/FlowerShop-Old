@@ -21,8 +21,8 @@ class adminService
     {
         $sql = "SELECT * FROM Bouquet";
         $result = mysqli_query($this->connect, $sql);
-        $row = mysqli_fetch_assoc($result);
-        return $row;
+        $rows= mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $rows;
     }
 }
 
