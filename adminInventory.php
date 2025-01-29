@@ -7,6 +7,14 @@
 <title>Inventory</title>
 </head>
     <body>
+        <?php
+        include "connectMysql.php";
+        include "adminService.php";
+
+        $query = new adminService($connect);
+        $queryResult = $query->display();
+
+        ?>
         <div class="sidenav">
             <a href="#">Inventory</a>
             <a href="#">Reports</a>
@@ -24,22 +32,25 @@
                 </div>
                 <div class="current-stocks">
                     <div class="card">
+                <?php foreach($queryResult as $row) :?>
                     <div class="item-details">
-                         <img src="/images/white-bouquet.png" alt="White bouquet">
-                        <h3 class="item-name">White bouquet</h3>
-                        <p class="item-status">Active</p>
-                        <p class="item-stock">10 in Stock</p>
-                        <p class="item-price">500.00</p>
+                        <img src="<?php echo $row['image_path']; ?>" alt="White bouquet">
+                        <h3 class="item-name"><?php echo $row['bouquetName']; ?></h3>
+                        <p class="item-status"><?php echo $row['status']; ?></p>
+                        <p class="item-stock"><?php echo $row['stocks']; ?></p>
+                        <p class="item-price"><?php  echo $row['price']; ?></p>
                     </div>
                     <div class="item-actions">
                         <a href="#" class="edit" title="edit">
-                         <img src="/images/icon_edit.png" alt="edit">
+                         <img src="/images/inventory-icons/icon_edit.png" alt="edit">
                         </a>
                         <a href="#" class="delete" title="delete">
-                         <img src="/images/icon_delete.png" alt="delete">
+                         <img src="/images/inventory-icons/icon_delete.png" alt="delete">
                         </a>
                     </div>
                     </div>
+                        <hr>
+                <?php endforeach;?>
                 </div>
             </div>
         </div>
