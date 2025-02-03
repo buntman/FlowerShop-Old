@@ -1,0 +1,15 @@
+{
+    "name": "rgm/flower-shop",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "buntman",
+            "email": "148082762+buntman@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}

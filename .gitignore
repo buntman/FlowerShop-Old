@@ -24,3 +24,5 @@
 #php
 .php-cs-fixer.cache
 .env
+
+/vendor/
