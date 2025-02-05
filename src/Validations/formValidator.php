@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Validations;
+
 class formValidator
 {
     private $data;
@@ -10,6 +12,13 @@ class formValidator
         $this->data = $userData;
     }
 
+    public function sanitize($arrayData)
+    {
+        foreach ($arrayData as $key => $data) {
+            $arrayData[$key] = htmlspecialchars(stripslashes(trim($data)));
+        }
+        return $arrayData;
+    }
 
     public function validateRegister()
     {
