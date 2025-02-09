@@ -7,17 +7,17 @@ class FormValidator
     private $data;
     private $requireFields = ['username', 'password'];
 
-    public function __construct($userData)
+    public function __construct($post)
     {
-        $this->data = $userData;
+        $this->data = $post;
     }
 
-    public function sanitize($arrayData)
+    public function sanitize()
     {
-        foreach ($arrayData as $key => $data) {
-            $arrayData[$key] = htmlspecialchars(stripslashes(trim($data)));
+        foreach ($this->data as $key => $data) {
+            $this->data[$key] = htmlspecialchars(stripslashes(trim($data)));
         }
-        return $arrayData;
+        return $this->data;
     }
 
     public function validateRegister()

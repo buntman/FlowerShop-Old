@@ -3,13 +3,13 @@
 namespace App\Routes;
 
 use App\Routes\Router;
-use App\Controllers\HomeController;
-use App\Controllers\UserController;
+use App\Controllers\IndexController;
+use App\Controllers\LoginController;
 
 
 $router = new Router();
-$router->get('/login', HomeController::class, 'login');
-$router->post('/login', UserController::class, 'userLogin');
+$router->get('/login', IndexController::class, 'login');
+$router->post('/login', LoginController::class, 'userLogin');
 $router->dispatch();
 
 ?>
