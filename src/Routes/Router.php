@@ -1,10 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Routes;
 
 class Router
 {
     protected $routes = [];
+
+    public function __construct()
+    {
+        $this->routes = [
+            'GET' => [],
+            'POST' => [],
+        ];
+    }
 
     private function addRoute($route, $controller, $action, $method)
     {
@@ -26,14 +34,14 @@ class Router
     {
         $uri = strtok($_SERVER['REQUEST_URI'], '?');
         $method = $_SERVER['REQUEST_METHOD'];
+
         if (array_key_exists($uri, $this->routes[$method])) {
             $controller = $this->routes[$method][$uri]['controller'];
             $action = $this->routes[$method][$uri]['action'];
             $controller = new $controller();
             $controller->$action();
         } else {
-            throw new \Exception("No route found for URI: $uri");
+            throw new \Exception("No route found!: $uri. $method");
         }
     }
-
 }

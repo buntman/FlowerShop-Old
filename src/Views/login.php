@@ -11,7 +11,7 @@
             Rizza's Flower Shop
         </h1>
         <div class="main-container">
-        <form class="form" action="#" method="POST">
+        <form class="form" action="/login" method="POST">
         <h2>System Login</h2>
         <p>Please enter your credentials below to continue</p>
         <div class="form-container">

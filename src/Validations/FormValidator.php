@@ -2,7 +2,7 @@
 
 namespace App\Validations;
 
-class formValidator
+class FormValidator
 {
     private $data;
     private $requireFields = ['username', 'password'];

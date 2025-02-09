@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Routes;
-use App\Controllers\HomeController;
-use App\Router;
 
-require '../src/Models/Database.php';
+use App\Routes\Router;
+use App\Controllers\HomeController;
+use App\Controllers\UserController;
+
 
 $router = new Router();
-$router->get('/', HomeController::class, 'login');
 $router->get('/login', HomeController::class, 'login');
+$router->post('/login', UserController::class, 'userLogin');
 $router->dispatch();
 
 ?>

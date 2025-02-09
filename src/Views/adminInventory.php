@@ -7,14 +7,6 @@
 <title>Inventory</title>
 </head>
     <body>
-        <?php
-        include "connectMysql.php";
-        include "adminService.php";
-
-        $query = new adminService($connect);
-        $queryResult = $query->display();
-
-        ?>
         <div class="sidenav">
             <a href="#">Inventory</a>
             <a href="#">Reports</a>
