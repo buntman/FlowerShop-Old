@@ -37,7 +37,7 @@ class FormValidator
     {
         foreach ($this->requireFields as $field) {
             if (empty($this->data[$field])) {
-                throw new Exception("{$field} is required.");
+                throw new \Exception("{$field} is required.");
             }
         }
     }
@@ -45,22 +45,22 @@ class FormValidator
     private function validateUsername()
     {
         if (!preg_match("/^[a-zA-Z]*$/", $this->data['username'])) {
-            throw new Exception("Only letters are allowed.");
+            throw new \Exception("Only letters are allowed.");
         } elseif (strlen($this->data['username']) < 6 || strlen($this->data['username']) > 12) {
-            throw new Exception("Username must be 6-12 characters long.");
+            throw new \Exception("Username must be 6-12 characters long.");
         }
     }
 
     private function validatePassword()
     {
         if (!preg_match('/([a-z]{1,})/', $this->data['password'])) {
-            throw new Exception("Password must have one lowercase letter.");
+            throw new \Exception("Password must have one lowercase letter.");
         } elseif (!preg_match('/([A-Z]{1,})/', $this->data['password'])) {
-            throw new Exception("Password must have one uppercase letter.");
+            throw new \Exception("Password must have one uppercase letter.");
         } elseif (!preg_match('/([\d]{1,})/', $this->data['password'])) {
-            throw new Exception("Password must have one digit.");
+            throw new \Exception("Password must have one digit.");
         } elseif (strlen($this->data['password']) < 8 || strlen($this->data['password']) > 16) {
-            throw new Exception("Password must be 8-16 characters long.");
+            throw new \Exception("Password must be 8-16 characters long.");
         }
     }
 }
