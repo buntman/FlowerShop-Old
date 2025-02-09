@@ -12,8 +12,6 @@ class LoginController extends Controller
         $this->render("login");
     }
 
-
-
     public function userLogin()
     {
         $data = $_POST;
