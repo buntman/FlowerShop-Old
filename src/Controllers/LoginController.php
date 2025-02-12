@@ -20,9 +20,12 @@ class LoginController extends Controller
             $form->sanitize();
             if (!$form->validateLogin()) {
                 $this->render("login", ['errors' => $form->getErrors()]);
+                return;
             }
+            header("Location: inventory");
+            exit();
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            die("An error occured: ". $e->getMessage());
         }
     }
 }

@@ -36,7 +36,7 @@
         <div class="form-signup">
                     <p> 
                     Don't have an account?
-        <a href="register.php" class="signup">Sign up</a>
+        <a href="/register" class="signup">Sign up</a>
                     </p>
         </div>
         </form>

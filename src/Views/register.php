@@ -30,7 +30,7 @@
         <div class="form-login">
                     <p> 
                     Already have an account?
-    <a href="login.php" class="login">Login</a>
+    <a href="/login" class="login">Login</a>
                     </p>
          </div>
         </form>
