@@ -49,7 +49,7 @@ h1 {
 
 .form-container input {
     width: 70%;
-    margin: 15px 0;
+    margin: 15px 0 5px 0;
     padding: 12px 20px;
     color: #7E4F63;
     border: none;
@@ -101,6 +101,14 @@ h1 {
 
 .login:hover {
     text-decoration: underline;
+}
+
+.errors {
+    height: 10px;
+    color: red;
+    display: flex;
+    justify-content: left;
+    margin-left: 115px;
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {

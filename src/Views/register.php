@@ -11,16 +11,18 @@
             Rizza's Flower Shop
         </h1>
         <div class="main-container">
-        <form class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+        <form class="form" action="/register" method="POST">
         <h2>System Registration</h2>
         <p>Please enter your credentials below to continue</p>
         <div class="form-container">
             <label for="username"></label><br>
             <input type="text" id="username" placeholder="Username" name="username">
+                    <span class="errors"> <?php echo $errors['username'] ?? ''; ?> </span>
         </div>
         <div class="form-container">
             <label for="password"></label><br>
             <input type="password" id="password" placeholder="Password" name="password">
+                    <span class="errors"> <?php echo $errors['password'] ?? ''; ?> </span>
         </div>
         <div class="button-container">
             <button type="submit" name="register" value="register">Sign up</button>

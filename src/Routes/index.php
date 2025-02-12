@@ -10,4 +10,5 @@ $router = new Router();
 $router->get('/login', LoginController::class, 'login');
 $router->get('/register', RegisterController::class, 'register');
 $router->post('/login', LoginController::class, 'userLogin');
+$router->post('/register', RegisterController::class, 'userRegister');
 $router->dispatch();

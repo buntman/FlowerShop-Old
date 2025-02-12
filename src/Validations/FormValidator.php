@@ -21,14 +21,15 @@ class FormValidator
         return $this->data;
     }
 
-    public function validateRegister()
+    public function validateRegister():bool
     {
-        $this->validateRequiredFields();
-        $this->validateUsername();
-        $this->validatePassword();
+        if(!$this->validateRequiredFields() or !$this->validateUsername() or !$this->validatePassword()) {
+            return false;
+        }
+        return true;
     }
 
-    public function validateLogin() :bool
+    public function validateLogin(): bool
     {
         return $this->validateRequiredFields();
     }
@@ -51,16 +52,17 @@ class FormValidator
         return empty($this->errors);
     }
 
-    private function validateUsername()
+    private function validateUsername(): bool
     {
         if (!preg_match("/^[a-zA-Z]*$/", $this->data['username'])) {
             $this->errors['username'] = "Only letters are allowed.";
         } elseif (strlen($this->data['username']) < 6 || strlen($this->data['username']) > 12) {
             $this->errors['username'] = "Username must be 6-12 characters long.";
         }
+        return empty($this->errors);
     }
 
-    private function validatePassword()
+    private function validatePassword(): bool
     {
         if (!preg_match('/([a-z]{1,})/', $this->data['password'])) {
             $this->errors['password'] = "Password must have one lowecase letter.";
@@ -71,6 +73,7 @@ class FormValidator
         } elseif (strlen($this->data['password']) < 8 || strlen($this->data['password']) > 16) {
             $this->errors['password'] = "Password must be 8-16 characters long.";
         }
+        return empty($this->errors);
     }
 
 
