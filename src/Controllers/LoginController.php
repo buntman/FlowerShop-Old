@@ -18,8 +18,8 @@ class LoginController extends Controller
         $form = new FormValidator($data);
         try {
             $form->sanitize();
-            if ($form->validateLogin()) {
-                $this->render("adminInventory");
+            if (!$form->validateLogin()) {
+                $this->render("login", ['errors' => $form->getErrors()]);
             }
         } catch (\Exception $e) {
             echo $e->getMessage();

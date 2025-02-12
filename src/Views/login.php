@@ -17,10 +17,12 @@
         <div class="form-container">
             <label for="username"></label><br>
             <input type="text" id="username" placeholder="Username" name="username">
+                    <span class="errors"> <?php echo $errors['username'] ?? ''; ?> </span>
         </div>
         <div class="form-container">
             <label for="password"></label><br>
             <input type="password" id="password" placeholder="Password" name="password">
+                    <span class="errors"> <?php echo $errors['password'] ?? ''; ?> </span>
         </div>
         <div class="form-options">
         <label class="remember-me">
