@@ -1,15 +1,18 @@
 <?php
 
-class store
+namespace App\Models;
+use App\Models\Database;
+
+class storeData
 {
     private $data;
     private $connect;
 
 
-    public function __construct($postData, $connect)
+    public function __construct($postData, Database $db)
     {
         $this->data = $postData;
-        $this->connect = $connect;
+        $this->connect = $db->getConnection();
     }
 
 
@@ -27,16 +30,10 @@ class store
         $sql = "INSERT INTO Employees(username, password) VALUES(?,?)";
         $sql_statement = mysqli_prepare($this->connect, $sql);
         mysqli_stmt_bind_param($sql_statement, 'ss', $username, $encrypted_pass);
+        mysqli_stmt_execute($sql_statement);
 
-        if (mysqli_stmt_execute($sql_statement)) {
-            header("Location: home.php");
-        }
+       // if (mysqli_stmt_execute($sql_statement)) {
+       //     header("Location: /login");
+       // }
     }
-
-
-
-
-
-
-
 }

@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Database;
+use App\Models\storeData;
 use App\Validations\FormValidator;
 use App\Controllers\Controller;
 
@@ -16,11 +18,17 @@ class RegisterController extends Controller
     {
         $data = $_POST;
         $form = new FormValidator($data);
+        $db = new Database();
         try {
             $form->sanitize();
             if (!$form->validateRegister()) {
                 $this->render("register", ['errors' => $form->getErrors()]);
+                return;
             }
+            $clean_form = $form->sanitize();
+            $store = new storeData($clean_form, $db);
+            $store->save();
+            header("Location: /login");
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
