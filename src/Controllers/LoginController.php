@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Validations\FormValidator;
 use App\Controllers\Controller;
+use App\Models\Database;
+use App\Models\authenticate;
 
 class LoginController extends Controller
 {
@@ -16,13 +18,20 @@ class LoginController extends Controller
     {
         $data = $_POST;
         $form = new FormValidator($data);
+        $form->sanitize(); //not ideal approach
+        $clean_form = $form->sanitize();
+        $db = new Database();
         try {
-            $form->sanitize();
+            $authenticateUser = new authenticate($clean_form, $db); //passing it as object instead of array
             if (!$form->validateLogin()) {
                 $this->render("login", ['errors' => $form->getErrors()]);
                 return;
             }
-            header("Location: inventory");
+            if (!$authenticateUser->authenticateLogin()) {
+                $this->render("login", ['errors' => $authenticateUser->getErrors()]);
+                return;
+            }
+            header("Location: /inventory");
             exit();
         } catch (\Exception $e) {
             die("An error occured: ". $e->getMessage());

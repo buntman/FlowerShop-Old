@@ -1,30 +1,35 @@
 <?php
 
+namespace App\Models;
+
+use App\Models\Database;
+
 class authenticate
 {
     private $data;
     private $connect;
+    private $errors = [];
 
-    public function __construct($postData, $connect)
+    public function __construct($postData, Database $db)
     {
         $this->data = $postData;
-        $this->connect = $connect;
+        $this->connect = $db->getConnection();
     }
 
-    public function authenticateRegistration()
+    public function authenticateRegistration(): bool
     {
-        $this->authenticateUsername();
+        return $this->authenticateUsername();
     }
 
 
-    public function authenticateLogin()
+    public function authenticateLogin(): bool
     {
-        $this->authenticatePassword();
+        return $this->authenticatePassword();
     }
 
 
 
-    private function authenticateUsername()
+    private function authenticateUsername(): bool
     {
         $username = $this->data['username'];
         $sql = "SELECT * FROM Employees WHERE username = ?";
@@ -35,12 +40,13 @@ class authenticate
         $row = mysqli_fetch_assoc($result);
 
         if ($row) {
-            throw new Exception("Username is already taken.");
+            $this->errors['username'] = "Username is already taken.";
         }
+        return empty($this->errors);
     }
 
 
-    private function authenticatePassword()
+    private function authenticatePassword(): bool
     {
         $username = $this->data['username'];
         $password = $this->data['password'];
@@ -51,16 +57,18 @@ class authenticate
         $result = mysqli_stmt_get_result($sql_statement);
         $row = mysqli_fetch_assoc($result);
         $hashed_password = $row['password'];
-
         if (!$row) {
-            throw new Exception("Invalid input. Please try again.");
+            $this->errors['password'] = "Invalid input. Please try again.";
         }
+        if (!password_verify($password, $hashed_password)) {
+            $this->errors['password'] = "Invalid input. Please try again.";
+        }
+        return empty($this->errors);
+    }
 
-        if (password_verify($password, $hashed_password)) {
-            header("Location: adminInventory.php");
-        } else {
-            throw new Exception("Invalid input. Please try again.");
-        }
+
+    public function getErrors(): array {
+        return $this->errors;
     }
 
 }

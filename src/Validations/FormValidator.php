@@ -6,14 +6,14 @@ class FormValidator
 {
     private $data;
     private $requireFields = ['username', 'password'];
-    public $errors = [];
+    private $errors = [];
 
     public function __construct($post)
     {
         $this->data = $post;
     }
 
-    public function sanitize()
+    public function sanitize() :array
     {
         foreach ($this->data as $key => $data) {
             $this->data[$key] = htmlspecialchars(stripslashes(trim($data)));
@@ -29,13 +29,13 @@ class FormValidator
         return true;
     }
 
-    public function validateLogin(): bool
+    public function validateLogin():bool
     {
         return $this->validateRequiredFields();
     }
 
 
-    private function validateRequiredFields(): bool
+    private function validateRequiredFields():bool
     {
         foreach ($this->requireFields as $field) {
             if (empty($this->data[$field])) {
@@ -52,7 +52,7 @@ class FormValidator
         return empty($this->errors);
     }
 
-    private function validateUsername(): bool
+    private function validateUsername():bool
     {
         if (!preg_match("/^[a-zA-Z]*$/", $this->data['username'])) {
             $this->errors['username'] = "Only letters are allowed.";
@@ -62,10 +62,10 @@ class FormValidator
         return empty($this->errors);
     }
 
-    private function validatePassword(): bool
+    private function validatePassword():bool
     {
         if (!preg_match('/([a-z]{1,})/', $this->data['password'])) {
-            $this->errors['password'] = "Password must have one lowecase letter.";
+            $this->errors['password'] = "Password must have one lowercase letter.";
         } elseif (!preg_match('/([A-Z]{1,})/', $this->data['password'])) {
             $this->errors['password'] = "Password must have one uppercase letter.";
         } elseif (!preg_match('/([\d]{1,})/', $this->data['password'])) {
@@ -77,7 +77,7 @@ class FormValidator
     }
 
 
-    public function getErrors(): array
+    public function getErrors():array
     {
         return $this->errors;
     }
