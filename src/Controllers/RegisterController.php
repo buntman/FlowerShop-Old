@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Database;
+use App\config\database;
 use App\Models\storeData;
 use App\Validations\FormValidator;
 use App\Controllers\Controller;
@@ -18,7 +18,7 @@ class RegisterController extends Controller
     {
         $data = $_POST;
         $form = new FormValidator($data);
-        $db = new Database();
+        $db = new database();
         try {
             $form->sanitize();
             if (!$form->validateRegister()) {

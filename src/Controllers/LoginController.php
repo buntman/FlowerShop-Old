@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Validations\FormValidator;
 use App\Controllers\Controller;
-use App\Models\Database;
+use App\Config\database;
 use App\Models\authenticate;
 
 class LoginController extends Controller
@@ -20,7 +20,7 @@ class LoginController extends Controller
         $form = new FormValidator($data);
         $form->sanitize(); //not ideal approach
         $clean_form = $form->sanitize();
-        $db = new Database();
+        $db = new database();
         try {
             $authenticateUser = new authenticate($clean_form, $db); //passing it as object instead of array
             if (!$form->validateLogin()) {

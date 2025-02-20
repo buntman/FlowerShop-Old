@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Models;
-
-use App\Models\Database;
+use App\Config\database;
 
 class authenticate
 {
@@ -10,7 +9,7 @@ class authenticate
     private $connect;
     private $errors = [];
 
-    public function __construct($postData, Database $db)
+    public function __construct($postData, database $db)
     {
         $this->data = $postData;
         $this->connect = $db->getConnection();
@@ -67,7 +66,8 @@ class authenticate
     }
 
 
-    public function getErrors(): array {
+    public function getErrors(): array
+    {
         return $this->errors;
     }
 

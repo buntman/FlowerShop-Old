@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Config;
 
-class Database
+class database
 {
     private $connection;
 
 
     public function __construct()
     {
-        $db_config = require '/home/rgm/phpC/webProjects/FlowerShop/config/config.php';
+        $db_config = require __DIR__ . '/config.php';
         $host = $db_config['database']['host'];
         $user = $db_config['database']['username'];
         $password = $db_config['database']['password'];

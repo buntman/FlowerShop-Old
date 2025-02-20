@@ -2,7 +2,8 @@
     "name": "rgm/flower-shop",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "App\\Config\\": "config/"
         }
     },
     "authors": [
