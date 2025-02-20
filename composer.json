@@ -11,5 +11,8 @@
             "email": "148082762+buntman@users.noreply.github.com"
         }
     ],
-    "require": {}
+    "require": {
+        "twig/twig": "^3.0",
+        "vlucas/phpdotenv": "^5.6"
+    }
 }
