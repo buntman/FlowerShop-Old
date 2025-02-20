@@ -4,9 +4,15 @@ namespace App\Controllers;
 
 class Controller
 {
+    protected $twig;
+
+    public function __construct()
+    {
+        $this->twig = require __DIR__ . '/../../config/twig.php';
+    }
+
     protected function render($view, $data = [])
     {
-        extract($data);
-        include "../src/Views/$view.php";
+        echo $this->twig->render("$view.html.twig", $data);
     }
 }
