@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Config\database;
 
 class storeData
 {
@@ -8,7 +9,7 @@ class storeData
     private $connect;
 
 
-    public function __construct($postData, Database $db)
+    public function __construct($postData, database $db)
     {
         $this->data = $postData;
         $this->connect = $db->getConnection();
@@ -30,9 +31,5 @@ class storeData
         $sql_statement = mysqli_prepare($this->connect, $sql);
         mysqli_stmt_bind_param($sql_statement, 'ss', $username, $encrypted_pass);
         mysqli_stmt_execute($sql_statement);
-
-       // if (mysqli_stmt_execute($sql_statement)) {
-       //     header("Location: /login");
-       // }
     }
 }

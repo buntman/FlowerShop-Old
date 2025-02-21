@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\config\database;
+use App\Config\database;
 use App\Models\storeData;
 use App\Validations\FormValidator;
 use App\Controllers\Controller;
