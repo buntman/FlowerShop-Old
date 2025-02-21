@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Config\database;
 use App\Models\storeData;
 use App\Validations\FormValidator;
+use App\Validations\inputSanitizer;
 use App\Controllers\Controller;
 
 class RegisterController extends Controller
@@ -17,15 +18,15 @@ class RegisterController extends Controller
     public function userRegister()
     {
         $data = $_POST;
-        $form = new FormValidator($data);
+        $input = new inputSanitizer($data);
+        $clean_form = $input->sanitize();
+        $form = new FormValidator($clean_form);
         $db = new database();
         try {
-            $form->sanitize();
             if (!$form->validateRegister()) {
                 $this->render("register", ['errors' => $form->getErrors()]);
                 return;
             }
-            $clean_form = $form->sanitize();
             $store = new storeData($clean_form, $db);
             $store->save();
             header("Location: /login");

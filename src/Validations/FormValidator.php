@@ -13,14 +13,6 @@ class FormValidator
         $this->data = $post;
     }
 
-    public function sanitize() :array
-    {
-        foreach ($this->data as $key => $data) {
-            $this->data[$key] = htmlspecialchars(stripslashes(trim($data)));
-        }
-        return $this->data;
-    }
-
     public function validateRegister():bool
     {
         if(!$this->validateRequiredFields() or !$this->validateUsername() or !$this->validatePassword()) {

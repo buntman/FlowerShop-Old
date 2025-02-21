@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Validations\FormValidator;
+use App\Validations\inputSanitizer;
 use App\Controllers\Controller;
 use App\Config\database;
 use App\Models\authenticate;
@@ -17,9 +18,9 @@ class LoginController extends Controller
     public function userLogin()
     {
         $data = $_POST;
-        $form = new FormValidator($data);
-        $form->sanitize(); //not ideal approach
-        $clean_form = $form->sanitize();
+        $input = new inputSanitizer($data);
+        $clean_form = $input->sanitize();
+        $form = new FormValidator($clean_form);
         $db = new database();
         try {
             $authenticateUser = new authenticate($clean_form, $db); //passing it as object instead of array
