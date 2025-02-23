@@ -7,6 +7,7 @@ use App\Validations\inputSanitizer;
 use App\Controllers\Controller;
 use App\Config\database;
 use App\Models\authenticate;
+use App\Models\userService;
 
 class LoginController extends Controller
 {
@@ -23,7 +24,7 @@ class LoginController extends Controller
         $form = new FormValidator($clean_form);
         $db = new database();
         try {
-            $authenticateUser = new authenticate($clean_form, $db); //passing it as object instead of array
+            $authenticateUser = new authenticate($clean_form, $db);
             if (!$form->validateLogin()) {
                 $this->render("login", ['errors' => $form->getErrors()]);
                 return;
@@ -32,10 +33,22 @@ class LoginController extends Controller
                 $this->render("login", ['errors' => $authenticateUser->getErrors()]);
                 return;
             }
+            $userService = new userService($clean_form, $db);
+            $user = $userService->findByUsername();
+            $_SESSION['user_id'] = $user['employeeID'];
             header("Location: /inventory");
             exit();
         } catch (\Exception $e) {
             die("An error occured: ". $e->getMessage());
         }
+    }
+
+
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+        header("Location: /login");
+        exit();
     }
 }

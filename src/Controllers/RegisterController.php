@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Config\database;
-use App\Models\storeData;
+use App\Models\userService;
 use App\Validations\FormValidator;
 use App\Validations\inputSanitizer;
 use App\Controllers\Controller;
@@ -27,8 +27,8 @@ class RegisterController extends Controller
                 $this->render("register", ['errors' => $form->getErrors()]);
                 return;
             }
-            $store = new storeData($clean_form, $db);
-            $store->save();
+            $user = new userService($clean_form, $db);
+            $user->save();
             header("Location: /login");
         } catch (\Exception $e) {
             echo $e->getMessage();
