@@ -13,6 +13,6 @@ class Controller
 
     protected function render($view, $data = [])
     {
-        echo $this->twig->render("$view.html.twig", $data);
+        echo $this->twig->render("$view.twig", $data);
     }
 }
