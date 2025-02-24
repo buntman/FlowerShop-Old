@@ -6,27 +6,19 @@ class Router
 {
     protected $routes = [];
 
-    public function __construct()
+    private function addRoute($route, $controller, $action, $method, $middleware = null)
     {
-        $this->routes = [
-            'GET' => [],
-            'POST' => [],
-        ];
+        $this->routes[$method][$route] = ['controller' => $controller, 'action' => $action, 'middleware' => $middleware];
     }
 
-    private function addRoute($route, $controller, $action, $method)
+    public function get($route, $controller, $action, $middleware = null)
     {
-        $this->routes[$method][$route] = ['controller' => $controller, 'action' =>$action];
+        $this->addRoute($route, $controller, $action, "GET", $middleware);
     }
 
-    public function get($route, $controller, $action)
+    public function post($route, $controller, $action, $middleware = null)
     {
-        $this->addRoute($route, $controller, $action, "GET");
-    }
-
-    public function post($route, $controller, $action)
-    {
-        $this->addRoute($route, $controller, $action, "POST");
+        $this->addRoute($route, $controller, $action, "POST", $middleware);
     }
 
 
@@ -36,8 +28,15 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
 
         if (array_key_exists($uri, $this->routes[$method])) {
-            $controller = $this->routes[$method][$uri]['controller'];
-            $action = $this->routes[$method][$uri]['action'];
+            $route = $this->routes[$method][$uri];
+
+            if ($route['middleware']) {
+                $middleware = new $route['middleware']();
+                $middleware->handle();
+            }
+
+            $controller = $route['controller'];
+            $action = $route['action'];
             $controller = new $controller();
             $controller->$action();
         } else {
