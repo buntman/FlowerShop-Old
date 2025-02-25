@@ -79,39 +79,14 @@
 }
 
 .current-stocks {
-    background-color: #f8c8d8;
     height: 900px;
 }
 
-.card {
-    padding: 12px 0 3px 0;
-    margin: 0 10px;
-    display: flex;
-    align-items: center;
+
+td {
+    vertical-align: middle !important;
 }
 
-.item-details {
-    flex: 9.5;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 100px;
-}
-
-.item-actions {
-    flex: 0.5;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.item-details img{
-    height: 65px;
-    width: 82px;
-}
-
-.edit {
-    margin-right: 10px;
-}
 
 
 

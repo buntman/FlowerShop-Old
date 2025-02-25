@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Config\database;
 
-class stockService
+class inventoryService
 {
     private $connect;
 
@@ -17,13 +17,13 @@ class stockService
 
     public function display()
     {
-        return $this->queryStocks();
+        return $this->queryFlowers();
     }
 
 
-    private function queryStocks()
+    private function queryFlowers()
     {
-        $sql = "SELECT * FROM Bouquet";
+        $sql = "SELECT * FROM Flower";
         $result = mysqli_query($this->connect, $sql);
         $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $rows;
