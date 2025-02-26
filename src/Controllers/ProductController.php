@@ -3,11 +3,20 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
+use App\Controllers\ImageController;
 
 class ProductController extends Controller
 {
-    public function addProduct()
+    public function add()
     {
         $this->render("/add");
+    }
+
+    public function createProduct() {
+        $file = $_FILES;
+        $upload = new ImageController($file);
+        $upload->uploadFile();
+        header("Location: /inventory");
+        exit();
     }
 }
