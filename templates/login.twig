@@ -16,12 +16,12 @@
         <p>Please enter your credentials below to continue</p>
         <div class="form-container">
             <label for="username"></label><br>
-            <input type="text" id="username" placeholder="Username" name="username">
+            <input type="text" id="username" placeholder="Username" name="username" required>
                     <span class="errors"> {{errors['username']}} </span>
         </div>
         <div class="form-container">
             <label for="password"></label><br>
-            <input type="password" id="password" placeholder="Password" name="password">
+            <input type="password" id="password" placeholder="Password" name="password" required>
                     <span class="errors"> {{errors['password']}} </span>
         </div>
         <div class="form-options">
