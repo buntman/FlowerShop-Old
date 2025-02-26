@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Controllers\ImageController;
+use App\Validations\inputSanitizer;
 
 class ProductController extends Controller
 {
