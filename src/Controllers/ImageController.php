@@ -11,6 +11,7 @@ class ImageController
     private $errors = [];
     private $file_name;
     private $target_dir;
+    private $relative_path;
 
     public function __construct($files)
     {
@@ -25,6 +26,7 @@ class ImageController
         $this->target_file = $this->target_dir . basename($this->file_name);
         $this->image_file_type = strtolower(pathinfo($this->target_file, PATHINFO_EXTENSION));
         $this->file_size = $this->data['image']['size'];
+        $this->relative_path = "/images/inventory-items/" . $this->file_name;
     }
 
     public function uploadFile()
@@ -71,6 +73,11 @@ class ImageController
             $this->errors['file_type'] = "Sorry, only JPG, JPEG, PNG, and GIF are supported.";
         }
         return empty($this->errors);
+    }
+
+    public function getTargetDirectory()
+    {
+        return $this->relative_path;
     }
 
 
