@@ -27,6 +27,11 @@
     <div class="mb-3">
     <label for="image" class="form-label">Upload Image</label>
     <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+        {% if errors %}
+            {% for key, error in errors %}
+                <span class="errors"> {{error}} </span>
+            {% endfor %}
+        {% endif %}
     </div>
     <div class="button-container">
         <button type="submit" name="submit" value="submit">Submit</button>
