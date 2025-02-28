@@ -14,11 +14,12 @@ class ProductController extends Controller
         $this->render("add");
     }
 
-    public function createProduct() {
+    public function createProduct()
+    {
         $data = $_POST;
         $file = $_FILES;
         $upload = new ImageController($file);
-        if(!$upload->validateFile()) {
+        if (!$upload->validateFile()) {
             $this->render("add", ['errors' => $upload->getErrors()]);
             return;
         }
@@ -27,6 +28,12 @@ class ProductController extends Controller
         $db = new database();
         $product = new productService($data, $db, $image_dir);
         $product->saveProduct();
+        header("Location: /inventory");
+        exit();
+    }
+
+    public function cancel()
+    {
         header("Location: /inventory");
         exit();
     }

@@ -15,6 +15,7 @@ $router->get('/login', LoginController::class, 'login', Admin::class);
 $router->get('/register', RegisterController::class, 'register', Admin::class);
 $router->get('/inventory', InventoryController::class, 'inventory', Auth::class);
 $router->get('/add', ProductController::class, 'add', Auth::class);
+$router->get('/cancel', ProductController::class, 'cancel');
 $router->post('/add', ProductController::class, 'createProduct');
 $router->post('/login', LoginController::class, 'userLogin');
 $router->post('/register', RegisterController::class, 'userRegister');
