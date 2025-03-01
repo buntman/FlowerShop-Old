@@ -19,8 +19,8 @@ h1 {
 .main-container {
     position: fixed;
     inset: 0px;
-    width: 48rem;
-    height: 35rem;
+    width: 52rem;
+    height: 42rem;
     max-width: 100vw;
     max-height: 100dvh;
     margin: auto;
