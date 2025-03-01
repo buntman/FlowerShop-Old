@@ -25,12 +25,16 @@ class userService
 
     private function saveUser()
     {
+        $first_name = $this->data['first_name'];
+        $last_name = $this->data['last_name'];
         $username = $this->data['username'];
         $password = $this->data['password'];
+        $email = $this->data['email'];
+        $contact_number = $this->data['contact_number'];
         $encrypted_pass = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO Employees(username, password) VALUES(?,?)";
+        $sql = "INSERT INTO employees(first_name, last_name, username, password, email, contact_number) VALUES(?,?,?,?,?,?)";
         $sql_statement = mysqli_prepare($this->connect, $sql);
-        mysqli_stmt_bind_param($sql_statement, 'ss', $username, $encrypted_pass);
+        mysqli_stmt_bind_param($sql_statement, 'ssssss',$first_name, $last_name, $username, $encrypted_pass, $email, $contact_number);
         mysqli_stmt_execute($sql_statement);
     }
 
@@ -38,7 +42,7 @@ class userService
     public function findByUsername()
     {
         $username = $this->data['username'];
-        $sql = "SELECT * FROM Employees WHERE username = ?";
+        $sql = "SELECT * FROM employees WHERE username = ?";
         $sql_statement = mysqli_prepare($this->connect, $sql);
         mysqli_stmt_bind_param($sql_statement, 's', $username);
         mysqli_stmt_execute($sql_statement);

@@ -31,7 +31,7 @@ class authenticate
     private function authenticateUsername(): bool
     {
         $username = $this->data['username'];
-        $sql = "SELECT * FROM Employees WHERE username = ?";
+        $sql = "SELECT * FROM employees WHERE username = ?";
         $sql_statement = mysqli_prepare($this->connect, $sql);
         mysqli_stmt_bind_param($sql_statement, 's', $username);
         mysqli_stmt_execute($sql_statement);
@@ -49,7 +49,7 @@ class authenticate
     {
         $username = $this->data['username'];
         $password = $this->data['password'];
-        $sql = "SELECT * FROM Employees WHERE username = ?";
+        $sql = "SELECT * FROM employees WHERE username = ?";
         $sql_statement = mysqli_prepare($this->connect, $sql);
         mysqli_stmt_bind_param($sql_statement, 's', $username);
         mysqli_stmt_execute($sql_statement);

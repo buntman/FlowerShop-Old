@@ -23,7 +23,7 @@ class inventoryService
 
     private function queryFlowers()
     {
-        $sql = "SELECT * FROM Flower";
+        $sql = "SELECT * FROM flower";
         $result = mysqli_query($this->connect, $sql);
         $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $rows;
