@@ -5,7 +5,8 @@ namespace App\Validations;
 class FormValidator
 {
     private $data;
-    private $requireFields = ['username', 'password'];
+    private $loginFields = ['username', 'password'];
+    private $registerFields = ['first_name', 'last_name', 'email', 'contact_number', 'username', 'password'];
     private $errors = [];
 
     public function __construct($post)
@@ -13,23 +14,23 @@ class FormValidator
         $this->data = $post;
     }
 
-    public function validateRegister():bool
+    public function validateRegister(): bool
     {
-        if(!$this->validateRequiredFields() or !$this->validateUsername() or !$this->validatePassword()) {
+        if (!$this->validateRegisterFields() or !$this->validateUsername() or !$this->validatePassword()) {
             return false;
         }
         return true;
     }
 
-    public function validateLogin():bool
+    public function validateLogin(): bool
     {
-        return $this->validateRequiredFields();
+        return $this->validateLoginFields();
     }
 
 
-    private function validateRequiredFields():bool
+    private function validateLoginFields(): bool
     {
-        foreach ($this->requireFields as $field) {
+        foreach ($this->loginFields as $field) {
             if (empty($this->data[$field])) {
                 switch ($field) {
                     case 'username':
@@ -44,7 +45,57 @@ class FormValidator
         return empty($this->errors);
     }
 
-    private function validateUsername():bool
+
+    private function validateRegisterFields(): bool
+    {
+        foreach ($this->registerFields as $field) {
+            if (empty($this->data[$field])) {
+                switch ($field) {
+                    case 'first_name':
+                        $this->errors['first_name'] = "{$field} is required.";
+                        break;
+                    case 'last_name':
+                        $this->errors['last_name'] = "{$field} is required.";
+                        break;
+                    case 'email':
+                        $this->errors['email'] = "{$field} is required.";
+                        break;
+                    case 'username':
+                        $this->errors['username'] = "{$field} is required.";
+                        break;
+                    case 'password':
+                        $this->errors['password'] = "{$field} is required.";
+                        break;
+                }
+            }
+        }
+        return empty($this->errors);
+    }
+
+
+    private function validateFirstName(): bool
+    {
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $this->data['first_name'])) {
+            $this->errors['first_name'] = "Only letters and white space allowed";
+        }
+    }
+
+    private function validateLastName(): bool
+    {
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $this->data['last_name'])) {
+            $this->errors['last_name'] = "Only letters and white space allowed";
+        }
+    }
+
+    private function validateEmail(): bool
+    {
+        if (!filter_var($this->data['email'], FILTER_VALIDATE_EMAIL)) {
+            $this->errors['email'] = "Invalid email format";
+        }
+        return empty($this->errors);
+    }
+
+    private function validateUsername(): bool
     {
         if (!preg_match("/^[a-zA-Z]*$/", $this->data['username'])) {
             $this->errors['username'] = "Only letters are allowed.";
@@ -54,7 +105,7 @@ class FormValidator
         return empty($this->errors);
     }
 
-    private function validatePassword():bool
+    private function validatePassword(): bool
     {
         if (!preg_match('/([a-z]{1,})/', $this->data['password'])) {
             $this->errors['password'] = "Password must have one lowercase letter.";
@@ -69,7 +120,7 @@ class FormValidator
     }
 
 
-    public function getErrors():array
+    public function getErrors(): array
     {
         return $this->errors;
     }
