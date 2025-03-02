@@ -37,6 +37,7 @@ class LoginController extends Controller
             $userService = new userService($clean_form, $db);
             $user = $userService->findByUsername();
             $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_role'] = $user['role'];
             header("Location: /inventory");
             exit();
         } catch (\Exception $e) {

@@ -23,6 +23,9 @@ class inventoryService
 
     private function queryFlowers()
     {
+        if(!isset($_SESSION['user_role']) or $_SESSION['user_role'] != 'ADMIN') {
+            die("Only admin can access this!");
+        }
         $sql = "SELECT * FROM flower";
         $result = mysqli_query($this->connect, $sql);
         $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
