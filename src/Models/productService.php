@@ -37,6 +37,11 @@ class productService
 
     public function saveProduct()
     {
+        if($_SESSION['user_role'] != 'ADMIN') {
+            http_response_code(403);
+            exit("Unauthorized Action");
+        }
+
         $sql = "INSERT INTO flower(flower_name,description, stock_quantity, price, image_path, admin_id) VALUES(?,?,?,?,?,?)"; //link user using findUsername function
         $sql_statement = mysqli_prepare($this->connect, $sql);
         mysqli_stmt_bind_param($sql_statement,'ssidsi', $this->flower_name, $this->flower_description, $this->flower_stock, $this->flower_price, $this->image_directory, $this->admin_id);

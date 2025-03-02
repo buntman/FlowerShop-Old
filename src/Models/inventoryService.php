@@ -23,9 +23,6 @@ class inventoryService
 
     private function queryFlowers()
     {
-        if(!isset($_SESSION['user_role']) or $_SESSION['user_role'] != 'ADMIN') {
-            die("Only admin can access this!");
-        }
         $admin_id = $_SESSION['user_id'];
         $sql = "SELECT * FROM flower where admin_id = ?";
         $sql_statement = mysqli_prepare($this->connect, $sql);
