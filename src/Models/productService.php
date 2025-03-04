@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Config\database;
-
 class productService
 {
     private $data;
@@ -17,10 +15,10 @@ class productService
     private $admin_id;
 
 
-    public function __construct($postData, database $db, $relative_path)
+    public function __construct($postData, $connection, $relative_path)
     {
         $this->data = $postData;
-        $this->connect = $db->getConnection();
+        $this->connect = $connection;
         $this->image_directory = $relative_path;
         $this->initializeProperties();
     }
@@ -39,14 +37,14 @@ class productService
 
     public function saveProduct()
     {
-        if($_SESSION['user_role'] != 'ADMIN') {
+        if ($_SESSION['user_role'] != 'ADMIN') {
             http_response_code(403);
             exit("Unauthorized Action");
         }
 
         $sql = "INSERT INTO products(name,description, stock_quantity, price, image_path, product_type, admin_id) VALUES(?,?,?,?,?,?,?)"; //link user using findUsername function
         $sql_statement = mysqli_prepare($this->connect, $sql);
-        mysqli_stmt_bind_param($sql_statement,'ssidssi', $this->name, $this->description, $this->stock, $this->price, $this->image_directory, $this->product_type, $this->admin_id);
+        mysqli_stmt_bind_param($sql_statement, 'ssidssi', $this->name, $this->description, $this->stock, $this->price, $this->image_directory, $this->product_type, $this->admin_id);
         mysqli_stmt_execute($sql_statement);
     }
 

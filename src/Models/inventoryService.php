@@ -2,16 +2,13 @@
 
 namespace App\Models;
 
-use App\Config\database;
-
 class inventoryService
 {
     private $connect;
 
-
-    public function __construct(database $db)
+    public function __construct($connection)
     {
-        $this->connect = $db->getConnection();
+        $this->connect = $connection;
     }
 
 

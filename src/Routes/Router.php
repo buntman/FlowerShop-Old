@@ -2,9 +2,17 @@
 
 namespace App\Routes;
 
+use App\Config\database;
+
 class Router
 {
     protected $routes = [];
+    private $db;
+
+    public function __construct(database $db)
+    {
+        $this->db = $db;
+    }
 
     private function addRoute($route, $controller, $action, $method, $middleware = null)
     {
@@ -37,7 +45,7 @@ class Router
 
             $controller = $route['controller'];
             $action = $route['action'];
-            $controller = new $controller();
+            $controller = new $controller($this->db);
             $controller->$action();
         } else {
             throw new \Exception("No route found!: $uri. $method");

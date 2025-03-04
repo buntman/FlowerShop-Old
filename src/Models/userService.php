@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Config\database;
 
 class userService
 {
@@ -10,10 +9,10 @@ class userService
     private $connect;
 
 
-    public function __construct($postData, database $db)
+    public function __construct($postData, $connection)
     {
         $this->data = $postData;
-        $this->connect = $db->getConnection();
+        $this->connect = $connection;
     }
 
 
@@ -34,7 +33,7 @@ class userService
         $encrypted_pass = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO employees(first_name, last_name, username, password, email, contact_number) VALUES(?,?,?,?,?,?)";
         $sql_statement = mysqli_prepare($this->connect, $sql);
-        mysqli_stmt_bind_param($sql_statement, 'ssssss',$first_name, $last_name, $username, $encrypted_pass, $email, $contact_number);
+        mysqli_stmt_bind_param($sql_statement, 'ssssss', $first_name, $last_name, $username, $encrypted_pass, $email, $contact_number);
         mysqli_stmt_execute($sql_statement);
     }
 
@@ -50,9 +49,3 @@ class userService
         return mysqli_fetch_assoc($result);
     }
 }
-
-
-
-
-
-

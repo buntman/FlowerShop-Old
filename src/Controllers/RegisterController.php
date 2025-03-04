@@ -11,6 +11,11 @@ use App\Models\authenticate;
 
 class RegisterController extends Controller
 {
+    public function __construct(database $db)
+    {
+        parent::__construct($db);
+    }
+
     public function register()
     {
         $this->render("register");
@@ -22,18 +27,17 @@ class RegisterController extends Controller
         $input = new inputSanitizer($data);
         $clean_form = $input->sanitize();
         $form = new FormValidator($clean_form);
-        $db = new database();
         try {
-            $authenticateUser = new authenticate($clean_form, $db);
+            $authenticateUser = new authenticate($clean_form, $this->db->getConnection());
             if (!$form->validateRegister()) {
                 $this->render("register", ['errors' => $form->getErrors()]);
                 return;
             }
-            if(!$authenticateUser->authenticateRegistration()) {
+            if (!$authenticateUser->authenticateRegistration()) {
                 $this->render("register", ['errors' => $authenticateUser->getErrors()]);
                 return;
             }
-            $user = new userService($clean_form, $db);
+            $user = new userService($clean_form, $this->db->getConnection());
             $user->save();
             header("Location: /login");
         } catch (\Exception $e) {

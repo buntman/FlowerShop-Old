@@ -9,6 +9,11 @@ use App\Config\database;
 
 class ProductController extends Controller
 {
+    public function __construct(database $db)
+    {
+        parent::__construct($db);
+    }
+
     public function add()
     {
         $this->render("add");
@@ -25,8 +30,7 @@ class ProductController extends Controller
         }
         $upload->uploadFile();
         $image_dir = $upload->getTargetDirectory();
-        $db = new database();
-        $product = new productService($data, $db, $image_dir);
+        $product = new productService($data, $this->db->getConnection(), $image_dir);
         $product->saveProduct();
         header("Location: /inventory");
         exit();

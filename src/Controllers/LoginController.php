@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controllers;
 
 use App\Validations\FormValidator;
@@ -12,6 +11,12 @@ use App\Models\userService;
 
 class LoginController extends Controller
 {
+
+    public function __construct(database $db)
+    {
+        parent::__construct($db);
+    }
+
     public function login()
     {
         $this->render("login");
@@ -23,9 +28,8 @@ class LoginController extends Controller
         $input = new inputSanitizer($data);
         $clean_form = $input->sanitize();
         $form = new FormValidator($clean_form);
-        $db = new database();
         try {
-            $authenticateUser = new authenticate($clean_form, $db);
+            $authenticateUser = new authenticate($clean_form, $this->db->getConnection());
             if (!$form->validateLogin()) {
                 $this->render("login", ['errors' => $form->getErrors()]);
                 return;
@@ -34,7 +38,7 @@ class LoginController extends Controller
                 $this->render("login", ['errors' => $authenticateUser->getErrors()]);
                 return;
             }
-            $userService = new userService($clean_form, $db);
+            $userService = new userService($clean_form, $this->db->getConnection());
             $user = $userService->findByUsername();
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_role'] = $user['role'];

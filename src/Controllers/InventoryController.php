@@ -8,10 +8,14 @@ use App\Config\database;
 
 class InventoryController extends Controller
 {
+    public function __construct(database $db)
+    {
+        parent::__construct($db);
+    }
+
     public function inventory()
     {
-        $db = new database();
-        $stocks = new inventoryService($db);
+        $stocks = new inventoryService($this->db->getConnection());
         $this->render("inventory", ['stocks' => $stocks->display()]);
     }
 }

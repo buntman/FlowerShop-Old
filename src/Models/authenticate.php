@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Config\database;
 
 class authenticate
 {
@@ -10,10 +9,10 @@ class authenticate
     private $connect;
     private $errors = [];
 
-    public function __construct($postData, database $db)
+    public function __construct($postData, $connection)
     {
         $this->data = $postData;
-        $this->connect = $db->getConnection();
+        $this->connect = $connection;
     }
 
     public function authenticateRegistration(): bool

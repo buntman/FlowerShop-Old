@@ -9,8 +9,11 @@ use App\Controllers\InventoryController;
 use App\Controllers\ProductController;
 use App\Middleware\Auth;
 use App\Middleware\Admin;
+use App\Config\database;
 
-$router = new Router();
+$db = new database();
+
+$router = new Router($db);
 $router->get('/login', LoginController::class, 'login', Admin::class);
 $router->get('/register', RegisterController::class, 'register', Admin::class);
 $router->get('/inventory', InventoryController::class, 'inventory', Auth::class);
