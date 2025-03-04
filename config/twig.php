@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace App\Config;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
