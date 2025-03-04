@@ -8,11 +8,12 @@ class productService
 {
     private $data;
     private $connect;
-    private $flower_name;
-    private $flower_stock;
-    private $flower_description;
-    private $flower_price;
+    private $name;
+    private $stock;
+    private $description;
+    private $price;
     private $image_directory;
+    private $product_type;
     private $admin_id;
 
 
@@ -27,10 +28,11 @@ class productService
 
     private function initializeProperties()
     {
-        $this->flower_name = $this->data['name'];
-        $this->flower_stock = $this->data['stock'];
-        $this->flower_description = $this->data['description'];
-        $this->flower_price = $this->data['price'];
+        $this->name = $this->data['name'];
+        $this->stock = $this->data['stock'];
+        $this->description = $this->data['description'];
+        $this->price = $this->data['price'];
+        $this->product_type = $this->data['product_type'];
         $this->admin_id = $_SESSION['user_id'];
     }
 
@@ -42,9 +44,9 @@ class productService
             exit("Unauthorized Action");
         }
 
-        $sql = "INSERT INTO flower(flower_name,description, stock_quantity, price, image_path, admin_id) VALUES(?,?,?,?,?,?)"; //link user using findUsername function
+        $sql = "INSERT INTO products(name,description, stock_quantity, price, image_path, product_type, admin_id) VALUES(?,?,?,?,?,?,?)"; //link user using findUsername function
         $sql_statement = mysqli_prepare($this->connect, $sql);
-        mysqli_stmt_bind_param($sql_statement,'ssidsi', $this->flower_name, $this->flower_description, $this->flower_stock, $this->flower_price, $this->image_directory, $this->admin_id);
+        mysqli_stmt_bind_param($sql_statement,'ssidssi', $this->name, $this->description, $this->stock, $this->price, $this->image_directory, $this->product_type, $this->admin_id);
         mysqli_stmt_execute($sql_statement);
     }
 
