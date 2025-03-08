@@ -16,6 +16,16 @@ class InventoryController extends Controller
     public function inventory()
     {
         $stocks = new inventoryService($this->db->getConnection());
-        $this->render("inventory", ['stocks' => $stocks->display()]);
+        $this->render("inventory", ['stocks' => $stocks->fetchProducts()]);
+    }
+
+    public function displayDetails() {
+        header("Content-Type: application/json");
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, false);
+        $name = $data->product_name;
+        $stocks = new inventoryService($this->db->getConnection());
+        $result = $stocks->fetchProductDetails($name);
+        echo json_encode($result);
     }
 }

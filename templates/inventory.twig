@@ -95,12 +95,15 @@
         </div>
       </div>
       <div class="row mx-3 my-3">
-        <div class=" order-details col-sm-6 me-3 rounded-3">
-
-
+        <div id="product-details" class="order-details col-sm-6 me-3 rounded-3">
+            <div id="target-details">
+                <p id="product-name"></p>
+                <p id="product-description"></p>
+                <p id="product-price"></p>
+            </div>
         </div>
         <div class="stocks col-sm-6">
-            <table class="table table-hover">
+            <table id="myTable" class="table table-hover">
                 <thead>
                 <tr>
                 <th></th>
@@ -121,7 +124,7 @@
                 <td>{{item.name}}</td>
                 <td>{{item.stock_quantity}}</td>
                 <td>{{item.price}}</td>
-                <td>
+                <td class="text-center">
                     <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm">
                      <i class="fas fa-pen"></i>
                     </button>
@@ -142,5 +145,6 @@
   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
   crossorigin="anonymous"></script>
   <script src="js/sidebar.js"></script>
+  <script src="js/inventory.js"></script>
     </body>
 </html> 
