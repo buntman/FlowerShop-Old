@@ -15,6 +15,14 @@ function sendNameToServer(product_name) {
         body: JSON.stringify({product_name})
     })
     .then(response=>response.json())
-    .then(data=> console.log(data))
+    .then(data=> {
+            if(data.success) {
+                document.getElementById('product-image').remove();
+                document.getElementById('product-name').remove();
+                document.getElementById('product-description').remove();
+                document.getElementById('product-price').remove();
+            }
+            console.log(data.message);
+        })
     .catch(error=> console.error('Error', error));
 }
