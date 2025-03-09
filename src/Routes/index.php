@@ -23,5 +23,6 @@ $router->post('/add', ProductController::class, 'createProduct');
 $router->post('/login', LoginController::class, 'userLogin');
 $router->post('/register', RegisterController::class, 'userRegister');
 $router->post('/inventory', InventoryController::class, 'displayDetails');
+$router->post('/delete', InventoryController::class, 'removeProduct');
 $router->get('/logout', LoginController::class, 'logout');
 $router->dispatch();

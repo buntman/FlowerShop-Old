@@ -9,10 +9,10 @@ function fetchName() {
     const row = event.currentTarget;
     const column = row.querySelectorAll('td');
     const product_name = column[2].textContent;
-    sendDataToServer(product_name);
+    sendProductDetails(product_name);
 }
 
-function sendDataToServer(product_name) {
+function sendProductDetails(product_name) {
     fetch('/inventory', {
         method: 'POST',
         headers: {

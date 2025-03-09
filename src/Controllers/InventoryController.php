@@ -28,4 +28,15 @@ class InventoryController extends Controller
         $result = $stocks->fetchProductDetails($name);
         echo json_encode($result);
     }
+
+
+    public function removeProduct() {
+        header("Content-Type: application/json");
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, false);
+        $name = $data->product_name;
+        $stocks = new inventoryService($this->db->getConnection());
+        $stocks->deleteProduct($name);
+        echo json_encode(["success" => true, "message" => "Deleted Successfully"]);
+    }
 }

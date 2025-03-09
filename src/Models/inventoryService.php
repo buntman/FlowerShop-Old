@@ -34,4 +34,12 @@ class inventoryService
         $product = mysqli_fetch_assoc($result);
         return $product;
     }
+
+    public function deleteProduct($product_name)
+    {
+        $sql = "DELETE FROM products where name = ?";
+        $sql_statement = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($sql_statement, 's', $product_name);
+        mysqli_stmt_execute($sql_statement);
+    }
 }
