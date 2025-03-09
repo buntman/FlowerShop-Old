@@ -151,7 +151,7 @@
     font-family: Poppins;
 }
 
-.order-details {
+#product-details {
     background-color: #FFA8D4;
     height: 890px;
     width: 550px;
@@ -181,5 +181,14 @@ tr:hover {
     --bs-table-border-color: black;
 }
 
+#product-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+    text-decoration: none;
+}
 
 

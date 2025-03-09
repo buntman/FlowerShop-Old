@@ -95,13 +95,21 @@
         </div>
       </div>
       <div class="row mx-3 my-3">
-        <div id="product-details" class="order-details col-sm-6 me-3 rounded-3">
-            <div id="target-details">
-                <img id="product-image" src="" alt="Flower" width="150" height="120" class="rounded">
+        <div id="product-details" col-sm-6 me-3 rounded-3">
+                <img class="mt-4 rounded" id="product-image" src="" width="470" height="280">
                 <p id="product-name"></p>
                 <p id="product-description"></p>
                 <p id="product-price"></p>
-            </div>
+                    <a id="edit-button" href="/edit">
+                        <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm">
+                        <i class="fas fa-pen"></i>
+                        </button>
+                    </a>
+                    <a id="delete-button" href="/delete">
+                        <button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm">
+                        <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
         </div>
         <div class="stocks col-sm-6">
             <table id="myTable" class="table table-hover">
@@ -112,7 +120,6 @@
                 <th>Name</th>
                 <th>Stock</th>
                 <th>Price</th>
-                <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -125,14 +132,6 @@
                 <td>{{item.name}}</td>
                 <td>{{item.stock_quantity}}</td>
                 <td>{{item.price}}</td>
-                <td class="text-center">
-                    <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm">
-                     <i class="fas fa-pen"></i>
-                    </button>
-                    <button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm">
-                    <i class="fas fa-trash"></i>
-                    </button>
-                </td>
                 </tr>
                 {% endfor %}
                 </tbody>
