@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 .sidebar {
   font-family: 'Poppins', sans-serif;
@@ -155,6 +156,8 @@
     background-color: #FFA8D4;
     height: 890px;
     width: 550px;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
 }
 
 .stocks {
@@ -170,7 +173,7 @@ td {
     background-color: rgba(255, 164, 241, 0.33) !important;
     vertical-align: middle !important;
     color:  #FA2290 !important;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 tr:hover {
@@ -191,4 +194,31 @@ a {
     text-decoration: none;
 }
 
+#product-description {
+    font-size: 16px;
+    font-weight: 600 !important;
+    width: 480px;
+    height:150px;
+}
 
+#inner-details h3 {
+    font-size: 24px;
+    font-weight: 600 !important;
+}
+
+#product-price {
+    font-size: 20px;
+    font-weight: bold !important;
+}
+
+#edit-text {
+    font-size: 20px;
+    font-weight: bold !important;
+    color:  #FA2290 !important;
+    margin-right: 10px;
+}
+
+#delete-text {
+    font-size: 20px;
+    font-weight: bold !important;
+}

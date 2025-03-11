@@ -25,7 +25,9 @@ function sendProductDetails(product_name) {
             document.getElementById('product-image').src = data.image_path;
             document.getElementById('product-name').textContent = data.name;
             document.getElementById('product-description').textContent = data.description;
-            document.getElementById('product-price').textContent = data.price;
+            const price = data.price;
+            const formattedPrice = `₱ ${price} ${"PHP"}`;
+            document.getElementById('product-price').textContent = formattedPrice;
         })
     .catch(error=> console.error('Error', error));
 }
