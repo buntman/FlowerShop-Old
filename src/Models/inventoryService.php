@@ -35,11 +35,11 @@ class inventoryService
         return $product;
     }
 
-    public function deleteProduct($product_name)
+    public function deleteProduct($id)
     {
-        $sql = "DELETE FROM products where name = ?";
+        $sql = "DELETE FROM products where id = ?";
         $sql_statement = mysqli_prepare($this->connect, $sql);
-        mysqli_stmt_bind_param($sql_statement, 's', $product_name);
+        mysqli_stmt_bind_param($sql_statement, 'i', $id);
         mysqli_stmt_execute($sql_statement);
     }
 }

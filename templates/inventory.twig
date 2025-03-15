@@ -108,27 +108,12 @@
                     <p id="product-description"></p>
                     <p class="d-flex justify-content-end me-5" id="product-price"></p>
                 </div>
-                <div class="d-flex flex-column align-items-center">
-                    <button id="delete-button" type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm">
-                    <i class="fas fa-trash"></i>
-                    </button>
-                    <span id="delete-text">DELETE</span>
-                </div>
         </div>
         <div class="stocks col-sm-6">
             <table id="myTable" class="table table-hover">
-                <thead>
-                <tr>
-                <th></th>
-                <th>Product Type</th>
-                <th>Name</th>
-                <th>Stock</th>
-                <th>Price</th>
-                </tr>
-                </thead>
                 <tbody>
                 {% for item in stocks%}
-                <tr>
+                <tr data-id="{{item.id}}">
                 <td>
                     <img src="{{item.image_path}}" alt="Rose" width="90" height="90" class="rounded">
                 </td>
@@ -136,6 +121,11 @@
                 <td>{{item.name}}</td>
                 <td>{{item.stock_quantity}}</td>
                 <td>{{item.price}}</td>
+                <td>
+                    <button id="delete-button" type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" onclick="deleteProduct({{item.id}})">
+                    <i class="fas fa-trash"></i>
+                    </button>
+                </td>
                 </tr>
                 {% endfor %}
                 </tbody>
