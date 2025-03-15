@@ -16,7 +16,7 @@ class InventoryController extends Controller
     public function inventory()
     {
         $stocks = new inventoryService($this->db->getConnection());
-        $this->render("inventory", ['stocks' => $stocks->fetchProducts()]);
+        $this->render("inventory", ['stocks' => $stocks->fetchProducts(), 'item' => $stocks->fetchFirstProduct()]);
     }
 
     public function displayDetails() {

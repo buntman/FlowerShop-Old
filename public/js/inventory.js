@@ -31,7 +31,9 @@ function deleteProduct(id) {
             if(data.success) {
                 const table = document.getElementById('myTable');
                 const row = table.querySelector(`tbody tr[data-id="${id}"]`);
-                row.remove();
+                if(row) {
+                    row.remove();
+                }
             }
             console.log(data.message);
         })

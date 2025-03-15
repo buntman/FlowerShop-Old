@@ -24,6 +24,17 @@ class inventoryService
         return $rows;
     }
 
+    public function fetchFirstProduct() {
+        $admin_id = $_SESSION['user_id'];
+        $sql = "SELECT * FROM products where admin_id = ? LIMIT 1";
+        $sql_statement = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($sql_statement, 'i', $admin_id);
+        mysqli_stmt_execute($sql_statement);
+        $result = mysqli_stmt_get_result($sql_statement);
+        $product = mysqli_fetch_assoc($result);
+        return $product;
+    }
+
     public function fetchProductDetails($id)
     {
         $sql = "SELECT * FROM products where id = ?";
