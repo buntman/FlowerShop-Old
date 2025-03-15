@@ -1,24 +1,10 @@
-const table = document.getElementById('myTable');
-const rows = table.querySelectorAll('tbody tr');
-
-rows.forEach(row => {
-    row.addEventListener("click", fetchName);
-});
-
-function fetchName() {
-    const row = event.currentTarget;
-    const column = row.querySelectorAll('td');
-    const product_name = column[2].textContent;
-    sendProductDetails(product_name);
-}
-
-function sendProductDetails(product_name) {
+function fetchProductDetails(id) {
     fetch('/inventory', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({product_name})
+        body: JSON.stringify({id})
     })
     .then(response=>response.json())
     .then(data=> {

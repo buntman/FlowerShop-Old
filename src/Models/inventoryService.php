@@ -24,11 +24,11 @@ class inventoryService
         return $rows;
     }
 
-    public function fetchProductDetails($product_name)
+    public function fetchProductDetails($id)
     {
-        $sql = "SELECT * FROM products where name = ?";
+        $sql = "SELECT * FROM products where id = ?";
         $sql_statement = mysqli_prepare($this->connect, $sql);
-        mysqli_stmt_bind_param($sql_statement, 's', $product_name);
+        mysqli_stmt_bind_param($sql_statement, 'i', $id);
         mysqli_stmt_execute($sql_statement);
         $result = mysqli_stmt_get_result($sql_statement);
         $product = mysqli_fetch_assoc($result);

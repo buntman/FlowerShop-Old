@@ -113,7 +113,7 @@
             <table id="myTable" class="table table-hover">
                 <tbody>
                 {% for item in stocks%}
-                <tr data-id="{{item.id}}">
+                <tr data-id="{{item.id}}" onclick="fetchProductDetails({{item.id}})">
                 <td>
                     <img src="{{item.image_path}}" alt="Rose" width="90" height="90" class="rounded">
                 </td>

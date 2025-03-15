@@ -23,9 +23,9 @@ class InventoryController extends Controller
         header("Content-Type: application/json");
         $json = file_get_contents('php://input');
         $data = json_decode($json, false);
-        $name = $data->product_name;
+        $id = $data->id;
         $stocks = new inventoryService($this->db->getConnection());
-        $result = $stocks->fetchProductDetails($name);
+        $result = $stocks->fetchProductDetails($id);
         echo json_encode($result);
     }
 
