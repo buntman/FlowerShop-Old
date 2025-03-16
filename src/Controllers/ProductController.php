@@ -14,9 +14,9 @@ class ProductController extends Controller
         parent::__construct($db);
     }
 
-    public function add()
+    public function productCard()
     {
-        $this->render("add");
+        $this->render("product");
     }
 
     public function createProduct()

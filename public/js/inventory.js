@@ -1,5 +1,5 @@
 function fetchProductDetails(id) {
-    fetch('/inventory', {
+    fetch('/inventory/item', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -33,6 +33,7 @@ function deleteProduct(id) {
                 const row = table.querySelector(`tbody tr[data-id="${id}"]`);
                 if(row) {
                     row.remove();
+                    refreshItemDisplayed();
                 }
             }
             console.log(data.message);
@@ -40,6 +41,18 @@ function deleteProduct(id) {
     .catch(error=> console.error('Error', error));
 }
 
-
-
-
+function refreshItemDisplayed() {
+    fetch('/inventory/item')
+    .then(response=>response.json())
+    .then(data=> {
+            if(data.success) {
+                document.getElementById('product-image').src = data.product.image_path;
+                document.getElementById('product-name').textContent = data.product.name;
+                document.getElementById('product-description').textContent = data.product.description;
+                const price = data.product.price;
+                const formattedPrice = `₱ ${price} ${"PHP"}`;
+                document.getElementById('product-price').textContent = formattedPrice;
+            }
+        })
+    .catch(error=> console.error('Error', error));
+}

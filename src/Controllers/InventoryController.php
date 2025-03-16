@@ -39,4 +39,11 @@ class InventoryController extends Controller
         $stocks->deleteProduct($id);
         echo json_encode(["success" => true, "message" => "Deleted Successfully"]);
     }
+
+    public function getFirstProduct() {
+        header("Content-Type: application/json");
+        $stocks = new inventoryService($this->db->getConnection());
+        $product = $stocks->fetchFirstProduct();
+        echo json_encode(["success" => true, "product" => $product]);
+    }
 }
