@@ -18,6 +18,25 @@ function fetchProductDetails(id) {
     .catch(error=> console.error('Error', error));
 }
 
+
+function fetchProductToEdit(id) {
+    fetch('/inventory/edit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({id})
+    })
+    .then(response=>response.json())
+    .then(data=> {
+            document.getElementById("edit-name").value = data.name;
+            document.getElementById("edit-stocks").value = data.stock_quantity;
+            document.getElementById("edit-description").textContent = data.description;
+            document.getElementById("edit-price").value = data.price;
+        })
+    .catch(error=> console.error('Error', error));
+}
+
 function deleteProduct(id) {
     fetch('/delete', {
         method: 'POST',
