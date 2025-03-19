@@ -20,7 +20,7 @@ function fetchProductDetails(id) {
 
 
 function fetchProductToEdit(id) {
-    fetch('/inventory/edit', {
+    fetch('/inventory/item/edit', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -33,6 +33,28 @@ function fetchProductToEdit(id) {
             document.getElementById("edit-stocks").value = data.stock_quantity;
             document.getElementById("edit-description").textContent = data.description;
             document.getElementById("edit-price").value = data.price;
+        })
+    .catch(error=> console.error('Error', error));
+}
+
+function updateProductDetails(id) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const values = Object.fromEntries(data.entries());
+    const requestBody = {id, ...values};
+
+    fetch('/inventory/item/edit/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response=>response.json())
+    .then(data=> {
+            if(data.result) {
+                refreshItemDisplayed();
+            }
         })
     .catch(error=> console.error('Error', error));
 }
@@ -75,3 +97,4 @@ function refreshItemDisplayed() {
         })
     .catch(error=> console.error('Error', error));
 }
+

@@ -49,4 +49,20 @@ class InventoryController extends Controller
         $product = $stocks->fetchFirstProduct();
         echo json_encode(["success" => true, "product" => $product]);
     }
+
+
+    public function editProductDetails()
+    {
+        header("Content-Type: application/json");
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
+        $stocks = new inventoryService($this->db->getConnection());
+        $id = $data['id'];
+        $name = $data['name'];
+        $stock = $data['stock'];
+        $description = $data['description'];
+        $price = $data['price'];
+        $stocks->updateProductDetails($id, $name, $stock, $description, $price);
+        echo json_encode(["success" => true, "message" => "Updated Successfully!"]);
+    }
 }
