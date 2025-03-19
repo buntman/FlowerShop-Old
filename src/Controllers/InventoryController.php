@@ -16,10 +16,11 @@ class InventoryController extends Controller
     public function inventory()
     {
         $stocks = new inventoryService($this->db->getConnection());
-        $this->render("inventory", ['stocks' => $stocks->fetchProducts(), 'item' => $stocks->fetchFirstProduct()]);
+        $this->render("inventory", ['stocks' => $stocks->fetchProducts(), 'initial_item' => $stocks->fetchFirstProduct()]);
     }
 
-    public function displayDetails() {
+    public function displayDetails()
+    {
         header("Content-Type: application/json");
         $json = file_get_contents('php://input');
         $data = json_decode($json, false);
@@ -30,7 +31,8 @@ class InventoryController extends Controller
     }
 
 
-    public function removeProduct() {
+    public function removeProduct()
+    {
         header("Content-Type: application/json");
         $json = file_get_contents('php://input');
         $data = json_decode($json, false);
@@ -40,7 +42,8 @@ class InventoryController extends Controller
         echo json_encode(["success" => true, "message" => "Deleted Successfully"]);
     }
 
-    public function getFirstProduct() {
+    public function getFirstProduct()
+    {
         header("Content-Type: application/json");
         $stocks = new inventoryService($this->db->getConnection());
         $product = $stocks->fetchFirstProduct();
