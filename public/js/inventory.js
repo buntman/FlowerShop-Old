@@ -52,8 +52,16 @@ function updateProductDetails(id) {
     })
     .then(response=>response.json())
     .then(data=> {
-            if(data.result) {
-                refreshItemDisplayed();
+            if(data.success) {
+                const table = document.getElementById('myTable');
+                const row = table.querySelector(`tbody tr[data-id="${id}"]`);
+                if(row) {
+                    const cells = row.cells;
+                    cells[2].innerText = values.name;
+                    cells[3].innerText = values.stock;
+                    cells[4].innerText = values.price;
+                    refreshItemDisplayed();
+                }
             }
         })
     .catch(error=> console.error('Error', error));
@@ -97,4 +105,3 @@ function refreshItemDisplayed() {
         })
     .catch(error=> console.error('Error', error));
 }
-
