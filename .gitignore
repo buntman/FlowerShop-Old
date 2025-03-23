@@ -23,6 +23,7 @@
 
 #php
 .php-cs-fixer.cache
+.twig-cs-fixer.cache
 .env
 
 /vendor/
