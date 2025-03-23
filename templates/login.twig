@@ -11,18 +11,18 @@
             Rizza's Flower Shop
         </h1>
         <div class="main-container">
-        <form class="form" action="/login" method="POST">
+        <form class="form" action="/login" method="POST" onsubmit="userLogin(event)">
         <h2>System Login</h2>
         <p>Please enter your credentials below to continue</p>
         <div class="form-container">
             <label for="username"></label><br>
             <input type="text" id="username" placeholder="Username" name="username" required>
-                    <span class="errors"> {{errors['username']}} </span>
+            <span class="errors" id="username-error"></span>
         </div>
         <div class="form-container">
             <label for="password"></label><br>
             <input type="password" id="password" placeholder="Password" name="password" required>
-                    <span class="errors"> {{errors['password']}} </span>
+            <span class="errors" id="password-error"></span>
         </div>
         <div class="form-options">
         <label class="remember-me">
@@ -34,12 +34,13 @@
             <button type="submit" name="login" value="login">Login</button>
         </div>
         <div class="form-signup">
-                    <p> 
+                    <p>
                     Don't have an account?
         <a href="/register" class="signup">Sign up</a>
                     </p>
         </div>
         </form>
         </div>
+        <script src="js/login.js"></script>
 </body>
-</html> 
+</html>

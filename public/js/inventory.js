@@ -40,7 +40,7 @@ function fetchProductToEdit(id) {
     .catch(error=> console.error('Error', error));
 }
 
-function updateProductDetails(event) { //move the modal outside the loop and pass the event
+function updateProductDetails(event) { 
     event.preventDefault();
     const data = new FormData(event.target);
     const values = Object.fromEntries(data.entries());
@@ -65,6 +65,7 @@ function updateProductDetails(event) { //move the modal outside the loop and pas
                     const formattedPrice = `₱ ${values.price}`;
                     cells[4].innerText = formattedPrice;
                     fetchProductDetails(currentProductId);
+                    alert("Item successfully edited!");
                 }
             }
         })

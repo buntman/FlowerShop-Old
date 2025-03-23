@@ -11,7 +11,6 @@ use App\Models\userService;
 
 class LoginController extends Controller
 {
-
     public function __construct(database $db)
     {
         parent::__construct($db);
@@ -24,26 +23,28 @@ class LoginController extends Controller
 
     public function userLogin()
     {
-        $data = $_POST;
+        header("Content-Type: application/json");
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
         $input = new inputSanitizer($data);
         $clean_form = $input->sanitize();
         $form = new FormValidator($clean_form);
         try {
             $authenticateUser = new authenticate($clean_form, $this->db->getConnection());
             if (!$form->validateLogin()) {
-                $this->render("login", ['errors' => $form->getErrors()]);
+                echo json_encode(["success" => false, "errors" => $form->getErrors()]);
                 return;
             }
             if (!$authenticateUser->authenticateLogin()) {
-                $this->render("login", ['errors' => $authenticateUser->getErrors()]);
+                echo json_encode(["success" => false, "errors" => $authenticateUser->getErrors()]);
                 return;
             }
             $userService = new userService($clean_form, $this->db->getConnection());
             $user = $userService->findByUsername();
+            session_regenerate_id(true);
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_role'] = $user['role'];
-            header("Location: /inventory");
-            exit();
+            echo json_encode(["success" => true, "redirect" => "/inventory"]);
         } catch (\Exception $e) {
             die("An error occured: ". $e->getMessage());
         }
