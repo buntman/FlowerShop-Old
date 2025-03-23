@@ -112,7 +112,7 @@
                 {% for item in stocks %}
                 <tr data-id="{{ item.id }}" onclick="fetchProductDetails({{ item.id }})">
                 <td>
-                    <img src="{{ item.image_path }}" alt="Rose" width="90" height="90" class="rounded">
+                    <img src="{{ item.image_path }}" alt="Product Image" width="90" height="90" class="rounded">
                 </td>
                 <td>{{ item.product_type }}</td>
                 <td>{{ item.name }}</td>
@@ -122,6 +122,14 @@
                     <button id="edit-button" type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-bs-toggle="modal" data-bs-target="#edit_form" onclick="fetchProductToEdit({{ item.id }})">
                     <i class="fas fa-pen"></i>
                     </button>
+                    <button id="delete-button" type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" onclick="deleteProduct({{ item.id }})">
+                    <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
 <div class="modal fade mt-5" id="edit_form" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -130,7 +138,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <form class="form" onsubmit="updateProductDetails({{ item.id }})">
+            <form class="form" onsubmit="updateProductDetails(event)">
     <div class="row">
         <div class="col-sm-6 mb-3">
             <label for="edit-name" class="form-label">Product Name</label>
@@ -157,14 +165,8 @@
         </div>
     </div>
 </div>
-                    <button id="delete-button" type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" onclick="deleteProduct({{ item.id }})">
-                    <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-                </table>
+
+
         </div>
       </div>
       </main>

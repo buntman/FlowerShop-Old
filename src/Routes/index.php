@@ -17,7 +17,7 @@ $router = new Router($db);
 $router->get('/login', LoginController::class, 'login', Admin::class);
 $router->get('/register', RegisterController::class, 'register', Admin::class);
 $router->get('/inventory', InventoryController::class, 'inventory', Auth::class);
-$router->get('/inventory/item', InventoryController::class, 'getFirstProduct');
+$router->get('/inventory/item', InventoryController::class, 'getFirstProduct', Admin::class);
 $router->get('/products', ProductController::class, 'productCard', Auth::class);
 $router->get('/cancel', ProductController::class, 'cancel');
 $router->post('/products', ProductController::class, 'createProduct');

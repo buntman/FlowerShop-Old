@@ -57,7 +57,7 @@ class InventoryController extends Controller
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
         $stocks = new inventoryService($this->db->getConnection());
-        $id = $data['id'];
+        $id = $data['currentProductId'];
         $name = $data['name'];
         $stock = $data['stock'];
         $description = $data['description'];

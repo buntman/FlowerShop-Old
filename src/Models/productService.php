@@ -42,7 +42,7 @@ class productService
             exit("Unauthorized Action");
         }
 
-        $sql = "INSERT INTO products(name,description, stock_quantity, price, image_path, product_type, admin_id) VALUES(?,?,?,?,?,?,?)"; //link user using findUsername function
+        $sql = "INSERT INTO products(name,description, stock_quantity, price, image_path, product_type, admin_id) VALUES(?,?,?,?,?,?,?)";
         $sql_statement = mysqli_prepare($this->connect, $sql);
         mysqli_stmt_bind_param($sql_statement, 'ssidssi', $this->name, $this->description, $this->stock, $this->price, $this->image_directory, $this->product_type, $this->admin_id);
         mysqli_stmt_execute($sql_statement);
