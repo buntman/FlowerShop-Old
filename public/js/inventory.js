@@ -1,3 +1,5 @@
+let currentProductId = null;
+
 function fetchProductDetails(id) {
     fetch('/inventory/item', {
         method: 'POST',
@@ -20,6 +22,7 @@ function fetchProductDetails(id) {
 
 
 function fetchProductToEdit(id) {
+    currentProductId = id;
     fetch('/inventory/item/edit', {
         method: 'POST',
         headers: {
@@ -37,11 +40,11 @@ function fetchProductToEdit(id) {
     .catch(error=> console.error('Error', error));
 }
 
-function updateProductDetails(id) {
+function updateProductDetails(event) { //move the modal outside the loop and pass the event
     event.preventDefault();
     const data = new FormData(event.target);
     const values = Object.fromEntries(data.entries());
-    const requestBody = {id, ...values};
+    const requestBody = {currentProductId, ...values};
 
     fetch('/inventory/item/edit/submit', {
         method: 'POST',
@@ -54,13 +57,14 @@ function updateProductDetails(id) {
     .then(data=> {
             if(data.success) {
                 const table = document.getElementById('myTable');
-                const row = table.querySelector(`tbody tr[data-id="${id}"]`);
+                const row = table.querySelector(`tbody tr[data-id="${currentProductId}"]`);
                 if(row) {
                     const cells = row.cells;
                     cells[2].innerText = values.name;
                     cells[3].innerText = values.stock;
-                    cells[4].innerText = values.price;
-                    refreshItemDisplayed();
+                    const formattedPrice = `₱ ${values.price}`;
+                    cells[4].innerText = formattedPrice;
+                    fetchProductDetails(currentProductId);
                 }
             }
         })
