@@ -63,11 +63,13 @@
 
           <!-- SIGN OUT -->
           <div class="nav-link-exit nav-link">
-            <a href="/logout"
-              class="d-flex flex-column align-items-center justify-content-center link-dark text-decoration-none">
-              <i class="bi bi-escape"></i>
-              <p class="d-block p-exit">Sign Out</p>
-            </a>
+            <form action="/logout" method="POST" class="d-flex flex-column align-items-center justify-content-center link-dark text-decoration-none"
+            style="cursor: pointer; border: none; background: none; padding: 0;">
+            <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                <i class="bi bi-escape"></i>
+                <p class="d-block p-exit">Sign Out</p>
+            </button>
+            </form>
           </div>
         </div>
       </div>
@@ -85,7 +87,7 @@
         </div>
         <div class="col-sm-4">
             <div class="button-container">
-                <a href="/products">
+                <a href="/inventory/products">
                     <button type="button" name="add" value="add">Add product</button>
                 </a>
             </div>

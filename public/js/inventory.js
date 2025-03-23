@@ -95,7 +95,12 @@ function deleteProduct(id) {
 }
 
 function refreshItemDisplayed() {
-    fetch('/inventory/item')
+    fetch('/inventory/refresh',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
     .then(response=>response.json())
     .then(data=> {
             if(data.success) {

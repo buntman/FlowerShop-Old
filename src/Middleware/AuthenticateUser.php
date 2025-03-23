@@ -2,11 +2,11 @@
 
 namespace App\Middleware;
 
-class Auth
+class AuthenticateUser
 {
     public function handle()
     {
-        if (!isset($_SESSION['user_id']) or $_SESSION['user_role'] != 'ADMIN') {
+        if (!isset($_SESSION['user_id'])) {
             header("Location: /login");
             exit();
         }

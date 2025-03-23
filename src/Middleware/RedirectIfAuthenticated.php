@@ -2,7 +2,7 @@
 
 namespace App\Middleware;
 
-class Admin
+class RedirectIfAuthenticated
 {
     public function handle()
     {
@@ -12,4 +12,3 @@ class Admin
         }
     }
 }
-?>
