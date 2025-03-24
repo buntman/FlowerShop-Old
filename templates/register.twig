@@ -14,55 +14,57 @@
             Rizza's Flower Shop
         </h1>
         <div class="main-container">
-        <form class="form" action="/register" method="POST">
+        <form class="form" action="/register" method="POST" onsubmit="userRegister(event)">
         <h2>System Registration</h2>
         <p>Please enter your credentials below to continue</p>
         <div class="row">
         <div class="form-container col-sm-6">
         <label for="first_name"></label><br>
         <input type="text" id="first_name" placeholder="First Name" name="first_name" required>
-        <span class="errors"> {{errors['first_name']}} </span>
+        <span class="errors" id="fname_error"></span>
         </div>
         <div class="form-container col-sm-6">
         <label for="last_name"></label><br>
         <input type="text" id="last_name" placeholder="Last Name" name="last_name" required>
-        <span class="errors"> {{errors['last_name']}} </span>
+        <span class="errors" id="lname_error"></span>
         </div>
         </div>
         <div class="row">
     <div class="form-container col-sm-6">
         <label for="email"></label><br>
         <input type="email" id="email" placeholder="Email" name="email" required>
-        <span class="errors"> {{errors['email']}} </span>
+        <span class="errors" id="email_error"></span>
     </div>
     <div class="form-container col-sm-6">
         <label for="contact_number"></label><br>
         <input type="tel" id="contact_number" placeholder="Contact Number" name="contact_number" required>
-        <span class="errors"> {{errors['contact_number']}} </span>
+        <span class="errors" id="contact_error"></span>
     </div>
         </div>
         <div class="row">
         <div class="form-container col-sm-6">
             <label for="username"></label><br>
             <input type="text" id="username" placeholder="Username" name="username" required>
-        <span class="errors"> {{errors['username']}} </span>
+        <span class="errors" id="username_error"></span>
         </div>
         <div class="form-container col-sm-6">
             <label for="password"></label><br>
             <input type="password" id="password" placeholder="Password" name="password" required>
-        <span class="errors"> {{errors['password']}} </span>
+        <span class="errors" id="password_error"></span>
         </div>
         </div>
         <div class="button-container">
             <button type="submit" name="register" value="register">Sign up</button>
         </div>
         <div class="form-login">
-                    <p> 
+                    <p>
                     Already have an account?
     <a href="/login" class="login">Login</a>
                     </p>
          </div>
         </form>
         </div>
+        <script src="js/register.js"></script>
 </body>
-</html> 
+</html>
+
