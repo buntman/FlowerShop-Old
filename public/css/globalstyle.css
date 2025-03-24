@@ -1,0 +1,70 @@
+body {
+  background-color: #FFE3EB;
+}
+
+.sidebar {
+  background-color: #FFA8D4;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+  color: #FA2290;
+  border-radius: 0px 30px 30px 0px;
+  position: sticky;
+}
+
+.nav-item {
+  text-align: center;
+  position: relative;
+  margin-bottom: 10px;
+  padding: 10px 0;
+}
+
+/* Box effect for active item */
+.nav-item.active {
+  border: 2px solid #FA2290;
+  border-radius: 15px;
+  background-color:#FFA8D4;
+  
+
+}
+
+/* Styling for icon inside active box */
+.nav-item.active .icon-box {
+  background-color: #FA2290;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.nav-item img {
+  width: 29px;
+  height: 29px;
+  margin-bottom: 1px;
+}
+
+/* Underline effect */
+.nav-item::after {
+  content: "";
+  display: block;
+  width: 80%;
+  height: 2px;
+  background-color: #FA2290;
+  margin: 5px auto 0;
+}
+
+/* Link styling */
+.nav-link {
+  color: #FA2290;
+  font-weight: bold;
+}
+
+
+.sidebar .link {
+  color: #FA2290; 
+}
+.see{
+  text-decoration: underline;
+  color: #FFE3EB;
+}  
+

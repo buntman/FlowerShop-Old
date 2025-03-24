@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.sidebar {
+  font-family: 'Poppins', sans-serif;
+  background-color: #FFA8D4;
+  position: fixed;
+  transition: all .25s ease-in-out;
+  top: 0;
+  left: 0;
+  border-radius: 0 25px 25px 0;
+  width: inherit;
+}
+
+
+
+
+
+.sidebar {
+  /* width: 160px; */
+  height: 100vh;
+}
+
+
+.sidebar p {
+  color: #FA2290;
+}
+
+.menu-text {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+.nav-link p {
+  margin: 0;
+  font-size: 14px;
+}
+
+
+.border_bottom,
+.border_top {
+  position: relative;
+
+}
+
+.border_bottom::after,
+.border_top::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  /*UNCOMMENT this if the border is displayed at the right side*/
+  /* transform: translateX(-50%); */
+  opacity: 1;
+  width: 50%;
+  height: 1px;
+  background-color: #FA2290;
+  transition: all 1s ease-in-out 1s
+}
+
+.border_top::after {
+  top: 0;
+}
+
+
+
+.border_box {
+  border: 2px solid #FA2290;
+  border-radius: 8px;
+  padding: 7px 0;
+  transition: border 0.10s ease-in-out 0.10s, box-shadow 0.01s ease-in-out 0.01s;
+  box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.15);
+  /* width: inherit; */
+}
+
+
+
+
+.nav-link i {
+  font-size: 30px;
+  color: #FA2290;
+  border: none;
+}
+
+.nav-link-exit i {
+  font-size: 24px;
+}
+
+.nav-link-exit p {
+  font-size: 16px;
+
+}
+
+
+
+/* RESPONSIVENESS */
+
+.toggle-btn {
+  border: none;
+  background-color: inherit;
+  color: #FA2290;
+}
+
+.toggle-btn i {
+  font-weight: 700;
+  font-size: 24px;
+  display: none;
+}
+
+
+
+
+
+.sidebar:not(.expand) .nav-link p,
+.sidebar:not(.expand) .border_bottom::after,
+.sidebar:not(.expand) .border_top::after,
+.sidebar:not(.expand) .toggle-btn p {
+  display: none !important;
+}
+
+
+.sidebar:not(.expand) .nav-link {
+  padding: 50px 0;
+  height: 50px;
+}
+
+.sidebar:not(.expand) .nav-pills {
+  margin-top: 20px;
+}
+
+
+.sidebar:not(.expand) .border_box {
+  border: none;
+  box-shadow: none;
+}
+
+.sidebar:not(.expand) .toggle-btn i {
+  display: block;
+}
+
+.sidebar:not(.expand) {
+  width: 80px;
+  height: 100vh;
+  border-radius: 0;
+}
+
+
+@media (max-width: 1440px) {
+
+  /* Add your styles here */
+  .nav-link p {
+    font-size: 12px;
+  }
+
+}
+
+.border_box {
+  padding-left: 4px;
+  /* Default */
+  padding-right: 4px;
+}
+
+@media (min-width: 1400px) {
+
+  /* XXL breakpoint */
+  .border_box {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
