@@ -1,7 +1,7 @@
 let currentProductId = null;
 
 function fetchProductDetails(id) {
-    fetch('/inventory/item', {
+    fetch('/admin-inventory/item-details', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ function fetchProductDetails(id) {
 
 function fetchProductToEdit(id) {
     currentProductId = id;
-    fetch('/inventory/item/edit', {
+    fetch('/admin-inventory/edit/item', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function updateProductDetails(event) {
     const values = Object.fromEntries(data.entries());
     const requestBody = {currentProductId, ...values};
 
-    fetch('/inventory/item/edit/submit', {
+    fetch('/admin-inventory/edit/update-item', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ function updateProductDetails(event) {
 }
 
 function deleteProduct(id) {
-    fetch('/delete', {
+    fetch('/admin-inventory/delete', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ function deleteProduct(id) {
 }
 
 function refreshItemDisplayed() {
-    fetch('/inventory/refresh',{
+    fetch('/admin-inventory',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -35,10 +35,4 @@ class ProductController extends Controller
         header("Location: /inventory");
         exit();
     }
-
-    public function cancel()
-    {
-        header("Location: /inventory");
-        exit();
-    }
 }

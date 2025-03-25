@@ -7,7 +7,7 @@ class RedirectIfAuthenticated
     public function handle()
     {
         if (isset($_SESSION['user_id']) and $_SESSION['user_role'] == 'ADMIN') {
-            header("Location: /inventory");
+            header("Location: /admin-inventory");
             exit();
         }
     }

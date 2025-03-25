@@ -44,7 +44,7 @@ class LoginController extends Controller
             session_regenerate_id(true);
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_role'] = $user['role'];
-            echo json_encode(["success" => true, "redirect" => "/inventory"]);
+            echo json_encode(["success" => true, "redirect" => "/admin-inventory"]);
         } catch (\Exception $e) {
             die("An error occured: ". $e->getMessage());
         }
