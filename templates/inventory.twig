@@ -80,7 +80,7 @@
       <h2 class="page-title m-4">Inventory</h2>
       <div class="row mt-5 ms-2 align-items-center">
         <div class="col-sm-4">
-            <span>150 total products</span>
+            <span id="total-products"><strong>{{ total_products }}</strong> total products</span>
         </div>
         <div class="col-sm-4">
             <h2 class="page-title">Current Stocks</h2>
@@ -88,7 +88,7 @@
         <div class="col-sm-4">
             <div class="button-container">
                 <a href="/inventory/products">
-                    <button type="button" name="add" value="add">Add product</button>
+                    <button type="button" name="add" value="add">Add New Product</button>
                 </a>
             </div>
         </div>
@@ -108,7 +108,7 @@
                     <p class="d-flex justify-content-end me-5" id="product-price">₱ {{ initial_item.price }} PHP</p>
                 </div>
         </div>
-        <div class="stocks col-sm-6">
+        <div class="stocks col-sm-6 ms-3">
             <table id="myTable" class="table table-hover">
                 <tbody>
                 {% for item in stocks %}

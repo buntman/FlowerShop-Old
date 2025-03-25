@@ -61,4 +61,14 @@ class inventoryService
         mysqli_stmt_bind_param($sql_statement, 'ssiii', $name, $description, $stock, $price, $id);
         mysqli_stmt_execute($sql_statement);
     }
+
+    public function numberOfProducts()
+    {
+        $sql = "SELECT * FROM products";
+        $sql_statement = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_execute($sql_statement);
+        $result = mysqli_stmt_get_result($sql_statement);
+        $rowcount = mysqli_num_rows($result);
+        return $rowcount;
+    }
 }

@@ -141,7 +141,7 @@
     font-size: 16px;
     height: 55px;
     width: 191px;
-    background-color: #FFA8D4;
+    background-color: #FAC1D9;
     border-radius: 10px;
     border: none;
     font-size: 1 em;
@@ -218,3 +218,11 @@ a {
     margin-right: 10px;
 }
 
+#total-products {
+    font-family: Poppins;
+    font-size: 16px;
+}
+
+#total-products strong{
+    font-size: 25px;
+}
