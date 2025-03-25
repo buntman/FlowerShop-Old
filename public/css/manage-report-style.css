@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  background-color: #FFE3EB;
+}
+
+
+.sidebar {
+  font-family: 'Poppins', sans-serif;
+  background-color: #FFA8D4;
+  position: fixed;
+  transition: all .25s ease-in-out;
+  /* top: 0;
+  left: 0; */
+  border-radius: 0 25px 25px 0;
+
+  /* This makes the sidebar scrollable but it does not yet fully work */
+  /* overflow-y: auto;
+  direction: rtl;
+  text-align: right !important; */
+}
+
+
+
+
+
+.sidebar {
+  width: 10vw;
+  height: 100vh;
+}
+
+
+.sidebar p {
+  color: #FA2290;
+}
+
+.menu-text {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+.nav-link p {
+  margin: 0;
+}
+
+
+.border_bottom,
+.border_top {
+  position: relative;
+
+}
+
+.border_bottom::after,
+.border_top::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  /*UNCOMMENT this if the border is displayed at the right side*/
+  /* transform: translateX(-50%); */
+  opacity: 1;
+  width: 50%;
+  height: 1px;
+  background-color: #FA2290;
+  transition: all 1s ease-in-out 1s
+}
+
+.border_top::after {
+  top: 0;
+}
+
+
+
+.input-group-text {
+  border-radius: 15px;
+}
+
+
+.border_box {
+  border: 2px solid #FA2290;
+  border-radius: 8px;
+  padding: 7px 17px;
+  transition: border 0.10s ease-in-out 0.10s, box-shadow 0.01s ease-in-out 0.01s;
+}
+
+
+
+th,
+td {
+  text-align: center;
+}
+
+
+
+
+.nav-link i {
+  font-size: 30px;
+  color: #FA2290;
+  border: none;
+}
+
+.nav-link-exit i {
+  font-size: 24px;
+}
+
+.nav-link-exit p {
+  font-size: 16px;
+
+}
+
+
+
+/* RESPONSIVENESS */
+
+.toggle-btn {
+  border: none;
+  background-color: inherit;
+  color: #FA2290;
+}
+
+.toggle-btn i {
+  font-weight: 700;
+  font-size: 24px;
+  display: none;
+}
+
+
+
+
+
+.sidebar:not(.expand) .nav-link p,
+.sidebar:not(.expand) .border_bottom::after,
+.sidebar:not(.expand) .border_top::after,
+.sidebar:not(.expand) .toggle-btn p {
+  display: none !important;
+}
+
+
+.sidebar:not(.expand) .nav-link {
+  padding: 50px 0;
+  height: 50px;
+}
+
+.sidebar:not(.expand) .nav-pills {
+  margin-top: 20px;
+}
+
+
+.sidebar:not(.expand) .border_box {
+  border: none;
+  box-shadow: none;
+}
+
+.sidebar:not(.expand) .toggle-btn i {
+  display: block;
+}
+
+.sidebar:not(.expand) {
+  width: 80px;
+  height: 100vh;
+  border-radius: 0;
+}
+
+
+
+
+
+/* fix this part make sure that the main content stays centered */
+
+.sidebar-col:not(.shrink) .col-1 {
+  flex: 0 0 auto;
+  width: 8.33%;
+
+}
+
+
+.col-11 {
+  flex-shrink: 1;
+}
+
+.sidebar-column {
+  width: 90px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Table */
+
+th {
+  font-weight: 500;
+  font-size: 14;
+  color: #B5B7C0;
+}
+
+td {
+  color: #1F2937;
+  font-size: 16px;
+  font-weight: light;
+}
+
+.card {
+  /* border: black 1px solid; */
+  border-radius: 20px;
+  /* padding: 0 !important; */
+}
+
+.card table {
+  border-collapse: collapse;
+  /* border-spacing: 10px;  */
+  /* border-radius: 10px;  */
+  /* border-radius: 20px !important; */
+  /* border: black 1px solid; */
+  overflow: hidden;
+  /* display: block; */
+  background-color: #FFEDFC;
+}
+
+.main-table .card {
+  background-color: #FFEDFC;
+  /* background-color: black; */
+}
+
+.card .rounded-table th,
+.card .rounded-table td,
+.card .rounded-table td {
+  padding: 15px 0;
+  /* margin: 100px; */
+  /* border: 1px solid #000;  */
+  /* border-bottom:1px solid #FF69B5 !important; */
+
+}
+
+
+.card .rounded-table tr,
+.card .rounded-table th {
+  border-bottom: 1px solid #FF69B5 !important;
+}
+
+.card .rounded-table td {
+  /* padding: 0 10px; */
+}
+
+
+.manager-accounts p {
+  border-right: 1px solid #FF69B5 !important;
+  margin: auto;
+  color: #FF69B5;
+}
+
+.manager-accounts img {
+  width: 37px;
+  height: 37px;
+
+}
+
+
+
+.icons .upper-icon {
+  border-radius: 50%;
+  background-color: #FAC1D9;
+  padding: 18px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.card-report {
+  /* height: 166px;
+  width: 369px;
+  margin: 0px;
+  flex: 0 0 auto;  */
+}
+
+.card-report .card {
+  /* width: 369px !important;
+  padding: 0 !important; */
+  background-color: #FFA8D4;
+}
+
+.card-body {
+  /* padding-bottom: 100px; */
+  padding: 0 16px;
+  background-color: #FFA8D4;
+  border-radius: 25px;
+
+}
+
+.card-text {
+  color: #FFFFFF;
+}
+
+
+.icons {
+  height: 100px;
+}
+
+.chart-icon {
+  margin-bottom: -8px;
+  /* height: 24px; */
+  /* width: 154px; */
+}
+
+.chart-icon img {
+  /* font-size: 80px; */
+  height: 50px !important;
+  width: 100%;
+  /* Makes it responsive */
+  max-width: 250px !important;
+  /* Controls size */
+  /* height: 52px; */
+
+}
+
+
+
+.second-header button {
+  background-color: #FAC1D9;
+  color: #333333;
+  font-weight: 500;
+}
+
+.second-header i {
+  color: #FA2290;
+}
+
+.dropdown-btn button {
+  border-radius: 20px;
+  background-color: #F9FBFF;
+  color: #7E7E7E;
+}
+
+.dropdown-btn span {
+  color: #3D3C42;
+}
+
+
+.table-form input {
+
+  border-radius: 20px;
+  border: solid 1px black;
+  background-color: #F9FBFF;
+}
+
+.table-upper-right .word2 {
+  color: #FF69B5;
+}
+
+.table-upper-right .word1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.reports-filter {
+  border-radius: 25px;
+  background-color: #F9FBFF;
+  font-family: 'Poppins', sans-serif;
+  color: #212529;
+  border: none;
+}
