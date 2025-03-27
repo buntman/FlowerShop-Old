@@ -15,54 +15,54 @@ class InventoryController extends Controller
 
     public function inventory()
     {
-        $stocks = new inventoryService($this->db->getConnection());
-        $this->render("admin-inventory", ['stocks' => $stocks->fetchProducts(), 'initial_item' => $stocks->fetchFirstProduct(), 'total_products' => $stocks->numberOfProducts()]);
+        $inventoryService = new inventoryService($this->db->getConnection());
+        $this->render("admin-inventory", ['stocks' => $inventoryService->getProducts(), 'initial_item' => $inventoryService->getFirstProduct(), 'total_products' => $inventoryService->getNumberOfProducts()]);
     }
 
-    public function displayDetails()
+    public function getProductDetails()
     {
         header("Content-Type: application/json");
         $json = file_get_contents('php://input');
         $data = json_decode($json, false);
         $id = $data->id;
-        $stocks = new inventoryService($this->db->getConnection());
-        $result = $stocks->fetchProductDetails($id);
+        $inventoryService = new inventoryService($this->db->getConnection());
+        $result = $inventoryService->getProductDetails($id);
         echo json_encode($result);
     }
 
 
-    public function removeProduct()
+    public function deleteProduct()
     {
         header("Content-Type: application/json");
         $json = file_get_contents('php://input');
         $data = json_decode($json, false);
         $id = $data->id;
-        $stocks = new inventoryService($this->db->getConnection());
-        $stocks->deleteProduct($id);
+        $inventoryService = new inventoryService($this->db->getConnection());
+        $inventoryService->deleteProduct($id);
         echo json_encode(["success" => true, "message" => "Deleted Successfully"]);
     }
 
     public function getFirstProduct()
     {
         header("Content-Type: application/json");
-        $stocks = new inventoryService($this->db->getConnection());
-        $product = $stocks->fetchFirstProduct();
+        $inventoryService = new inventoryService($this->db->getConnection());
+        $product = $inventoryService->getFirstProduct();
         echo json_encode(["success" => true, "product" => $product]);
     }
 
 
-    public function editProductDetails()
+    public function updateProductDetails()
     {
         header("Content-Type: application/json");
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
-        $stocks = new inventoryService($this->db->getConnection());
+        $inventoryService = new inventoryService($this->db->getConnection());
         $id = $data['currentProductId'];
         $name = $data['name'];
         $stock = $data['stock'];
         $description = $data['description'];
         $price = $data['price'];
-        $stocks->updateProductDetails($id, $name, $stock, $description, $price);
+        $inventoryService->updateProductDetails($id, $name, $stock, $description, $price);
         echo json_encode(["success" => true, "message" => "Updated Successfully!"]);
     }
 }

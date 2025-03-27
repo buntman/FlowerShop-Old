@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+body {
+    background-color: #FFE3EB;
+}
+
 .sidebar {
   font-family: 'Poppins', sans-serif;
   background-color: #FFA8D4;
@@ -128,12 +132,6 @@
   width: 80px;
   height: 100vh;
   border-radius: 0;
-}
-
-
-.page-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 25px;
 }
 
 .button-container button {

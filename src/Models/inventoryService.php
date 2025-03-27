@@ -11,7 +11,7 @@ class inventoryService
         $this->connect = $connection;
     }
 
-    public function fetchProducts()
+    public function getProducts()
     {
         $admin_id = $_SESSION['user_id'];
         $sql = "SELECT * FROM products where admin_id = ?";
@@ -23,7 +23,7 @@ class inventoryService
         return $rows;
     }
 
-    public function fetchFirstProduct()
+    public function getFirstProduct()
     {
         $admin_id = $_SESSION['user_id'];
         $sql = "SELECT * FROM products where admin_id = ? LIMIT 1";
@@ -35,7 +35,7 @@ class inventoryService
         return $product;
     }
 
-    public function fetchProductDetails($id)
+    public function getProductDetails($id)
     {
         $sql = "SELECT * FROM products where id = ?";
         $sql_statement = mysqli_prepare($this->connect, $sql);
@@ -62,7 +62,7 @@ class inventoryService
         mysqli_stmt_execute($sql_statement);
     }
 
-    public function numberOfProducts()
+    public function getNumberOfProducts()
     {
         $sql = "SELECT * FROM products";
         $sql_statement = mysqli_prepare($this->connect, $sql);
