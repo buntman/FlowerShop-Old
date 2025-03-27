@@ -11,6 +11,7 @@ use App\Controllers\ReportsController;
 use App\Controllers\AccountManagementController;
 use App\Controllers\DashboardController;
 use App\Controllers\NotificationController;
+use App\Controllers\PendingController;
 use App\Middleware\AuthenticateUser;
 use App\Middleware\RedirectIfAuthenticated;
 use App\Config\database;
@@ -44,6 +45,9 @@ $router->get('/admin-reports', ReportsController::class, 'getReports');
 //designer routes
 $router->get('/designer-dashboard', DashboardController::class, 'getDashboard');
 $router->get('/designer-notification', NotificationController::class, 'getNotification');
+
+
+$router->get('/pending-request', PendingController::class, 'getPendingPage');
 
 
 $router->dispatch();

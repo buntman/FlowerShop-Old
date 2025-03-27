@@ -31,6 +31,9 @@ class LoginController extends Controller
         $form = new FormValidator($clean_form);
         try {
             $authenticateUser = new authenticate($clean_form, $this->db->getConnection());
+            $userService = new userService($clean_form, $this->db->getConnection());
+            $user = $userService->findByUsername();
+
             if (!$form->validateLogin()) {
                 echo json_encode(["success" => false, "errors" => $form->getErrors()]);
                 return;
@@ -39,12 +42,20 @@ class LoginController extends Controller
                 echo json_encode(["success" => false, "errors" => $authenticateUser->getErrors()]);
                 return;
             }
-            $userService = new userService($clean_form, $this->db->getConnection());
-            $user = $userService->findByUsername();
+            if ($user['role'] == 'UNASSIGNED') {
+                echo json_encode(["authorized" => false, "redirect" => "/pending-request"]);
+                return;
+            }
             session_regenerate_id(true);
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_role'] = $user['role'];
-            echo json_encode(["success" => true, "redirect" => "/admin-inventory"]);
+
+            if ($user['role'] == 'ADMIN') {
+                echo json_encode(["success" => true, "redirect" => "/admin-inventory"]);
+            }
+            if ($user['role'] == 'DESIGNER') {
+                echo json_encode(["success" => true, "redirect" => "/designer-dashboard"]);
+            }
         } catch (\Exception $e) {
             die("An error occured: ". $e->getMessage());
         }

@@ -11,6 +11,9 @@ function userLogin(event) {
     })
     .then(response=>response.json())
     .then(data=> {
+            if(data.authorized === false) {
+                window.location.href = data.redirect;
+            }
             if(!data.success) {
                 document.getElementById('username-error').textContent = data.errors.username;
                 document.getElementById('password-error').textContent = data.errors.password;
