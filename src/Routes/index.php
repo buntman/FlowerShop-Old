@@ -40,6 +40,7 @@ $router->post('/admin-inventory/delete', InventoryController::class, 'deleteProd
 
 //account-management routes
 $router->get('/admin-manage-account', AccountManagementController::class, 'getAccountManagement');
+$router->post('/admin-manage-account/delete-account', AccountManagementController::class, 'deleteAccount');
 $router->get('/admin-reports', ReportsController::class, 'getReports');
 
 //designer routes
