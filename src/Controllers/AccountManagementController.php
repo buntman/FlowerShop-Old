@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Config\database;
+use App\Models\ManageAccountsService;
 
 class AccountManagementController extends Controller
 {
@@ -14,6 +15,7 @@ class AccountManagementController extends Controller
 
     public function getAccountManagement()
     {
-        $this->render("admin-manage-account");
+        $accounts = new ManageAccountsService($this->db->getConnection());
+        $this->render("admin-manage-account", ['accounts' => $accounts->getEmployees()]);
     }
 }
