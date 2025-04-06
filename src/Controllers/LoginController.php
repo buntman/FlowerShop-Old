@@ -42,7 +42,7 @@ class LoginController extends Controller
                 echo json_encode(["success" => false, "errors" => $authenticateUser->getErrors()]);
                 return;
             }
-            if ($user['role'] == 'UNASSIGNED') {
+            if ($user['status'] == 'INACTIVE') {
                 echo json_encode(["authorized" => false, "redirect" => "/pending-request"]);
                 return;
             }

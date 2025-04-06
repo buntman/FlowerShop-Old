@@ -41,6 +41,9 @@ $router->post('/admin-inventory/delete', InventoryController::class, 'deleteProd
 //account-management routes
 $router->get('/admin-manage-account', AccountManagementController::class, 'getAccountManagement');
 $router->post('/admin-manage-account/delete-account', AccountManagementController::class, 'deleteAccount');
+$router->post('/admin-manage-account/edit-status/activate', AccountManagementController::class, 'activateAccount');
+$router->post('/admin-manage-account/edit-status/deactivate', AccountManagementController::class, 'deactivateAccount');
+$router->post('/admin-manage-account/edit-status/update', AccountManagementController::class, 'getStatus');
 $router->get('/admin-reports', ReportsController::class, 'getReports');
 
 //designer routes

@@ -29,4 +29,37 @@ class AccountManagementController extends Controller
         $accounts->deleteAccount($id);
         echo json_encode(["success" => true, "message" => "Deleted Successfully!"]);
     }
+
+    public function activateAccount()
+    {
+        header("Content-Type: application/json");
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, false);
+        $id = $data->id;
+        $accounts = new ManageAccountsService($this->db->getConnection());
+        $accounts->activateAccount($id);
+        echo json_encode(["success" => true, "message" => "Activated Successfully!"]);
+    }
+
+    public function deactivateAccount()
+    {
+        header("Content-Type: application/json");
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, false);
+        $id = $data->id;
+        $accounts = new ManageAccountsService($this->db->getConnection());
+        $accounts->deactivateAccount($id);
+        echo json_encode(["success" => true, "message" => "Deactivated Successfully!"]);
+    }
+
+    public function getStatus()
+    {
+        header("Content-Type: application/json");
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, false);
+        $id = $data->id;
+        $accounts = new ManageAccountsService($this->db->getConnection());
+        $status = $accounts->getStatus($id);
+        echo json_encode(["success" => true, "status" => $status]);
+    }
 }

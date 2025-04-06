@@ -32,7 +32,7 @@ class ProductController extends Controller
         $image_dir = $upload->getTargetDirectory();
         $product = new productService($data, $this->db->getConnection(), $image_dir);
         $product->saveProduct();
-        header("Location: /inventory");
+        header("Location: /admin-inventory");
         exit();
     }
 }

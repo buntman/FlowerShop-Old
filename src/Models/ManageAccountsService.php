@@ -28,4 +28,32 @@ class ManageAccountsService
         mysqli_stmt_bind_param($sql_statement, 'i', $id);
         mysqli_stmt_execute($sql_statement);
     }
+
+
+    public function activateAccount($id)
+    {
+        $sql = "UPDATE employees SET status = 'ACTIVE' where id = ?";
+        $sql_statement = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($sql_statement, 'i', $id);
+        mysqli_stmt_execute($sql_statement);
+    }
+
+    public function deactivateAccount($id)
+    {
+        $sql = "UPDATE employees SET status = 'INACTIVE' where id = ?";
+        $sql_statement = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($sql_statement, 'i', $id);
+        mysqli_stmt_execute($sql_statement);
+    }
+
+    public function getStatus($id)
+    {
+        $sql = "SELECT status FROM employees where id = ?";
+        $sql_statement = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($sql_statement, 'i', $id);
+        mysqli_stmt_execute($sql_statement);
+        mysqli_stmt_bind_result($sql_statement, $status);
+        mysqli_stmt_fetch($sql_statement);
+        return $status;
+    }
 }

@@ -125,8 +125,8 @@
 
 
             <div class="container-flex">
-              <button class="btn btn-new-staff toggle-status-off">Deactive Account</button>
-              <button class="btn btn-new-staff toggle-status-on">Activate Account</button>
+              <button type="button" class="btn btn-new-staff toggle-status-off" onclick="deactivateStatus()">Deactive Account</button>
+              <button type="button" class="btn btn-new-staff toggle-status-on" onclick="activateStatus()">Activate Account</button>
             </div>
           </div>
         </div>
@@ -152,12 +152,12 @@
               </thead>
               <tbody>
               {% for account in accounts %}
-                <tr data-id={{ account.id }} class="clickable-row">
+                <tr data-id="{{ account.id }}" onclick="fetchUser({{ account.id }})">
                   <td><img class="profile-icons" src="/images/images/profile.png" alt="Profile"></td>
                   <td>{{ account.first_name }} {{ account.last_name }}</td>
                   <td>{{ account.email }}</td>
                   <td>{{ account.contact_number }}</td>
-                  <td class="status text-success">Active</td>
+                  <td>{{ account.status }} </td>
                   <td>{{ account.role }}</td>
                   <td>
                     <button type="button" class="btn btn-sm remove-btn" onclick="deleteAccount({{ account.id }})">
