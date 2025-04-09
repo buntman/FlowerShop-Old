@@ -12,7 +12,8 @@ use App\Controllers\AccountManagementController;
 use App\Controllers\DashboardController;
 use App\Controllers\NotificationController;
 use App\Controllers\PendingController;
-use App\Middleware\AuthenticateUser;
+use App\Middleware\AuthenticateAdmin;
+use App\Middleware\AuthenticateDesigner;
 use App\Middleware\RedirectIfAuthenticated;
 use App\Config\database;
 
@@ -29,9 +30,9 @@ $router->post('/register', RegisterController::class, 'userRegister');
 $router->post('/logout', LoginController::class, 'logout');
 
 //inventory routes
-$router->get('/admin-inventory', InventoryController::class, 'inventory', AuthenticateUser::class);
-$router->post('/admin-inventory', InventoryController::class, 'getFirstProduct', AuthenticateUser::class);
-$router->get('/admin-inventory/products', ProductController::class, 'productCard', AuthenticateUser::class);
+$router->get('/admin-inventory', InventoryController::class, 'inventory', AuthenticateAdmin::class);
+$router->post('/admin-inventory', InventoryController::class, 'getFirstProduct', AuthenticateAdmin::class);
+$router->get('/admin-inventory/products', ProductController::class, 'productCard', AuthenticateAdmin::class);
 $router->post('/admin-inventory/products', ProductController::class, 'createProduct');
 $router->post('/admin-inventory/item-details', InventoryController::class, 'getProductDetails');
 $router->post('/admin-inventory/edit/item', InventoryController::class, 'getProductDetails');
@@ -39,17 +40,18 @@ $router->post('/admin-inventory/edit/update-item', InventoryController::class, '
 $router->post('/admin-inventory/delete', InventoryController::class, 'deleteProduct');
 
 //account-management routes
-$router->get('/admin-manage-account', AccountManagementController::class, 'getAccountManagement');
+$router->get('/admin-manage-account', AccountManagementController::class, 'getAccountManagement', AuthenticateAdmin::class);
 $router->post('/admin-manage-account/delete-account', AccountManagementController::class, 'deleteAccount');
 $router->post('/admin-manage-account/edit-status/activate', AccountManagementController::class, 'activateAccount');
 $router->post('/admin-manage-account/edit-status/deactivate', AccountManagementController::class, 'deactivateAccount');
 $router->post('/admin-manage-account/edit-status/update', AccountManagementController::class, 'getStatus');
-$router->get('/admin-reports', ReportsController::class, 'getReports');
+
+//reports
+$router->get('/admin-reports', ReportsController::class, 'getReports', AuthenticateAdmin::class);
 
 //designer routes
-$router->get('/designer-dashboard', DashboardController::class, 'getDashboard');
-$router->get('/designer-notification', NotificationController::class, 'getNotification');
-
+$router->get('/designer-dashboard', DashboardController::class, 'getDashboard', AuthenticateDesigner::class);
+$router->get('/designer-notification', NotificationController::class, 'getNotification', AuthenticateDesigner::class);
 
 $router->get('/pending-request', PendingController::class, 'getPendingPage');
 
