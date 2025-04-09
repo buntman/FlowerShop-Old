@@ -49,13 +49,7 @@ class LoginController extends Controller
             session_regenerate_id(true);
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_role'] = $user['role'];
-
-            if ($user['role'] == 'ADMIN') {
-                echo json_encode(["success" => true, "redirect" => "/admin-inventory"]);
-            }
-            if ($user['role'] == 'DESIGNER') {
-                echo json_encode(["success" => true, "redirect" => "/designer-dashboard"]);
-            }
+            $this->redirectUser($user['role']);
         } catch (\Exception $e) {
             die("An error occured: ". $e->getMessage());
         }
@@ -68,5 +62,17 @@ class LoginController extends Controller
         session_destroy();
         header("Location: /login");
         exit();
+    }
+
+
+    private function redirectUser($role)
+    {
+        $routes = [
+            'ADMIN' => '/admin-inventory',
+            'DESIGNER' => '/designer-dashboard'
+        ];
+        if (isset($routes[$role])) {
+            echo json_encode(["success" => true, "redirect" => $routes[$role]]);
+        }
     }
 }
