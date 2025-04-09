@@ -8,15 +8,22 @@ use App\Models\ManageAccountsService;
 
 class AccountManagementController extends Controller
 {
+    private $account;
+
     public function __construct(database $db)
     {
         parent::__construct($db);
+        $this->initializeAccountService();
+    }
+
+    private function initializeAccountService()
+    {
+        $this->account = new ManageAccountsService($this->db->getConnection());
     }
 
     public function getAccountManagement()
     {
-        $accounts = new ManageAccountsService($this->db->getConnection());
-        $this->render("admin-manage-account", ['accounts' => $accounts->getEmployees()]);
+        $this->render("admin-manage-account", ['accounts' => $this->account->getEmployees()]);
     }
 
     public function deleteAccount()
@@ -25,8 +32,7 @@ class AccountManagementController extends Controller
         $json = file_get_contents('php://input');
         $data = json_decode($json, false);
         $id = $data->id;
-        $accounts = new ManageAccountsService($this->db->getConnection());
-        $accounts->deleteAccount($id);
+        $this->account->deleteAccount($id);
         echo json_encode(["success" => true, "message" => "Deleted Successfully!"]);
     }
 
@@ -36,8 +42,7 @@ class AccountManagementController extends Controller
         $json = file_get_contents('php://input');
         $data = json_decode($json, false);
         $id = $data->id;
-        $accounts = new ManageAccountsService($this->db->getConnection());
-        $accounts->activateAccount($id);
+        $this->account->activateAccount($id);
         echo json_encode(["success" => true, "message" => "Activated Successfully!"]);
     }
 
@@ -47,8 +52,7 @@ class AccountManagementController extends Controller
         $json = file_get_contents('php://input');
         $data = json_decode($json, false);
         $id = $data->id;
-        $accounts = new ManageAccountsService($this->db->getConnection());
-        $accounts->deactivateAccount($id);
+        $this->account->deactivateAccount($id);
         echo json_encode(["success" => true, "message" => "Deactivated Successfully!"]);
     }
 
@@ -58,8 +62,7 @@ class AccountManagementController extends Controller
         $json = file_get_contents('php://input');
         $data = json_decode($json, false);
         $id = $data->id;
-        $accounts = new ManageAccountsService($this->db->getConnection());
-        $status = $accounts->getStatus($id);
+        $status = $this->account->getStatus($id);
         echo json_encode(["success" => true, "status" => $status]);
     }
 }
