@@ -61,9 +61,6 @@ h1 {
 .button-container button {
     font-family: Poppins;
     font-size: 16px;
-    height: 64px;
-    width: 143px;
-    margin: 30px 10px;
     background-color: #ec6fad;
     border-radius: 10px;
     border: none;
@@ -97,7 +94,7 @@ h1 {
     font-weight: normal;
     font-size: 18px;
     color: #7E4F63;
-    margin-top: 40px;
+    margin: 40px 0 40px 0;
 }
 
 .forgot-password {
