@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
-use App\Models\inventoryService;
+use App\Models\InventoryService;
 use App\Config\database;
 
 class InventoryController extends Controller
@@ -18,7 +18,7 @@ class InventoryController extends Controller
 
     private function initializeInventoryService()
     {
-        $this->inventory = new inventoryService($this->db->getConnection());
+        $this->inventory = new InventoryService($this->db->getConnection());
     }
 
     public function inventory()

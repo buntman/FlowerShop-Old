@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-
-class authenticate
+class Authenticate
 {
     private $data;
     private $connect;

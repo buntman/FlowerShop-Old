@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class productService
+class ProductService
 {
     private $data;
     private $connect;

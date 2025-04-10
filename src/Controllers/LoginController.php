@@ -3,11 +3,11 @@
 namespace App\Controllers;
 
 use App\Validations\FormValidator;
-use App\Validations\inputSanitizer;
+use App\Validations\InputSanitizer;
 use App\Controllers\Controller;
 use App\Config\database;
-use App\Models\authenticate;
-use App\Models\userService;
+use App\Models\Authenticate;
+use App\Models\EmployeeService;
 
 class LoginController extends Controller
 {
@@ -21,18 +21,18 @@ class LoginController extends Controller
         $this->render("login");
     }
 
-    public function userLogin()
+    public function employeeLogin()
     {
         header("Content-Type: application/json");
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
-        $input = new inputSanitizer($data);
+        $input = new InputSanitizer($data);
         $clean_form = $input->sanitize();
         $form = new FormValidator($clean_form);
         try {
-            $authenticateUser = new authenticate($clean_form, $this->db->getConnection());
-            $userService = new userService($clean_form, $this->db->getConnection());
-            $user = $userService->findByUsername();
+            $authenticateUser = new Authenticate($clean_form, $this->db->getConnection());
+            $employeeService = new EmployeeService($clean_form, $this->db->getConnection());
+            $employee = $employeeService->findByUsername();
 
             if (!$form->validateLogin()) {
                 echo json_encode(["success" => false, "errors" => $form->getErrors()]);
@@ -42,14 +42,14 @@ class LoginController extends Controller
                 echo json_encode(["success" => false, "errors" => $authenticateUser->getErrors()]);
                 return;
             }
-            if ($user['status'] == 'INACTIVE') {
+            if ($employee['status'] == 'INACTIVE') {
                 echo json_encode(["authorized" => false, "redirect" => "/pending-request"]);
                 return;
             }
             session_regenerate_id(true);
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_role'] = $user['role'];
-            $this->redirectUser($user['role']);
+            $_SESSION['user_id'] = $employee['id'];
+            $_SESSION['user_role'] = $employee['role'];
+            $this->redirectUser($employee['role']);
         } catch (\Exception $e) {
             die("An error occured: ". $e->getMessage());
         }

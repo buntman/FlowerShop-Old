@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-
-class userService
+class EmployeeService
 {
     private $data;
     private $connect;

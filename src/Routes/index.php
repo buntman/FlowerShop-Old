@@ -24,8 +24,8 @@ $router = new Router($db);
 $router->get('/login', LoginController::class, 'login', RedirectIfAuthenticated::class);
 $router->get('/register', RegisterController::class, 'register', RedirectIfAuthenticated::class);
 
-$router->post('/login', LoginController::class, 'userLogin');
-$router->post('/register', RegisterController::class, 'userRegister');
+$router->post('/login', LoginController::class, 'employeeLogin');
+$router->post('/register', RegisterController::class, 'employeeRegister');
 
 $router->post('/logout', LoginController::class, 'logout');
 

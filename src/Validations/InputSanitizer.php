@@ -2,7 +2,7 @@
 
 namespace App\Validations;
 
-class inputSanitizer
+class InputSanitizer
 {
     private $data;
 
@@ -19,5 +19,4 @@ class inputSanitizer
         }
         return $this->data;
     }
-
 }

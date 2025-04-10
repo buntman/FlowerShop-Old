@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class inventoryService
+class InventoryService
 {
     private $connect;
 
