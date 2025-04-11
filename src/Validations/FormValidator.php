@@ -7,11 +7,18 @@ class FormValidator
     private $data;
     private $loginFields = ['username', 'password'];
     private $registerFields = ['first_name', 'last_name', 'email', 'contact_number', 'username', 'password'];
+    private $userLoginFields = ['email', 'password'];
     private $errors = [];
 
     public function __construct($post)
     {
         $this->data = $post;
+    }
+
+
+    public function validateUserLogin(): bool
+    {
+        return $this->validateUserLoginFields();
     }
 
     public function validateRegister(): bool
@@ -119,6 +126,22 @@ class FormValidator
         return empty($this->errors);
     }
 
+    private function validateUserLoginFields(): bool
+    {
+        foreach ($this->userLoginFields as $field) {
+            if (empty($this->data[$field])) {
+                switch ($field) {
+                    case 'email':
+                        $this->errors['email'] = "{$field} is required.";
+                        break;
+                    case 'password':
+                        $this->errors['password'] = "{$field} is required.";
+                        break;
+                }
+            }
+        }
+        return empty($this->errors);
+    }
 
     public function getErrors(): array
     {
