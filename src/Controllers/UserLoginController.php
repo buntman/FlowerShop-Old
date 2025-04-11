@@ -2,10 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Controller;
+use App\Controllers\Controller;
 use App\Validations\FormValidator;
 use App\Validations\InputSanitizer;
-use App\database;
+use App\Models\UserService;
+use App\config\database;
 
 class UserLoginController extends Controller
 {
@@ -28,6 +29,13 @@ class UserLoginController extends Controller
             return;
         }
 
-        // need to query db to authenticate user
+        $authenticate_user = new UserService($clean_form, $this->db->getConnection());
+
+        if (!$authenticate_user->authenticateLogin()) {
+            echo json_encode(["success" => false, "errors" => $validate_user->getErrors()]);
+            return;
+        }
+
+        echo json_encode(["success" => true]);
     }
 }

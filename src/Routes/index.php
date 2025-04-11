@@ -12,6 +12,7 @@ use App\Controllers\AccountManagementController;
 use App\Controllers\DashboardController;
 use App\Controllers\NotificationController;
 use App\Controllers\PendingController;
+use App\Controllers\UserLoginController;
 use App\Middleware\AuthenticateAdmin;
 use App\Middleware\AuthenticateDesigner;
 use App\Middleware\RedirectIfAuthenticated;
@@ -23,6 +24,8 @@ $router = new Router($db);
 
 $router->get('/login', LoginController::class, 'login', RedirectIfAuthenticated::class);
 $router->get('/register', RegisterController::class, 'register', RedirectIfAuthenticated::class);
+$router->post('/user-login', UserLoginController::class, 'userLogin');
+
 
 $router->post('/login', LoginController::class, 'employeeLogin');
 $router->post('/register', RegisterController::class, 'employeeRegister');
