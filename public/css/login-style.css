@@ -64,14 +64,14 @@ h1 {
     color: #7E4F63;
     border: none;
     outline: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #7E4F63;
     border-radius: 0px;
     background-color: transparent;
 }
 
 .form-control#username:focus {
     /* Reset border to default (use the actual color from inspecting) */
-    border-color: black !important;
+    border-color: #7E4F63 !important;
     /* Remove Bootstrap's focus box-shadow */
     box-shadow: none !important;
     /* Ensure no other outline appears */
@@ -90,7 +90,8 @@ h1 {
 :root {
     --input-default-bg: #f3cbeb;
     --input-default-text: #212529;
-    --input-default-border: black;
+    --input-default-border: #7E4F63;
+    ;
 }
 
 .form-control:focus {

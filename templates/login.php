@@ -23,7 +23,7 @@
                 <h2>System Login</h2>
                 <p>Please enter your credentials below to continue</p>
                 <div class="row ">
-                    <div class="form-container-main py-2">
+                    <div class="form-container-main py-2 pt-5">
                         <div class="form-container col-7 ">
                             <input class="form-control" type="text" id="username" placeholder="Username" name="username" required>
                             <span class="errors" id="username-error"></span>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-options form-check form-container-main  align-self-center py-3">
                         <div class="d-flex justify-content-around w-75">
-                            <label class="remember-me  form-check-label ">
+                            <label class="remember-me  form-check-label ps-3">
                                 <input type="checkbox" name="remember" class="form-check-input"> Remember Me
                             </label>
                             <a href="#" class="forgot-password ">Forgot Password?</a>
