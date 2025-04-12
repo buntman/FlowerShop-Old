@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Controllers\ImageController;
-use App\Models\productService;
+use App\Models\ProductService;
 use App\Config\database;
 
 class ProductController extends Controller
@@ -30,7 +30,7 @@ class ProductController extends Controller
         }
         $upload->uploadFile();
         $image_dir = $upload->getTargetDirectory();
-        $product = new productService($data, $this->db->getConnection(), $image_dir);
+        $product = new ProductService($data, $this->db->getConnection(), $image_dir);
         $product->saveProduct();
         header("Location: /admin-inventory");
         exit();
