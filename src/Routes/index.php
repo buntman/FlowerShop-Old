@@ -13,6 +13,7 @@ use App\Controllers\DashboardController;
 use App\Controllers\NotificationController;
 use App\Controllers\PendingController;
 use App\Controllers\UserLoginController;
+use App\Controllers\GalleryController;
 use App\Middleware\AuthenticateAdmin;
 use App\Middleware\AuthenticateDesigner;
 use App\Middleware\RedirectIfAuthenticated;
@@ -57,6 +58,7 @@ $router->get('/designer-dashboard', DashboardController::class, 'getDashboard', 
 $router->get('/designer-notification', NotificationController::class, 'getNotification', AuthenticateDesigner::class);
 
 $router->get('/pending-request', PendingController::class, 'getPendingPage');
+$router->get('/gallery', GalleryController::class, 'getBouquets');
 
 
 $router->dispatch();

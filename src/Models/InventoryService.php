@@ -71,4 +71,14 @@ class InventoryService
         $rowcount = mysqli_num_rows($result);
         return $rowcount;
     }
+
+    public function getBouquets()
+    {
+        $sql = "SELECT * FROM products where product_type = 'bouquet' AND admin_id = '1'"; //temporaray fix, should use the session id
+        $sql_statement = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_execute($sql_statement);
+        $result = mysqli_stmt_get_result($sql_statement);
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $rows;
+    }
 }
