@@ -34,7 +34,7 @@ function fetchProductToEdit(id) {
     .then(data=> {
             document.getElementById("edit-name").value = data.name;
             document.getElementById("edit-stocks").value = data.stock_quantity;
-            document.getElementById("edit-description").textContent = data.description;
+            document.getElementById("edit-description").value = data.description || '';
             document.getElementById("edit-price").value = data.price;
         })
     .catch(error=> console.error('Error', error));
