@@ -2,6 +2,8 @@
 
 namespace App\Middleware;
 
+use App\Config\JwtConfig;
+
 class JwtAuth
 {
     public function handle()
@@ -11,5 +13,15 @@ class JwtAuth
             echo "Access Denied: Authorization token is missing or invalid. Please provide a valid token to access this resource.";
             exit;
         }
+
+        $jwt = $matches[1];
+
+        if (!$jwt) {
+            header('HTTP/1.0 400 Bad Request');
+            exit;
+        }
+
+        $jwt_config = new JwtConfig();
+        $jwt_config->decode($jwt);
     }
 }

@@ -19,6 +19,6 @@ return [
         'twig_template' => __DIR__. '/../' . $_ENV['TWIG_TEMPLATE_PATH'],
     ],
     'jwt' => [
-        'secret_key' => 'c2VjcmV0a2lzc2FuYXlhaA==',
+        'secret_key' => $_ENV['SECRET_KEY'],
     ],
 ];

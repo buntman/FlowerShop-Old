@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Models\GalleryService;
-use App\config\database;
+use App\Config\database;
 
 class GalleryController extends Controller
 {

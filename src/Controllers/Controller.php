@@ -10,7 +10,7 @@ class Controller
     public function __construct($db)
     {
         $this->db = $db;
-        $this->twig = require __DIR__ . '/../../config/twig.php';
+        $this->twig = require __DIR__ . '/../../Config/twig.php';
     }
 
     protected function render($view, $data = [])
