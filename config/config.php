@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Config;
+
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__.'/..');
 $dotenv->load();
+
 
 return [
     'database' => [
@@ -14,5 +17,8 @@ return [
     ],
     'twig' => [
         'twig_template' => __DIR__. '/../' . $_ENV['TWIG_TEMPLATE_PATH'],
+    ],
+    'jwt' => [
+        'secret_key' => 'c2VjcmV0a2lzc2FuYXlhaA==',
     ],
 ];

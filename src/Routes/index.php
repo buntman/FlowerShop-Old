@@ -18,6 +18,7 @@ use App\Controllers\HomeController;
 use App\Middleware\AuthenticateAdmin;
 use App\Middleware\AuthenticateDesigner;
 use App\Middleware\RedirectIfAuthenticated;
+use App\Middleware\JwtAuth;
 use App\Config\database;
 
 $db = new database();
@@ -59,8 +60,8 @@ $router->get('/designer-dashboard', DashboardController::class, 'getDashboard', 
 $router->get('/designer-notification', NotificationController::class, 'getNotification', AuthenticateDesigner::class);
 
 $router->get('/pending-request', PendingController::class, 'getPendingPage');
-$router->get('/gallery', GalleryController::class, 'getBouquets');
-$router->get('/home', HomeController::class, 'getBouquets');
+$router->get('/gallery', GalleryController::class, 'getBouquets', JwtAuth::class);
+$router->get('/home', HomeController::class, 'getBouquets', JwtAuth::class);
 
 
 $router->dispatch();

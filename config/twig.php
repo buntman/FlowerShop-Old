@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Config;
 
 use Twig\Environment;

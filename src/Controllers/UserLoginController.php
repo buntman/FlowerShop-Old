@@ -7,6 +7,8 @@ use App\Validations\FormValidator;
 use App\Validations\InputSanitizer;
 use App\Models\UserService;
 use App\config\database;
+use DateTimeImmutable;
+use Firebase\JWT\JWT;
 
 class UserLoginController extends Controller
 {
@@ -32,10 +34,26 @@ class UserLoginController extends Controller
         $authenticate_user = new UserService($clean_form, $this->db->getConnection());
 
         if (!$authenticate_user->authenticateLogin()) {
-            echo json_encode(["success" => false, "errors" => $validate_user->getErrors()]);
+            echo json_encode(["success" => false, "errors" => $authenticate_user->getErrors()]);
             return;
         }
 
-        echo json_encode(["success" => true]);
+        $db_config = require __DIR__ . '/../../config/config.php';
+        $secret = $db_config['jwt']['secret_key'];
+        $issuedAt = new DateTimeImmutable();
+        $expire     = $issuedAt->modify('+6 minutes')->getTimestamp();
+        $server_name = 'localhost';
+        $username =  'username';
+
+        $data = [
+            'iat' => $issuedAt->getTimestamp(),
+            'iss' => $server_name,
+            'nbf' => $issuedAt->getTimestamp(),
+            'exp' => $expire,
+            'username' => $username,
+        ];
+
+        $jwt = JWT::encode($data, $secret, 'HS512');
+        echo json_encode(["success" => true, 'token' => $jwt]);
     }
 }
