@@ -71,4 +71,15 @@ class InventoryService
         $rowcount = mysqli_num_rows($result);
         return $rowcount;
     }
+
+    public function findProductByName($product_name)
+    {
+        $sql = "SELECT * FROM products where name = ?";
+        $sql_statement = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($sql_statement, 's', $product_name);
+        mysqli_stmt_execute($sql_statement);
+        $result = mysqli_stmt_get_result($sql_statement);
+        $product = mysqli_fetch_assoc($result);
+        return $product;
+    }
 }

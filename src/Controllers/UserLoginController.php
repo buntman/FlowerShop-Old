@@ -37,8 +37,9 @@ class UserLoginController extends Controller
             return;
         }
 
-        $jwt = new JwtConfig();
-        $jwt_token = $jwt->encode();
-        echo json_encode(["success" => true, 'token' => $jwt_token]);
+        $user = $authenticate_user->findUserByEmail($clean_form['email']);
+
+        $jwt = JwtConfig::getInstance()->encode($user['id']);
+        echo json_encode(["success" => true, 'token' => $jwt]);
     }
 }

@@ -39,6 +39,17 @@ class UserService
         return empty($this->errors);
     }
 
+    public function findUserByEmail($email)
+    {
+        $sql = "SELECT * FROM users where email = ?";
+        $sql_statement = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($sql_statement, 's', $email);
+        mysqli_stmt_execute($sql_statement);
+        $result = mysqli_stmt_get_result($sql_statement);
+        $user = mysqli_fetch_assoc($result);
+        return $user;
+    }
+
     public function getErrors()
     {
         return $this->errors;

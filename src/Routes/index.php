@@ -2,6 +2,7 @@
 
 namespace App\Routes;
 
+use App\Controllers\CartController;
 use App\Routes\Router;
 use App\Controllers\LoginController;
 use App\Controllers\RegisterController;
@@ -60,8 +61,12 @@ $router->get('/designer-dashboard', DashboardController::class, 'getDashboard', 
 $router->get('/designer-notification', NotificationController::class, 'getNotification', AuthenticateDesigner::class);
 
 $router->get('/pending-request', PendingController::class, 'getPendingPage');
+
+//user routes
 $router->get('/gallery', GalleryController::class, 'getBouquets', JwtAuth::class);
 $router->get('/home', HomeController::class, 'getBouquets', JwtAuth::class);
-
+$router->post('/cart/add', CartController::class, 'addProductToCart', JwtAuth::class);
+$router->post('/cart/delete', CartController::class, 'deleteCartById', JwtAuth::class);
+$router->get('/cart', CartController::class, 'getProductsFromCart', JwtAuth::class);
 
 $router->dispatch();

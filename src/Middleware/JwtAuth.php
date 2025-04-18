@@ -21,7 +21,6 @@ class JwtAuth
             exit;
         }
 
-        $jwt_config = new JwtConfig();
-        $jwt_config->decode($jwt);
+        JwtConfig::getInstance()->decode($jwt);
     }
 }
