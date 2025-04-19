@@ -14,29 +14,20 @@ class UserService
         $this->connect = $connection;
     }
 
-    public function authenticateLogin(): bool
+    public function save()
     {
-        return $this->authenticateUser();
+        $this->saveUser();
     }
 
-    private function authenticateUser(): bool
+    private function saveUser()
     {
         $email = $this->data['email'];
         $password = $this->data['password'];
-        $sql = "SELECT * FROM users WHERE email = ?";
+        $encrypted_pass = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO users(email, password) VALUES(?,?)";
         $sql_statement = mysqli_prepare($this->connect, $sql);
-        mysqli_stmt_bind_param($sql_statement, 's', $email);
+        mysqli_stmt_bind_param($sql_statement, 'ss', $email, $encrypted_pass);
         mysqli_stmt_execute($sql_statement);
-        $result = mysqli_stmt_get_result($sql_statement);
-        $row = mysqli_fetch_assoc($result);
-        $db_password = $row['password'];
-        if (!$row) {
-            $this->errors['password'] = "Invalid input. Please try again.";
-        }
-        if ($password != $db_password) {
-            $this->errors['password'] = "Invalid input. Please try again.";
-        }
-        return empty($this->errors);
     }
 
     public function findUserByEmail($email)
@@ -48,10 +39,5 @@ class UserService
         $result = mysqli_stmt_get_result($sql_statement);
         $user = mysqli_fetch_assoc($result);
         return $user;
-    }
-
-    public function getErrors()
-    {
-        return $this->errors;
     }
 }

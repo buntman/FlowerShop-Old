@@ -5,9 +5,9 @@ namespace App\Validations;
 class FormValidator
 {
     private $data;
-    private $loginFields = ['username', 'password'];
-    private $registerFields = ['first_name', 'last_name', 'email', 'contact_number', 'username', 'password'];
-    private $userLoginFields = ['email', 'password'];
+    private $EmployeeLoginFields = ['username', 'password'];
+    private $EmployeeRegisterFields = ['first_name', 'last_name', 'email', 'contact_number', 'username', 'password'];
+    private $userFields = ['email', 'password'];
     private $errors = [];
 
     public function __construct($post)
@@ -15,29 +15,35 @@ class FormValidator
         $this->data = $post;
     }
 
-
     public function validateUserLogin(): bool
     {
-        return $this->validateUserLoginFields();
+        return $this->validateUserFields();
     }
 
-    public function validateRegister(): bool
+    public function validateUserRegister(): bool
     {
-        if (!$this->validateRegisterFields() or !$this->validateUsername() or !$this->validatePassword()) {
+        if (!$this->validateUserFields() or !$this->validateEmail() or !$this->validatePassword()) {
             return false;
         }
         return true;
     }
 
-    public function validateLogin(): bool
+    public function validateEmployeeRegister(): bool
     {
-        return $this->validateLoginFields();
+        if (!$this->validateEmployeeRegisterFields() or !$this->validateEmail() or !$this->validateUsername() or !$this->validatePassword()) {
+            return false;
+        }
+        return true;
     }
 
-
-    private function validateLoginFields(): bool
+    public function validateEmployeeLogin(): bool
     {
-        foreach ($this->loginFields as $field) {
+        return $this->validateEmployeeLoginFields();
+    }
+
+    private function validateEmployeeLoginFields(): bool
+    {
+        foreach ($this->EmployeeLoginFields as $field) {
             if (empty($this->data[$field])) {
                 switch ($field) {
                     case 'username':
@@ -53,9 +59,9 @@ class FormValidator
     }
 
 
-    private function validateRegisterFields(): bool
+    private function validateEmployeeRegisterFields(): bool
     {
-        foreach ($this->registerFields as $field) {
+        foreach ($this->EmployeeRegisterFields as $field) {
             if (empty($this->data[$field])) {
                 switch ($field) {
                     case 'first_name':
@@ -126,9 +132,9 @@ class FormValidator
         return empty($this->errors);
     }
 
-    private function validateUserLoginFields(): bool
+    private function validateUserFields(): bool
     {
-        foreach ($this->userLoginFields as $field) {
+        foreach ($this->userFields as $field) {
             if (empty($this->data[$field])) {
                 switch ($field) {
                     case 'email':

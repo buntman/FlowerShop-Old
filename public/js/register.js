@@ -14,7 +14,7 @@ function userRegister(event) {
             if(!data.success) {
                 document.getElementById('fname_error').textContent = data.errors.first_name;
                 document.getElementById('lname_error').textContent = data.errors.last_name;
-                document.getElementById('email_error').textContent = data.errors.error;
+                document.getElementById('email_error').textContent = data.errors.email;
                 document.getElementById('contact_error').textContent = data.errors.contact_number;
                 document.getElementById('username_error').textContent = data.errors.username;
                 document.getElementById('password_error').textContent = data.errors.password;

@@ -9,7 +9,7 @@ use App\Validations\InputSanitizer;
 use App\Controllers\Controller;
 use App\Models\Authenticate;
 
-class RegisterController extends Controller
+class EmployeeRegisterController extends Controller
 {
     public function __construct(database $db)
     {
@@ -30,15 +30,17 @@ class RegisterController extends Controller
         $clean_form = $input->sanitize();
         $form = new FormValidator($clean_form);
         try {
-            $authenticateUser = new Authenticate($clean_form, $this->db->getConnection());
-            if (!$form->validateRegister()) {
+            if (!$form->validateEmployeeRegister()) {
                 echo json_encode(["success" => false, "errors" => $form->getErrors()]);
                 return;
             }
-            if (!$authenticateUser->authenticateRegistration()) {
+
+            $authenticateUser = new Authenticate($clean_form, $this->db->getConnection());
+            if (!$authenticateUser->authenticateEmployeeRegistration()) {
                 echo json_encode(["success" => false, "errors" => $authenticateUser->getErrors()]);
                 return;
             }
+
             $employee = new EmployeeService($clean_form, $this->db->getConnection());
             $employee->save();
             echo json_encode(["success" => true, "redirect" => "/login"]);

@@ -4,8 +4,8 @@ namespace App\Routes;
 
 use App\Controllers\CartController;
 use App\Routes\Router;
-use App\Controllers\LoginController;
-use App\Controllers\RegisterController;
+use App\Controllers\EmployeeLoginController;
+use App\Controllers\EmployeeRegisterController;
 use App\Controllers\InventoryController;
 use App\Controllers\ProductController;
 use App\Controllers\ReportsController;
@@ -16,6 +16,7 @@ use App\Controllers\PendingController;
 use App\Controllers\UserLoginController;
 use App\Controllers\GalleryController;
 use App\Controllers\HomeController;
+use App\Controllers\UserRegisterController;
 use App\Middleware\AuthenticateAdmin;
 use App\Middleware\AuthenticateDesigner;
 use App\Middleware\RedirectIfAuthenticated;
@@ -26,15 +27,16 @@ $db = new database();
 
 $router = new Router($db);
 
-$router->get('/login', LoginController::class, 'login', RedirectIfAuthenticated::class);
-$router->get('/register', RegisterController::class, 'register', RedirectIfAuthenticated::class);
+$router->get('/login', EmployeeLoginController::class, 'login', RedirectIfAuthenticated::class);
+$router->get('/register', EmployeeRegisterController::class, 'register', RedirectIfAuthenticated::class);
 $router->post('/user-login', UserLoginController::class, 'userLogin');
 
 
-$router->post('/login', LoginController::class, 'employeeLogin');
-$router->post('/register', RegisterController::class, 'employeeRegister');
+$router->post('/login', EmployeeLoginController::class, 'employeeLogin');
+$router->post('/register', EmployeeRegisterController::class, 'employeeRegister');
+$router->post('/user-register', UserRegisterController::class, 'userRegister');
 
-$router->post('/logout', LoginController::class, 'logout');
+$router->post('/logout', EmployeeLoginController::class, 'logout');
 
 //inventory routes
 $router->get('/admin-inventory', InventoryController::class, 'inventory', AuthenticateAdmin::class);

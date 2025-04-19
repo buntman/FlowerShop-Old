@@ -9,7 +9,7 @@ use App\Config\database;
 use App\Models\Authenticate;
 use App\Models\EmployeeService;
 
-class LoginController extends Controller
+class EmployeeLoginController extends Controller
 {
     public function __construct(database $db)
     {
@@ -30,18 +30,19 @@ class LoginController extends Controller
         $clean_form = $input->sanitize();
         $form = new FormValidator($clean_form);
         try {
-            $authenticateUser = new Authenticate($clean_form, $this->db->getConnection());
-            $employeeService = new EmployeeService($clean_form, $this->db->getConnection());
-            $employee = $employeeService->findByUsername();
-
-            if (!$form->validateLogin()) {
+            if (!$form->validateEmployeeLogin()) {
                 echo json_encode(["success" => false, "errors" => $form->getErrors()]);
                 return;
             }
-            if (!$authenticateUser->authenticateLogin()) {
+
+            $authenticateUser = new Authenticate($clean_form, $this->db->getConnection());
+            if (!$authenticateUser->authenticateEmployeeLogin()) {
                 echo json_encode(["success" => false, "errors" => $authenticateUser->getErrors()]);
                 return;
             }
+
+            $employeeService = new EmployeeService($clean_form, $this->db->getConnection());
+            $employee = $employeeService->findByUsername();
             if ($employee['status'] == 'INACTIVE') {
                 echo json_encode(["authorized" => false, "redirect" => "/pending-request"]);
                 return;
