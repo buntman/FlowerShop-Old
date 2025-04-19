@@ -68,5 +68,7 @@ $router->get('/home', HomeController::class, 'getBouquets', JwtAuth::class);
 $router->post('/cart/add', CartController::class, 'addProductToCart', JwtAuth::class);
 $router->post('/cart/delete', CartController::class, 'deleteCartById', JwtAuth::class);
 $router->get('/cart', CartController::class, 'getProductsFromCart', JwtAuth::class);
+$router->get('/cart/total-price', CartController::class, 'getTotalPrice', JwtAuth::class);
+$router->post('/cart/update-quantity', CartController::class, 'updateItemQuantity', JwtAuth::class);
 
 $router->dispatch();

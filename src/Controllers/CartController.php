@@ -7,6 +7,7 @@ use App\Models\CartService;
 use App\Models\InventoryService;
 use App\Config\database;
 use App\Config\JwtConfig;
+use Exception;
 
 class CartController extends Controller
 {
@@ -51,6 +52,13 @@ class CartController extends Controller
         echo json_encode($cart_items);
     }
 
+    public function getTotalPrice()
+    {
+        header("Content-Type: application/json");
+        $user_id = JwtConfig::getInstance()->getUserId();
+        $cart_price = $this->cart_service->calculateTotalPrice($user_id);
+        echo json_encode($cart_price);
+    }
 
     public function deleteCartById()
     {
@@ -59,5 +67,23 @@ class CartController extends Controller
         $data = json_decode($json, false);
         $cart_id = $data->cart_id;
         $this->cart_service->deleteCartById($cart_id);
+    }
+
+    public function updateItemQuantity()
+    {
+        header("Content-Type: application/json");
+        try {
+            $json = file_get_contents('php://input');
+            if (!$json) {
+                throw new Exception("Json has no values!");
+            }
+            $data = json_decode($json, false);
+            if (empty($data->cart_id) or empty($data->quantity)) {
+                throw new Exception("Cart id and quantity is not found!");
+            }
+            $this->cart_service->updateItemQuantity($data->cart_id, $data->quantity);
+        } catch (Exception $e) {
+            error_log(print_r($e->getMessage(), true));
+        }
     }
 }

@@ -49,11 +49,30 @@ class CartService
         return $rows;
     }
 
+    public function calculateTotalPrice($user_id)
+    {
+        $sql = "SELECT SUM(c.price * c.quantity) AS total_price FROM cart c WHERE c.status = 'active' and user_id = ?";
+        $sql_statement = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($sql_statement, 'i', $user_id);
+        mysqli_stmt_execute($sql_statement);
+        $result = mysqli_stmt_get_result($sql_statement);
+        $cart_price = mysqli_fetch_assoc($result);
+        return $cart_price;
+    }
+
     public function deleteCartById($cart_id)
     {
         $sql = "DELETE FROM cart where id = ?";
         $sql_statement = mysqli_prepare($this->connect, $sql);
         mysqli_stmt_bind_param($sql_statement, 'i', $cart_id);
+        mysqli_stmt_execute($sql_statement);
+    }
+
+    public function updateItemQuantity($cart_id, $quantity)
+    {
+        $sql = "UPDATE cart SET quantity = ? where id = ?";
+        $sql_statement = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($sql_statement, 'ii', $quantity, $cart_id);
         mysqli_stmt_execute($sql_statement);
     }
 }
