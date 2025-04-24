@@ -38,7 +38,7 @@ class UserLoginController extends Controller
             return;
         }
 
-        $user_service = new UserService($clean_form, $this->db->getConnection());
+        $user_service = new UserService($this->db->getConnection());
         $user = $user_service->findUserByEmail($clean_form['email']);
 
         $jwt = JwtConfig::getInstance()->encode($user['id']); //give token

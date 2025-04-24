@@ -39,8 +39,8 @@ class UserRegisterController extends Controller
             return;
         }
 
-        $user = new UserService($clean_form, $this->db->getConnection());
-        $user->save();
+        $user = new UserService($this->db->getConnection());
+        $user->save($clean_form);
         echo json_encode(["success" => true, "message" => "Successfully registered!"]);
     }
 }
