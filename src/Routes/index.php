@@ -18,6 +18,7 @@ use App\Controllers\GalleryController;
 use App\Controllers\HomeController;
 use App\Controllers\UserRegisterController;
 use App\Controllers\ProfileController;
+use App\Controllers\OrderController;
 use App\Middleware\AuthenticateAdmin;
 use App\Middleware\AuthenticateDesigner;
 use App\Middleware\RedirectIfAuthenticated;
@@ -75,5 +76,7 @@ $router->get('/cart/total-price', CartController::class, 'getTotalPrice', JwtAut
 $router->post('/cart/update-quantity', CartController::class, 'updateItemQuantity', JwtAuth::class);
 $router->get('/profile', ProfileController::class, 'getUserDetails', JwtAuth::class);
 $router->post('/user/edit-profile', ProfileController::class, 'editProfile', JwtAuth::class);
+
+$router->get('/api/order', OrderController::class, 'fetchItemsToCheckOut', JwtAuth::class);
 
 $router->dispatch();
