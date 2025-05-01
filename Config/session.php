@@ -14,7 +14,7 @@ if (isset($_SESSION[ 'lastaccess' ])) {
 
         session_destroy();
 
-        header("Location: /login");
+        header("Location: /employee/login");
         exit();
     }
 }

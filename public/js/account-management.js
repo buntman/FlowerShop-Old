@@ -1,5 +1,5 @@
 function deleteAccount(id) {
-    fetch('/admin-manage-account/delete-account', {
+    fetch('/admin/manage-account/delete-account', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ function fetchUser(id) {
 function activateStatus() {
     const row = document.querySelector('tr.table-active');
     const id = row.dataset.id;
-    fetch('/admin-manage-account/edit-status/activate', {
+    fetch('/admin/manage-account/edit-status/activate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ function activateStatus() {
 function deactivateStatus() {
     const row = document.querySelector('tr.table-active');
     const id = row.dataset.id;
-    fetch('/admin-manage-account/edit-status/deactivate', {
+    fetch('/admin/manage-account/edit-status/deactivate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ function deactivateStatus() {
 }
 
 function fetchUpdatedUserDetails(id) {
-    fetch('/admin-manage-account/edit-status/update', {
+    fetch('/admin/manage-account/edit-status/update', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -44,7 +44,7 @@ class EmployeeLoginController extends Controller
             $employeeService = new EmployeeService($clean_form, $this->db->getConnection());
             $employee = $employeeService->findByUsername();
             if ($employee['status'] == 'INACTIVE') {
-                echo json_encode(["authorized" => false, "redirect" => "/pending-request"]);
+                echo json_encode(["authorized" => false, "redirect" => "/employee/pending-request"]);
                 return;
             }
             session_regenerate_id(true);
@@ -61,7 +61,7 @@ class EmployeeLoginController extends Controller
     {
         session_unset();
         session_destroy();
-        header("Location: /login");
+        header("Location: /employee/login");
         exit();
     }
 
@@ -69,8 +69,8 @@ class EmployeeLoginController extends Controller
     private function redirectUser($role)
     {
         $routes = [
-            'ADMIN' => '/admin-inventory',
-            'DESIGNER' => '/designer-dashboard'
+            'ADMIN' => '/admin/inventory',
+            'DESIGNER' => '/designer/dashboard'
         ];
         if (isset($routes[$role])) {
             echo json_encode(["success" => true, "redirect" => $routes[$role]]);

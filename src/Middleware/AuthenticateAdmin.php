@@ -7,12 +7,12 @@ class AuthenticateAdmin
     public function handle()
     {
         if (!isset($_SESSION['user_id'])) {
-            header("Location: /login");
+            header("Location: /employee/login");
             exit();
         }
 
         if ($_SESSION['user_role'] != 'ADMIN') {
-            header("Location: /designer-dashboard");
+            header("Location: /designer/dashboard");
             exit();
         }
     }

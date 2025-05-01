@@ -8,12 +8,12 @@ class RedirectIfAuthenticated
     {
 
         if (isset($_SESSION['user_id']) and $_SESSION['user_role'] == 'ADMIN') {
-            header("Location: /admin-inventory");
+            header("Location: /admin/inventory");
             exit();
         }
 
         if (isset($_SESSION['user_id']) and $_SESSION['user_role'] == 'DESIGNER') {
-            header("Location: /designer-dashboard");
+            header("Location: /designer/dashboard");
             exit();
         }
     }

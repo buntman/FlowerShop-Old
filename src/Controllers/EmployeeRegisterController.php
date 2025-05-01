@@ -43,7 +43,7 @@ class EmployeeRegisterController extends Controller
 
             $employee = new EmployeeService($clean_form, $this->db->getConnection());
             $employee->save();
-            echo json_encode(["success" => true, "redirect" => "/login"]);
+            echo json_encode(["success" => true, "redirect" => "/employee/login"]);
         } catch (\Exception $e) {
             echo $e->getMessage();
         }

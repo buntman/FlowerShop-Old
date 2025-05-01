@@ -1,7 +1,7 @@
 let currentProductId = null;
 
 function fetchProductDetails(id) {
-    fetch('/admin-inventory/item-details', {
+    fetch('/admin/inventory/item-details', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ function fetchProductDetails(id) {
 
 function fetchProductToEdit(id) {
     currentProductId = id;
-    fetch('/admin-inventory/edit/item', {
+    fetch('/admin/inventory/edit/item', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function updateProductDetails(event) {
     const values = Object.fromEntries(data.entries());
     const requestBody = {currentProductId, ...values};
 
-    fetch('/admin-inventory/edit/update-item', {
+    fetch('/admin/inventory/edit/update-item', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -61,9 +61,9 @@ function updateProductDetails(event) {
                 if(row) {
                     const cells = row.cells;
                     cells[2].innerText = values.name;
-                    cells[3].innerText = values.stock;
+                    cells[4].innerText = values.stock;
                     const formattedPrice = `₱ ${values.price}`;
-                    cells[4].innerText = formattedPrice;
+                    cells[5].innerText = formattedPrice;
                     fetchProductDetails(currentProductId);
                     alert("Item successfully edited!");
                 }
@@ -73,7 +73,7 @@ function updateProductDetails(event) {
 }
 
 function deleteProduct(id) {
-    fetch('/admin-inventory/delete', {
+    fetch('/admin/inventory/delete', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ function deleteProduct(id) {
 }
 
 function refreshItemDisplayed() {
-    fetch('/admin-inventory',{
+    fetch('/admin/inventory',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
