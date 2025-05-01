@@ -75,4 +75,12 @@ class CartService
         mysqli_stmt_bind_param($sql_statement, 'ii', $quantity, $cart_id);
         mysqli_stmt_execute($sql_statement);
     }
+
+    public function updateCartStatus($status, $user_id)
+    {
+        $sql = "UPDATE cart SET status = ? where user_id = ?";
+        $stmt = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($stmt, 'si', $status, $user_id);
+        mysqli_stmt_execute($stmt);
+    }
 }

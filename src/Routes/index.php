@@ -74,9 +74,11 @@ $router->post('/cart/delete', CartController::class, 'deleteCartById', JwtAuth::
 $router->get('/cart', CartController::class, 'getProductsFromCart', JwtAuth::class);
 $router->get('/cart/total-price', CartController::class, 'getTotalPrice', JwtAuth::class);
 $router->post('/cart/update-quantity', CartController::class, 'updateItemQuantity', JwtAuth::class);
+$router->post('/cart/status', CartController::class, 'updateCartStatus', JwtAuth::class);
 $router->get('/profile', ProfileController::class, 'getUserDetails', JwtAuth::class);
 $router->post('/user/edit-profile', ProfileController::class, 'editProfile', JwtAuth::class);
 
 $router->get('/api/order', OrderController::class, 'fetchItemsToCheckOut', JwtAuth::class);
+$router->post('/api/order', OrderController::class, 'addOrderDetails', JwtAuth::class);
 
 $router->dispatch();

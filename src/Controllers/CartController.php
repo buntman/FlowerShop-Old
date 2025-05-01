@@ -86,4 +86,14 @@ class CartController extends Controller
             error_log(print_r($e->getMessage(), true));
         }
     }
+
+    public function updateCartStatus()
+    {
+        header("Content-Type: application/json");
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, false);
+        $status = $data->status;
+        $user_id = JwtConfig::getInstance()->getUserId();
+        $this->cart_service->updateCartStatus($status, $user_id);
+    }
 }
