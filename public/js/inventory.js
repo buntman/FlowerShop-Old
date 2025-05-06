@@ -96,12 +96,7 @@ function deleteProduct(id) {
 }
 
 function refreshItemDisplayed() {
-    fetch('/admin/inventory',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
+    fetch('/admin/inventory/refresh')
     .then(response=>response.json())
     .then(data=> {
             if(data.success) {

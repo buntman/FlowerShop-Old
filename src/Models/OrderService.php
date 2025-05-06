@@ -44,4 +44,84 @@ class OrderService
         mysqli_stmt_bind_param($stmt, 'iii', $order_id, $product_id, $quantity);
         mysqli_stmt_execute($stmt);
     }
+
+    public function updatePendingOrderStatus($id)
+    {
+        $sql = "UPDATE order_items SET status = 'Completed' where id = ?";
+        $stmt = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $id);
+        mysqli_stmt_execute($stmt);
+        $order_id = $this->findOrder($id);
+        $this->updateCompleteOrderStatus($order_id);
+    }
+
+    public function updateCompleteOrderStatus($id)
+    {
+        $sql = "SELECT COUNT(*) AS count FROM order_items where order_id = ? and status = 'Pending'";
+        $stmt = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+        if ($row['count'] == 0) {
+            $sql = "UPDATE orders SET status = 'Ready for Pickup' where id = ?";
+            $stmt = mysqli_prepare($this->connect, $sql);
+            mysqli_stmt_bind_param($stmt, 'i', $id);
+            mysqli_stmt_execute($stmt);
+        }
+    }
+
+    public function fetchPendingOrders()
+    {
+        $sql = "SELECT p.name AS product_name,
+        p.image_path AS product_image,
+        u.name AS customer_name,
+        o.pickup_date,
+        o.pickup_time,
+        oi.id AS item_id,
+        oi.quantity
+        FROM order_items oi
+        JOIN products p ON oi.product_id = p.id
+        JOIN orders o ON oi.order_id = o.id
+        JOIN users u ON o.user_id = u.id
+        WHERE oi.status = 'Pending'";
+        $stmt = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $rows;
+    }
+
+    public function fetchCompleteOrders()
+    {
+        $sql = "SELECT p.name AS product_name,
+        p.image_path AS product_image,
+        u.name AS customer_name,
+        o.pickup_date,
+        o.pickup_time,
+        o.status,
+        oi.id AS item_id,
+        oi.quantity
+        FROM order_items oi
+        JOIN products p ON oi.product_id = p.id
+        JOIN orders o ON oi.order_id = o.id
+        JOIN users u ON o.user_id = u.id
+        WHERE oi.status = 'Completed'";
+        $stmt = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $rows;
+    }
+
+    public function findOrder($item_id)
+    {
+        $sql = "SELECT order_id FROM order_items where id = ?";
+        $stmt = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $item_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+        return $row['order_id'];
+    }
 }

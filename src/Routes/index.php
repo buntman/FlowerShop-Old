@@ -10,7 +10,7 @@ use App\Controllers\InventoryController;
 use App\Controllers\ProductController;
 use App\Controllers\ReportsController;
 use App\Controllers\AccountManagementController;
-use App\Controllers\DashboardController;
+use App\Controllers\DesignerDashboardController;
 use App\Controllers\NotificationController;
 use App\Controllers\PendingController;
 use App\Controllers\UserLoginController;
@@ -39,7 +39,7 @@ $router->get('/employee/pending-request', PendingController::class, 'getPendingP
 
 //admin routes
 $router->get('/admin/inventory', InventoryController::class, 'inventory', AuthenticateAdmin::class);
-$router->post('/admin/inventory', InventoryController::class, 'getFirstProduct', AuthenticateAdmin::class);
+$router->get('/admin/inventory/refresh', InventoryController::class, 'getFirstProduct', AuthenticateAdmin::class);
 $router->get('/admin/inventory/products', ProductController::class, 'productCard', AuthenticateAdmin::class);
 $router->post('/admin/inventory/products', ProductController::class, 'createProduct');
 $router->post('/admin/inventory/item-details', InventoryController::class, 'getProductDetails');
@@ -58,8 +58,11 @@ $router->post('/admin/manage-account/edit-status/update', AccountManagementContr
 $router->get('/admin/reports', ReportsController::class, 'getReports', AuthenticateAdmin::class);
 
 //designer routes
-$router->get('/designer/dashboard', DashboardController::class, 'getDashboard', AuthenticateDesigner::class);
+$router->get('/designer/dashboard', DesignerDashboardController::class, 'getDashboard', AuthenticateDesigner::class);
+$router->get('/designer/dashboard/complete', DesignerDashboardController::class, 'fetchCompleteOrders', AuthenticateDesigner::class);
 $router->get('/designer/notification', NotificationController::class, 'getNotification', AuthenticateDesigner::class);
+
+$router->post('/designer/dashboard/update', DesignerDashboardController::class, 'updatePendingOrderStatus', AuthenticateDesigner::class);
 
 //user routes
 $router->post('/api/user-login', UserLoginController::class, 'userLogin');

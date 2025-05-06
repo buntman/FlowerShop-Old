@@ -110,510 +110,61 @@
           <div class="col-md-6 mb-3">
             <div class="card-custom">
               <div class="d-flex justify-content-between align-items-center">
-                <h5 class="text-light">Pending Requests</h5>
-                <a href="#" class="see-all">See All</a>
+                <h5 class="text-light">Pending Orders</h5>
               </div>
-
               <!-- SCROLLABLE CONTENT -->
               <div class="scrollable mt-2">
-
-                <!-- 1st CONTENT-SECTION -->
-                <div class="order-card d-flex align-items-center w-100 ">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">In order : <span class="started">1 person</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">progress: <span class="started"> almost done</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet" />
-
-                </div>
-
-
-
                 <!-- CONTENT-SECTION -->
-                <div class="order-card d-flex align-items-center w-100 ">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
+              {% for order in orders %}
+                <div data-id="{{order.item_id}}" class="order-card d-flex align-items-center w-100">
+                  <img src="{{order.product_image}}" alt="Bouquet" width="120" height="120" class="rounded">
                   <div class="d-flex flex-column w-100 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
+                    <p class="mb-0 fw-bold product_name">{{order.product_name}}</p>
+                    <p class=" m-0 order-details">Customer: <span class="started">{{ order.customer_name }}</span></p>
+                    <p class=" m-0 order-details">Quantity: <span class="started">{{ order.quantity }}</span></p>
                     <div class=" d-flex flex justify-content-start align-items-center">
                       <span>
-                        <p class=" m-0 progress-text">In order : <span class="started">1 person</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">progress: <span class="started"> almost done</span></p>
+                        <p class=" m-0 order-details">Pickup Schedule: <span class="started">{{ order.pickup_date }} {{order.pickup_time}}</span></p>
                       </span>
                     </div>
-
                   </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet" />
-
+            <button id="check-button" type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm me-4" onclick="updateOrderStatus({{ order.item_id}})">
+                     <i class="fas fa-check"></i>
+            </button>
                 </div>
-
-                <!-- CONTENT-SECTION -->
-                <div class="order-card d-flex align-items-center w-100 ">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">In order : <span class="started">1 person</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">progress: <span class="started"> almost done</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet" />
-
-                </div>
-
-                <!-- CONTENT-SECTION -->
-                <div class="order-card d-flex align-items-center w-100 ">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">In order : <span class="started">1 person</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">progress: <span class="started"> almost done</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet" />
-
-                </div>
-
-                <!-- CONTENT-SECTION -->
-                <div class="order-card d-flex align-items-center w-100 ">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">In order : <span class="started">1 person</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">progress: <span class="started"> almost done</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet" />
-
-                </div>
-
-                <!-- CONTENT-SECTION -->
-                <div class="order-card d-flex align-items-center w-100 ">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">In order : <span class="started">1 person</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">progress: <span class="started"> almost done</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet" />
-
-                </div>
-
-
+              {% endfor %}
               </div>
             </div>
           </div>
 
-
-          <!-- SECOND SECTION OF SCROLLABLE CONTENT -->
           <div class="col-md-6 mb-3">
             <div class="card-custom">
               <div class="d-flex justify-content-between align-items-center">
                 <h5 class="text-light">Completed Orders</h5>
-                <a href="#" class="see-all">See All</a>
               </div>
-
-              <div class="scrollable mt-2">
-
-                <div class="order-card d-flex align-items-center w-100">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
+              <div id="container" class="scrollable mt-2">
+                <!-- SECOND SECTION OF SCROLLABLE CONTENT -->
+                <div id="card" class="order-card d-flex align-items-center w-100" style="display:none;">
+                  <img class="product_image rounded" src="" alt="Bouquet" width="120" height="120">
                   <div class="d-flex flex-column w-100 me-5 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
+                    <p class="mb-0 fw-bold product_name"></p>
+                    <p class=" m-0 order-details">Customer: <span class="started customer_name"></span></p>
                     <div class=" d-flex flex justify-content-start align-items-center">
                       <span>
-                        <p class=" m-0 progress-text">Order Completed : <span class="started">06/12/24</span></p>
+                        <p class=" m-0 order-details">Pickup Schedule: <span class="started pickup_schedule"></span></p>
                       </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">Total: <span class="started"> ₱ 650.00</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet">
-
-                </div>
-
-                <!-- 2ND CONTENT SECTION -->
-                <div class="order-card d-flex align-items-center w-100">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 me-5 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">Order Completed : <span class="started">06/12/24</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">Total: <span class="started"> ₱ 650.00</span></p>
+                      <span class="ms-3 ps-5">
+                        <p class=" m-0 order-details">Status: <span class="status"></span></p>
                       </span>
                     </div>
-
                   </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet">
-
                 </div>
 
-                <!-- 2ND CONTENT SECTION -->
-                <div class="order-card d-flex align-items-center w-100">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 me-5 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">Order Completed : <span class="started">06/12/24</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">Total: <span class="started"> ₱ 650.00</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet">
-
-                </div>
-
-                <!-- 2ND CONTENT SECTION -->
-                <div class="order-card d-flex align-items-center w-100">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 me-5 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">Order Completed : <span class="started">06/12/24</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">Total: <span class="started"> ₱ 650.00</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet">
-
-                </div>
-
-                <!-- 2ND CONTENT SECTION -->
-                <div class="order-card d-flex align-items-center w-100">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 me-5 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">Order Completed : <span class="started">06/12/24</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">Total: <span class="started"> ₱ 650.00</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet">
-
-                </div>
-
-                <!-- 2ND CONTENT SECTION -->
-                <div class="order-card d-flex align-items-center w-100">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 me-5 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">Order Completed : <span class="started">06/12/24</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">Total: <span class="started"> ₱ 650.00</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet">
-
-                </div>
-
-                <!-- 2ND CONTENT SECTION -->
-                <div class="order-card d-flex align-items-center w-100">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 me-5 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">Order Completed : <span class="started">06/12/24</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">Total: <span class="started"> ₱ 650.00</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet">
-
-                </div>
-
-                <!-- 2ND CONTENT SECTION -->
-                <div class="order-card d-flex align-items-center w-100">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 me-5 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">Order Completed : <span class="started">06/12/24</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">Total: <span class="started"> ₱ 650.00</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet">
-
-                </div>
-
-                <!-- 2ND CONTENT SECTION -->
-                <div class="order-card d-flex align-items-center w-100">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 me-5 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">Order Completed : <span class="started">06/12/24</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">Total: <span class="started"> ₱ 650.00</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet">
-
-                </div>
-
-                <!-- 2ND CONTENT SECTION -->
-                <div class="order-card d-flex align-items-center w-100">
-
-                  <img class="orders p-1" src="/images/images/bouquet.png" alt="Bouquet">
-
-                  <div class="d-flex flex-column w-100 me-5 gap-0 ps-3">
-
-                    <p class="mb-0 fw-bold dashboard-name">Derby bouquet</p>
-
-                    <div class=" d-flex flex justify-content-start align-items-center">
-                      <span>
-                        <p class=" m-0 progress-text">Order Completed : <span class="started">06/12/24</span></p>
-                      </span>
-                      <span class="ms-5 ps-5">
-                        <p class="m-0 progress-text">Total: <span class="started"> ₱ 650.00</span></p>
-                      </span>
-                    </div>
-
-                  </div>
-
-                  <img class=" align-self-center justify-content-center info-image pe-3"
-                    src="/images/images/info.png" alt="Bouquet">
-
-                </div>
-
-
-              </div>
             </div>
-          </div>
         </div>
-
-
-        <!-- CURRENT ORDER DETAILS DASHBOARD -->
-        <div class="row mt-3 mx-2">
-          <div class="dashboard-content p-4">
-
-
-            <div class="row align-items-center ">
-
-              <!-- ORDER DETAILS TEXTS -->
-              <div class="col-md-4   align-self-start ">
-                <h4 class="fw-bold details-title">Current Order Details</h4>
-
-                <form class="d-flex justify-content-between align-self-end flex-column p-3 gap-5 mt-5 pt-5">
-
-                  <div class=" details-card ords">
-                    <label class="details-category">Size:</label>
-                    <p class="details-texts ms-5 ps-3">Small</p>
-                  </div>
-
-                  <div class=" details-card ords">
-                    <label class="details-category">Flowers:</label>
-                    <p class="details-texts ms-5 ps-3">Rose 7x</p>
-                  </div>
-
-                  <div class=" details-card ords">
-                    <label class="details-category">Package:</label>
-                    <p class="details-texts ms-5 ps-3">Craft</p>
-                  </div>
-
-                  <div class=" details-card ords">
-                    <label class="details-category">Card:</label>
-                    <p class="details-texts ms-5 ps-3">Anniversary Card</p>
-                  </div>
-                </form>
-              </div>
-
-
-              <!-- ORDER DETAILS IMAGE -->
-              <div
-                class="col-md-4 d-flex flex-column align-self-start align-items-center justify-content-center details-img">
-                <p class="text-white">Flower Arrangement</p>
-                <img src="/images/images/boks.png" class="img-fluid img-thumbnail rounded mt-2" alt="Bouquet">
-
-              </div>
-
-
-              <!-- ORDER DETAILS ADDIONAL INFO -->
-              <div class="col-md-4 pt-0 p-4 d-flex flex-column  align-self-start">
-                <div class="mb-3 additional-message text-center">
-                  <label class="form-label text-white mb-4">Additional Message</label>
-                  <textarea class="form-control message-box "
-                    placeholder="Additional Message to the Designer..."></textarea>
-
-                </div>
-                <div class="price-box px-5 d-flex justify-content-between align-items-center">
-                  <p class="price-text m-0">Total price: </p>
-                  <span class="price">₱650.00 PHP</span>
-                </div>
-                <div class="d-flex info-buttons justify-content-between">
-                  <button class="btn btn-cancel">Cancel Order</button>
-                  <button class="btn btn-complete">Complete Order</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
       </main>
-    </div>
-  </div>
-
+  <script src="/js/designer-dashboard.js"></script>
   <script src="/js/nav.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
