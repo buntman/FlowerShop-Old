@@ -124,4 +124,44 @@ class OrderService
         $row = mysqli_fetch_assoc($result);
         return $row['order_id'];
     }
+
+
+    public function fetchOrderDetailsOfUser($user_id)
+    {
+        $sql = "SELECT * FROM orders where user_id = ?";
+        $stmt = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $user_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        foreach ($orders as &$order) {
+            $order['items'] = $this->fetchAllItemsInOrder($order['id']); //attach the specific items in the order
+        }
+        unset($order);
+        return $orders;
+    }
+
+    public function fetchAllItemsInOrder($order_id)
+    {
+        $sql = "SELECT p.name as product_name,
+        oi.quantity,
+        p.price * oi.quantity as price
+        FROM order_items oi
+        JOIN products p ON oi.product_id = p.id
+        WHERE oi.order_id = ?";
+        $stmt = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $order_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $rows;
+    }
+
+    public function updatePickedUpOrderStatus($order_id)
+    {
+        $sql = "UPDATE orders set status = 'Picked Up' where id = ?";
+        $stmt = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $order_id);
+        mysqli_stmt_execute($stmt);
+    }
 }

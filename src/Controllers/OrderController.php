@@ -69,4 +69,21 @@ class OrderController extends Controller
         }
         echo json_encode(["success" => true, "message" => "Ordered successfully!"]);
     }
+
+    public function fetchOrderDetails()
+    {
+        header("Content-Type: application/json");
+        $user_id = JwtConfig::getInstance()->getUserId();
+        $order_details = $this->order_service->fetchOrderDetailsOfUser($user_id);
+        echo json_encode($order_details);
+    }
+
+
+    public function updatePickedUpOrderStatus()
+    {
+        header("Content-Type: application/json");
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, false);
+        $this->order_service->updatePickedUpOrderStatus($data->order_id);
+    }
 }

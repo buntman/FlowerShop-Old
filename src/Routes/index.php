@@ -82,4 +82,7 @@ $router->post('/api/profile/edit', ProfileController::class, 'editProfile', JwtA
 $router->get('/api/order', OrderController::class, 'fetchItemsToCheckOut', JwtAuth::class);
 $router->post('/api/order', OrderController::class, 'addOrderDetails', JwtAuth::class);
 
+$router->get('/api/order/details', OrderController::class, 'fetchOrderDetails', JwtAuth::class);
+$router->post('/api/order/status', OrderController::class, 'updatePickedUpOrderStatus', JwtAuth::class);
+
 $router->dispatch();
