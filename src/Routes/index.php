@@ -78,6 +78,7 @@ $router->post('/api/cart/update-quantity', CartController::class, 'updateItemQua
 $router->post('/api/cart/status', CartController::class, 'updateCartStatus', JwtAuth::class);
 $router->get('/api/profile', ProfileController::class, 'getUserDetails', JwtAuth::class);
 $router->post('/api/profile/edit', ProfileController::class, 'editProfile', JwtAuth::class);
+$router->get('/api/profile/details', ProfileController::class, 'isUserDetailsUpdated', JwtAuth::class);
 
 $router->get('/api/order', OrderController::class, 'fetchItemsToCheckOut', JwtAuth::class);
 $router->post('/api/order', OrderController::class, 'addOrderDetails', JwtAuth::class);
