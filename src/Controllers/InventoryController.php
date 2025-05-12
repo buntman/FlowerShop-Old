@@ -44,7 +44,11 @@ class InventoryController extends Controller
         $data = json_decode($json, false);
         $id = $data->id;
         $this->inventory->deleteProduct($id);
-        echo json_encode(["success" => true, "message" => "Deleted Successfully"]);
+        $image_path = __DIR__ . '/../../public' . $data->path;
+        if (file_exists($image_path)) {
+            unlink($image_path);
+        }
+        echo json_encode(["success" => true, "message" => "Item deleted successfully!"]);
     }
 
     public function getFirstProduct()
@@ -66,6 +70,6 @@ class InventoryController extends Controller
         $description = $data['description'];
         $price = $data['price'];
         $this->inventory->updateProductDetails($id, $name, $stock, $description, $price);
-        echo json_encode(["success" => true, "message" => "Updated Successfully!"]);
+        echo json_encode(["success" => true, "message" => "Item updated successfully!"]);
     }
 }
