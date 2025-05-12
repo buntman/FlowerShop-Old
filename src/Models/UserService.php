@@ -49,7 +49,7 @@ class UserService
     {
         $sql = "UPDATE users SET name = ?, contact_number = ? where id = ?";
         $sql_statement = mysqli_prepare($this->connect, $sql);
-        mysqli_stmt_bind_param($sql_statement, 'ssi', $user_details->name, $user_details->contact_number, $user_id);
+        mysqli_stmt_bind_param($sql_statement, 'ssi', $user_details['name'], $user_details['contact_number'], $user_id);
         mysqli_stmt_execute($sql_statement);
     }
 
