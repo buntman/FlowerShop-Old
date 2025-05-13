@@ -231,6 +231,7 @@
 
 
 
+  <!-- DATATABLES SCRIPT -->
   <script>
     window.addEventListener('DOMContentLoaded', event => {
       // Simple-DataTables
@@ -244,6 +245,9 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
     crossorigin="anonymous"></script>
+<!-- DATATABLES SCRIPT -->
+
+
 </body>
 
 </html>
