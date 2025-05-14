@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+
+  <link rel="stylesheet" href="/css/manage-report-style.css">
+  <link rel="stylesheet" href="/css/navbar-style.css">
+
+  <link rel="stylesheet" href="./../public/css/manage-report-style.css">
+  <link rel="stylesheet" href="./../public/css/navbar-style.css">
+
+  <title>Reports</title>
+</head>
+
+
+
+<body>
+
+
+
+  <nav class="sb-topnav navbar navbar-expand ">
+
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+
+    <!-- <div class="d-flex "> -->
+    <div class="d-sm-flex align-self-center align-items-center justify-content-between manager-accounts w-100">
+      <h2 class="page-title">Manage Accounts</h2>
+      <div class="manager-accounts d-flex justify-content-center align-content-center mb-auto">
+        <p class="pe-4">Manager</p>
+        <img class="mx-5" src="/images/icons/person.svg" alt="">
+      </div>
+    </div>
+    <!-- </div> -->
+
+
+  </nav>
+
+
+
+
+
+
+  <div id="layoutSidenav">
+
+
+    <div class="d-flex flex-column sidebar" id="layoutSidenav_nav">
+
+
+      <nav class="sb-sidenav accordion" id="sidenavAccordion">
+        <!-- Navbar Brand-->
+        <h2 class="navbar-brand ps-4 pe-4 pb-0" href="index.html">Menu</h2>
+
+        <div class="sb-sidenav-menu">
+          <div class="nav">
+            <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+              <!-- INVENTORY -->
+              <li class="my-2">
+                <a href="/admin-inventory" class="nav-link border_bottom" title="Dashboard" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <i class="bi bi-database nav-icons"></i>
+                  <p>Inventory</p>
+                </a>
+              </li>
+
+              <!-- REPORTS -->
+              <li class="my-2">
+                <a href="/admin-reports" class="nav-link py-3 border_bottom" title="Orders" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <div class="">
+                    <i class="bi bi-clipboard-data"></i>
+                    <p>Reports</p>
+                  </div>
+                </a>
+              </li>
+
+              <!-- MANAGE -->
+              <li class="my-2">
+                <a href="/admin-manage-account" class="nav-link" title="Products" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <div class="border_box">
+                    <i class="bi bi-person-circle"></i>
+                    <p>Manage</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- SIGN OUT -->
+        <!-- <div class="nav-link-exit nav-link">
+          <form action="/logout" method="POST"
+            class="d-flex flex-column align-items-center justify-content-center link-dark text-decoration-none"
+            style="cursor: pointer; border: none; background: none; padding: 0;">
+            <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+              <i class="bi bi-escape"></i>
+              <p class="d-block p-exit">Sign Out</p>
+            </button>
+          </form>
+        </div> -->
+
+
+        <div class="sb-sidenav-footer">
+          <div class="small">Log Out</div>
+        </div>
+
+      </nav>
+
+    </div>
+    <!-- </div> -->
+    <!-- END OF NAVBAR -->
+
+
+
+
+
+
+    <!-- START OF MAIN CONTENT -->
+
+    <div id="layoutSidenav_content">
+      <main>
+
+        <div class="container-fluid mt-5 px-5 ">
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4 manager-accounts">
+            <h1 class="ms-2 text-gray-800 ">Reports</h1>
+            <div class="manager-accounts d-flex justify-content-center align-content-center mb-auto">
+              <p class="pe-4">Manager</p>
+              <img class="ms-4" src="/images/icons/person.svg" alt="">
+            </div>
+
+          </div>
+
+
+
+          <!-- Second Header-->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4 px-2 second-header">
+            <button type="button" class="btn "><i class='fas fa-calendar pe-2'></i>March - 2025</button>
+            <button type="button" class="btn ">Generate Report</button>
+
+          </div>
+
+
+
+
+
+          <!-- Content Row -->
+          <div class="row d-flex align-items-center justify-content-center ">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class=" col-md-4 mb-4 card-report">
+              <div class="card border-left-primary py-2 ">
+                <div class="card-body ">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2 card-text">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 text-light">
+                        Daily Sales</div>
+                      <div class="h5 mb-0 font-weight-bold">40,000</div>
+                      <div class="pt-5 text-secondary">Jan - Feb</div>
+                    </div>
+                    <div class="col-auto icons d-flex justify-content-between flex-column">
+                      <i class='fas fa-dollar-sign upper-icon'></i>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-md-4 mb-4 card-report">
+              <div class="card border-left-info py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2 card-text">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Monthly Revenue
+                      </div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold">₱55,000</div>
+                          <div class="pt-5 text-secondary">Jan - Feb</div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="col-auto icons">
+                      <i class='fas fa-money-bill-wave upper-icon'></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-md-4 mb-4 card-report">
+              <div class="card border-left-warning py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1 card-text">
+                        Total Orders Sold</div>
+                      <div class="h5 mb-0 font-weight-bold text-light total-orders">18</div>
+                      <div class="pt-5 text-secondary">Jan - Feb</div>
+                    </div>
+                    <div class="col-auto icons">
+                      <i class='fas fa-clipboard-list upper-icon'></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+
+
+
+
+
+
+          <!-- TABLE -->
+
+          <div class="container-fluid px-0 mt-4 main-table">
+
+
+            <div class="card px-0 py-3">
+
+
+
+              <div class="row px-5">
+                <div class="col table-upper-right">
+                  <p class="word1">All Report</p>
+                  <p class="d-block word2">Orders</p>
+                </div>
+                <div class="col d-flex align-items-center justify-content-center table-form">
+
+
+                  <!-- SEARCH BAR -->
+                  <div class="input-group search-bar ">
+                    <button class="input-group-text border-0" type="button" id="searchButton">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <input type="text" id="searchInput" class="form-control border-0" placeholder="Search Name">
+                  </div>
+
+
+                  <!-- Filter MENU -->
+                  <div class="container">
+                    <select class="form-select  reports-filter">
+                      <option selected value="">Filter by:</option>
+                      <option value="newest">Newest</option>
+                      <option value="oldest">Oldest</option>
+                      <option value="price-low">Price: Low to High</option>
+                      <option value="price-high">Price: High to Low</option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+
+
+
+              <table class="table rounded-table">
+                <thead>
+                  <tr class="tableRow">
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Date</th>
+                    <th>Phone Number</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#12354678</td>
+                    <td class="name-Report">Luis Santos</td>
+                    <td>03-20-2025</td>
+                    <td>09551234567</td>
+                    <td>Sunflower Bouquet</td>
+                    <td>2</td>
+                    <td>₱1,200.00</td>
+                  </tr>
+                  <tr>
+                    <td>#12354789</td>
+                    <td class="name-Report">Ana Mendoza</td>
+                    <td>03-19-2025</td>
+                    <td>09119998877</td>
+                    <td>Mixed Flower Basket</td>
+                    <td>1</td>
+                    <td>₱1,000.00</td>
+                  </tr>
+                  <tr>
+                    <td>#12354890</td>
+                    <td class="name-Report">Jose Fernando</td>
+                    <td>03-18-2025</td>
+                    <td>09987654321</td>
+                    <td>Orchid Arrangement</td>
+                    <td>3</td>
+                    <td>₱3,600.00</td>
+                  </tr>
+                  <tr>
+                    <td>#12354901</td>
+                    <td class="name-Report">Maria Santos</td>
+                    <td>03-17-2025</td>
+                    <td>09229876543</td>
+                    <td>Roses Bouquet</td>
+                    <td>1</td>
+                    <td>₱500.00</td>
+                  </tr>
+                  <tr>
+                    <td>#12355012</td>
+                    <td class="name-Report">Carlos Dela Peña</td>
+                    <td>03-16-2025</td>
+                    <td>09123456789</td>
+                    <td>Tulip Arrangement</td>
+                    <td>2</td>
+                    <td>₱1,500.00</td>
+                  </tr>
+                  <tr>
+                    <td>#12355012</td>
+                    <td class="name-Report">Carlos Dela Peña</td>
+                    <td>03-16-2025</td>
+                    <td>09123456789</td>
+                    <td>Tulip Arrangement</td>
+                    <td>2</td>
+                    <td>₱1,500.00</td>
+                  </tr>
+                  <tr>
+                    <td>#12355012</td>
+                    <td class="name-Report">Carlos Dela Peña</td>
+                    <td>03-16-2025</td>
+                    <td>09123456789</td>
+                    <td>Tulip Arrangement</td>
+                    <td>2</td>
+                    <td>₱1,500.00</td>
+                  </tr>
+                  <tr>
+                    <td>#12355012</td>
+                    <td class="name-Report">Carlos Dela Peña</td>
+                    <td>03-16-2025</td>
+                    <td>09123456789</td>
+                    <td>Tulip Arrangement</td>
+                    <td>2</td>
+                    <td>₱1,500.00</td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+              <nav>
+                <ul class="pagination justify-content-end">
+                  <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+</body>
+
+
+
+<script src="../public/js/nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../public/js/generate-report.js"></script>
+
+
+</html>
