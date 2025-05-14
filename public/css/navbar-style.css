@@ -1,5 +1,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+
+
+/* TESTING */
+
+
+
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+
+body {
+  height: 100%;
+}
+
+
+.sb-topnav {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+#layoutSidenav_content {
+  padding-left: 120px;
+  top: 100px;
+}
+
+
+
+#layoutSidenav {
+  display: flex;
+}
+
+
+#layoutSidenav .sidebar {
+  flex-basis: 120px;
+  flex-shrink: 0;
+  transition: transform 0.15s ease-in-out;
+  z-index: 1038;
+  transform: translateX(-120px);
+}
+
+.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+  transform: translateX(0);
+}
+
+
+#layoutSidenav #layoutSidenav_content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  flex-grow: 1;
+  min-height: calc(100vh - 56px);
+  height: auto;
+  margin-left: -120px;
+}
+
+
+#sidebarToggle{
+  margin-left: 120px;
+}
+
 .sidebar {
   font-family: 'Poppins', sans-serif;
   background-color: #FFA8D4;
@@ -7,17 +73,99 @@
   transition: all .25s ease-in-out;
   top: 0;
   left: 0;
+  right: 0;
   border-radius: 0 25px 25px 0;
-  width: inherit;
+  width: 120px;
+  /* height: 75vh; */
+  height: 100%;
+}
+
+.sb-sidenav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-wrap: nowrap;
+}
+
+.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+  transform: translateX(0);
+}
+.sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 1037;
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
+}
+
+@media (min-width: 992px) {
+  #layoutSidenav #layoutSidenav_content {
+    margin-left: 0;
+    transition: margin 0.15s ease-in-out;
+  }
+}
+
+
+
+@media (min-width: 992px) {
+  #layoutSidenav #layoutSidenav_nav {
+    transform: translateX(0);
+  }
+  #layoutSidenav #layoutSidenav_content {
+    margin-left: 0;
+    transition: margin 0.15s ease-in-out;
+  }
+  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+    transform: translateX(-120px);
+  }
+  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content {
+    margin-left: -120px;
+  }
+  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
+    display: none;
+  }
+}
+
+
+.sidebar .sb-sidenav {
+  padding-top: 56px;
+}
+
+.sb-sidenav .sb-sidenav-menu {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+.sb-sidenav .sb-sidenav-menu .nav {
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.sb-sidenav .sb-sidenav-footer {
+  padding: 0.75rem;
+  flex-shrink: 0;
 }
 
 
 
 
 
-.sidebar {
-  /* width: 160px; */
-  height: 100vh;
+/* STYLING */
+
+
+.navbar-brand{
+  text-align: center;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+h2.page-title{
+  margin-left:30px;
 }
 
 
@@ -73,7 +221,7 @@
 .border_box {
   border: 2px solid #FA2290;
   border-radius: 8px;
-  padding: 7px 0;
+  padding: 7px 4px;
   transition: border 0.10s ease-in-out 0.10s, box-shadow 0.01s ease-in-out 0.01s;
   box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.15);
   /* width: inherit; */
@@ -99,56 +247,6 @@
 
 
 
-/* RESPONSIVENESS */
-
-.toggle-btn {
-  border: none;
-  background-color: inherit;
-  color: #FA2290;
-}
-
-.toggle-btn i {
-  font-weight: 700;
-  font-size: 24px;
-  display: none;
-}
-
-
-
-
-
-.sidebar:not(.expand) .nav-link p,
-.sidebar:not(.expand) .border_bottom::after,
-.sidebar:not(.expand) .border_top::after,
-.sidebar:not(.expand) .toggle-btn p {
-  display: none !important;
-}
-
-
-.sidebar:not(.expand) .nav-link {
-  padding: 50px 0;
-  height: 50px;
-}
-
-.sidebar:not(.expand) .nav-pills {
-  margin-top: 20px;
-}
-
-
-.sidebar:not(.expand) .border_box {
-  border: none;
-  box-shadow: none;
-}
-
-.sidebar:not(.expand) .toggle-btn i {
-  display: block;
-}
-
-.sidebar:not(.expand) {
-  width: 80px;
-  height: 100vh;
-  border-radius: 0;
-}
 
 
 @media (max-width: 1440px) {
@@ -158,12 +256,6 @@
     font-size: 12px;
   }
 
-}
-
-.border_box {
-  padding-left: 4px;
-  /* Default */
-  padding-right: 4px;
 }
 
 @media (min-width: 1400px) {
