@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
+use Hashids\Hashids;
+
 class OrderService
 {
     private $connect;
+    private $hash_id;
 
     public function __construct($connection)
     {
         $this->connect = $connection;
+        $this->hash_id = new Hashids('', 5);
     }
 
     public function fetchItemsToCheckOut($user_id)
@@ -76,6 +80,7 @@ class OrderService
         $sql = "SELECT p.name AS product_name,
         p.image_path AS product_image,
         u.name AS customer_name,
+        o.id,
         o.pickup_date,
         o.pickup_time,
         oi.id AS item_id,
@@ -90,6 +95,10 @@ class OrderService
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        foreach ($rows as &$row) {
+            $row['id'] = $this->hash_id->encode($row['id']);
+        }
+        unset($row);
         return $rows;
     }
 
@@ -98,6 +107,7 @@ class OrderService
         $sql = "SELECT p.name AS product_name,
         p.image_path AS product_image,
         u.name AS customer_name,
+        o.id,
         o.pickup_date,
         o.pickup_time,
         o.status,
@@ -107,11 +117,21 @@ class OrderService
         JOIN products p ON oi.product_id = p.id
         JOIN orders o ON oi.order_id = o.id
         JOIN users u ON o.user_id = u.id
-        WHERE oi.status = 'Completed'";
+        WHERE oi.status = 'Completed'
+        ORDER BY case o.status
+        WHEN 'Pending' THEN 1
+        WHEN 'Ready for Pickup' THEN 2
+        WHEN 'Picked Up' THEN 3
+        END
+        ";
         $stmt = mysqli_prepare($this->connect, $sql);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        foreach ($rows as &$row) {
+            $row['id'] = $this->hash_id->encode($row['id']);
+        }
+        unset($row);
         return $rows;
     }
 
@@ -137,6 +157,7 @@ class OrderService
         $orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
         foreach ($orders as &$order) {
             $order['items'] = $this->fetchAllItemsInOrder($order['id']); //attach the specific items in the order
+            $order['id'] = $this->hash_id->encode($order['id']);
         }
         unset($order);
         return $orders;
@@ -160,9 +181,11 @@ class OrderService
 
     public function updatePickedUpOrderStatus($order_id)
     {
+        $decode_data = $this->hash_id->decode($order_id);
+        $id = $decode_data[0];
         $sql = "UPDATE orders set status = 'Picked Up' where id = ?";
         $stmt = mysqli_prepare($this->connect, $sql);
-        mysqli_stmt_bind_param($stmt, 'i', $order_id);
+        mysqli_stmt_bind_param($stmt, 'i', $id);
         mysqli_stmt_execute($stmt);
     }
 }

@@ -33,6 +33,7 @@ function displayCompleteOrder() {
                 clone.style.display = 'flex'; // make visible
                 clone.querySelector('.product_image').src = item.product_image;
                 clone.querySelector('.product_name').textContent = item.product_name;
+                clone.querySelector('.order_id').textContent = item.id;
                 clone.querySelector('.customer_name').textContent = item.customer_name;
                 clone.querySelector('.pickup_schedule').textContent = `${item.pickup_date} ${item.pickup_time}`;
                 const statusVal = clone.querySelector('.status');
