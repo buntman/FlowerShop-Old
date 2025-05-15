@@ -7,6 +7,33 @@ body {
 }
 
 
+.datatable-top .datatable-search input{
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+}
+
+.datatable-top .datatable-search input:focus{
+    outline: none;
+    border: none;
+}
+
+.datatable-top{
+  display: flex;
+  align-items: center;
+}
+
+.datatable-top .my-custom-datatable-header {
+    margin-right: auto; 
+}
+
+
+
+.datatable-top .datatable-dropdown{
+  margin-right: 30px;
+}
+
+
 
 
 

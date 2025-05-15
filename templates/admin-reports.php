@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="./../public/css/manage-report-style.css">
   <link rel="stylesheet" href="./../public/css/navbar-style.css">
 
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+
   <title>Reports</title>
 </head>
 
@@ -37,7 +39,7 @@
 
     <!-- <div class="d-flex "> -->
     <div class="d-sm-flex align-self-center align-items-center justify-content-between manager-accounts w-100">
-      <h2 class="page-title">Manage Accounts</h2>
+      <h2 class="page-title">Reports</h2>
       <div class="manager-accounts d-flex justify-content-center align-content-center mb-auto">
         <p class="pe-4">Manager</p>
         <img class="mx-5" src="/images/icons/person.svg" alt="">
@@ -135,22 +137,14 @@
       <main>
 
         <div class="container-fluid mt-5 px-5 ">
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4 manager-accounts">
-            <h1 class="ms-2 text-gray-800 ">Reports</h1>
-            <div class="manager-accounts d-flex justify-content-center align-content-center mb-auto">
-              <p class="pe-4">Manager</p>
-              <img class="ms-4" src="/images/icons/person.svg" alt="">
-            </div>
-
-          </div>
+        
 
 
 
           <!-- Second Header-->
           <div class="d-sm-flex align-items-center justify-content-between mb-4 px-2 second-header">
             <button type="button" class="btn "><i class='fas fa-calendar pe-2'></i>March - 2025</button>
-            <button type="button" class="btn ">Generate Report</button>
+            <!-- <button type="button" class="btn ">Generate Report</button> -->
 
           </div>
 
@@ -240,46 +234,17 @@
           <div class="container-fluid px-0 mt-4 main-table">
 
 
-            <div class="card px-0 py-3">
+            <div class="card px-4 py-3">
 
 
 
-              <div class="row px-5">
-                <div class="col table-upper-right">
-                  <p class="word1">All Report</p>
-                  <p class="d-block word2">Orders</p>
-                </div>
-                <div class="col d-flex align-items-center justify-content-center table-form">
-
-
-                  <!-- SEARCH BAR -->
-                  <div class="input-group search-bar ">
-                    <button class="input-group-text border-0" type="button" id="searchButton">
-                      <i class="fas fa-search"></i>
-                    </button>
-                    <input type="text" id="searchInput" class="form-control border-0" placeholder="Search Name">
-                  </div>
-
-
-                  <!-- Filter MENU -->
-                  <div class="container">
-                    <select class="form-select  reports-filter">
-                      <option selected value="">Filter by:</option>
-                      <option value="newest">Newest</option>
-                      <option value="oldest">Oldest</option>
-                      <option value="price-low">Price: Low to High</option>
-                      <option value="price-high">Price: High to Low</option>
-                    </select>
-                  </div>
-
-                </div>
-              </div>
 
 
 
-              <table class="table rounded-table">
+
+              <table id="datatablesSimple" class="table table-hover" >
                 <thead>
-                  <tr class="tableRow">
+                  <tr>  
                     <th>Order ID</th>
                     <th>Customer Name</th>
                     <th>Date</th>
@@ -290,7 +255,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                   <tr>
                     <td>#12354678</td>
                     <td class="name-Report">Luis Santos</td>
                     <td>03-20-2025</td>
@@ -362,24 +327,17 @@
                     <td>2</td>
                     <td>₱1,500.00</td>
                   </tr>
+                 
 
                 </tbody>
               </table>
 
 
-              <nav>
-                <ul class="pagination justify-content-end">
-                  <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
-                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-                  <li class="page-item"><a class="page-link" href="#">»</a></li>
-                </ul>
-              </nav>
+              
             </div>
           </div>
+          <!-- END OF TABLE -->
+
         </div>
 
 
@@ -403,5 +361,23 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- <script src="../public/js/generate-report.js"></script> -->
 <script src="./../public/js/sidebar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+    crossorigin="anonymous"></script>
+
+<!-- <script>
+    window.addEventListener('DOMContentLoaded', event => {
+      // Simple-DataTables
+      // https://github.com/fiduswriter/Simple-DataTables/wiki
+
+      const datatablesSimple = document.getElementById('datatablesSimple');
+      if (datatablesSimple) {
+        new simpleDatatables.DataTable(datatablesSimple);
+      }
+    });
+  </script> -->
+
+
+
+  <script src="./../public/js/reports-table.js"></script>
 
 </html>
