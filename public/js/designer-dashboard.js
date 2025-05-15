@@ -38,6 +38,7 @@ function displayCompleteOrder() {
                 clone.querySelector('.pickup_schedule').textContent = `${item.pickup_date} ${item.pickup_time}`;
                 const statusVal = clone.querySelector('.status');
                 statusVal.textContent = item.status;
+                statusVal.className = 'status';
                 statusVal.classList.add(`status-${item.status.toLowerCase().replace(/ /g, '-')}`);
                 container.appendChild(clone);
             });

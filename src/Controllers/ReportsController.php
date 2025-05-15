@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Config\database;
+use App\Models\ReportsService;
 
 class ReportsController extends Controller
 {
@@ -14,6 +15,7 @@ class ReportsController extends Controller
 
     public function getReports()
     {
-        $this->render("admin-reports");
+        $reports = new ReportsService($this->db->getConnection());
+        $this->render("admin-reports", ['reports' => $reports->fetchReports()]);
     }
 }

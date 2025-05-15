@@ -55,7 +55,7 @@ class OrderService
         $stmt = mysqli_prepare($this->connect, $sql);
         mysqli_stmt_bind_param($stmt, 'i', $id);
         mysqli_stmt_execute($stmt);
-        $order_id = $this->findOrder($id);
+        $order_id = $this->findOrderId($id);
         $this->updateCompleteOrderStatus($order_id);
     }
 
@@ -135,7 +135,7 @@ class OrderService
         return $rows;
     }
 
-    public function findOrder($item_id)
+    public function findOrderId($item_id)
     {
         $sql = "SELECT order_id FROM order_items where id = ?";
         $stmt = mysqli_prepare($this->connect, $sql);
@@ -186,6 +186,19 @@ class OrderService
         $sql = "UPDATE orders set status = 'Picked Up' where id = ?";
         $stmt = mysqli_prepare($this->connect, $sql);
         mysqli_stmt_bind_param($stmt, 'i', $id);
+        mysqli_stmt_execute($stmt);
+        $this->insertOrderDetailsInReport($id);
+    }
+
+    public function insertOrderDetailsInReport($order_id)
+    {
+        $sql = "INSERT INTO reports(order_id, customer_name, contact_number, total_price)
+        SELECT o.id, u.name as customer_name, u.contact_number, o.total_price
+        FROM orders o
+        JOIN users u ON o.user_id = u.id
+        WHERE o.id = ? ";
+        $stmt = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $order_id);
         mysqli_stmt_execute($stmt);
     }
 }

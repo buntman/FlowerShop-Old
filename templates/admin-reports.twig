@@ -1,55 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-
   <link rel="stylesheet" href="/css/manage-report-style.css">
   <link rel="stylesheet" href="/css/navbar-style.css">
-
   <title>Reports</title>
 </head>
-
-
-
-
 <body>
   <div class="container-fluid p-0">
     <div class="row sidebar-col">
-
       <!-- SIDEBAR -->
       <div class="col-1 sidebar-column">
         <div class="d-flex flex-column sidebar expand">
           <!-- MENU TEXT -->
-
           <div class="d-flex justify-content-center align-items-center">
-
-
-
             <button class="toggle-btn d-flex flex-row align-items-center justify-content-center" type="button">
               <div class="d-block link-dark text-decoration-none sidebar-body menu-text mt-4 pt-3 ">
                 <p class="text-center mb-1">Menu</p>
               </div>
-
               <div class="d-flex align-items-end mt-4 pt-3" style="margin-top: auto;">
-
                 <i class="bi bi-grid-fill fw-bold "></i>
-
               </div>
             </button>
           </div>
-
           <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
             <!-- INVENTORY -->
             <li class="my-2">
@@ -59,7 +41,6 @@
                 <p>Inventory</p>
               </a>
             </li>
-
             <!-- REPORTS -->
             <li class="my-2">
               <a href="/admin/reports" class="nav-link py-3" title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
@@ -69,7 +50,6 @@
                 </div>
               </a>
             </li>
-
             <!-- MANAGE -->
             <li class="my-2">
               <a href="/admin/manage-account" class="nav-link border_top" title="Products" data-bs-toggle="tooltip"
@@ -79,24 +59,20 @@
               </a>
             </li>
           </ul>
-
           <!-- SIGN OUT -->
           <div class="nav-link-exit nav-link">
-            <a href="#"
-              class="d-flex flex-column align-items-center justify-content-center link-dark text-decoration-none">
-              <i class="bi bi-escape"></i>
-              <p class="d-block p-exit">Sign Out</p>
-            </a>
+            <form action="/employee/logout" method="POST" class="d-flex flex-column align-items-center justify-content-center link-dark text-decoration-none"
+            style="cursor: pointer; border: none; background: none; padding: 0;">
+            <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                <i class="bi bi-escape"></i>
+                <p class="d-block p-exit">Sign Out</p>
+            </button>
+            </form>
           </div>
         </div>
       </div>
       <!-- END OF NAVBAR -->
-
-
-
-
       <main class="col-11 main-body">
-
         <div class="container-fluid mt-5 px-5 ">
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4 manager-accounts">
@@ -105,25 +81,14 @@
               <p class="pe-4">Manager</p>
               <img class="ms-4" src="/images/icons/person.svg" alt="">
             </div>
-
           </div>
-
-
-
           <!-- Second Header-->
           <div class="d-sm-flex align-items-center justify-content-between mb-4 px-2 second-header">
             <button type="button" class="btn "><i class='fas fa-calendar pe-2'></i>March - 2025</button>
             <button type="button" class="btn ">Generate Report</button>
-
           </div>
-
-
-
-
-
           <!-- Content Row -->
           <div class="row d-flex align-items-center justify-content-center ">
-
             <!-- Earnings (Monthly) Card Example -->
             <div class=" col-md-4 mb-4 card-report">
               <div class="card border-left-primary py-2 ">
@@ -137,14 +102,11 @@
                     </div>
                     <div class="col-auto icons d-flex justify-content-between flex-column">
                       <i class='fas fa-dollar-sign upper-icon'></i>
-
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-md-4 mb-4 card-report">
               <div class="card border-left-info py-2">
@@ -158,7 +120,6 @@
                           <div class="h5 mb-0 mr-3 font-weight-bold">₱55,000</div>
                           <div class="pt-5 text-secondary">Jan - Feb</div>
                         </div>
-
                       </div>
                     </div>
                     <div class="col-auto icons">
@@ -168,7 +129,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Pending Requests Card Example -->
             <div class="col-md-4 mb-4 card-report">
               <div class="card border-left-warning py-2">
@@ -187,34 +147,16 @@
                 </div>
               </div>
             </div>
-
-
           </div>
-
-
-
-
-
-
-
-
           <!-- TABLE -->
-
           <div class="container-fluid px-0 mt-4 main-table">
-
-
             <div class="card px-0 py-3">
-
-
-
               <div class="row px-5">
                 <div class="col table-upper-right">
                   <p class="word1">All Report</p>
                   <p class="d-block word2">Orders</p>
                 </div>
                 <div class="col d-flex align-items-center justify-content-center table-form">
-
-
                   <!-- SEARCH BAR -->
                   <div class="input-group search-bar ">
                     <button class="input-group-text border-0" type="button" id="searchButton">
@@ -222,8 +164,6 @@
                     </button>
                     <input type="text" id="searchInput" class="form-control border-0" placeholder="Search Name">
                   </div>
-
-
                   <!-- Filter MENU -->
                   <div class="container">
                     <select class="form-select  reports-filter">
@@ -234,102 +174,30 @@
                       <option value="price-high">Price: High to Low</option>
                     </select>
                   </div>
-
                 </div>
               </div>
-
-
-
               <table class="table rounded-table">
                 <thead>
                   <tr class="tableRow">
                     <th>Order ID</th>
                     <th>Customer Name</th>
-                    <th>Date</th>
+                    <th>Date and Time Completed</th>
                     <th>Phone Number</th>
-                    <th>Product</th>
-                    <th>Quantity</th>
                     <th>Total</th>
                   </tr>
                 </thead>
                 <tbody>
+                {% for report in reports %}
                   <tr>
-                    <td>#12354678</td>
-                    <td class="name-Report">Luis Santos</td>
-                    <td>03-20-2025</td>
-                    <td>09551234567</td>
-                    <td>Sunflower Bouquet</td>
-                    <td>2</td>
-                    <td>₱1,200.00</td>
+                    <td>#{{ report.order_id }}</td>
+                    <td class="name-Report">{{ report.customer_name }}</td>
+                    <td>{{ report.date_completed }}</td>
+                    <td>{{ report.contact_number }}</td>
+                    <td>₱ {{ report.total_price }}</td>
                   </tr>
-                  <tr>
-                    <td>#12354789</td>
-                    <td class="name-Report">Ana Mendoza</td>
-                    <td>03-19-2025</td>
-                    <td>09119998877</td>
-                    <td>Mixed Flower Basket</td>
-                    <td>1</td>
-                    <td>₱1,000.00</td>
-                  </tr>
-                  <tr>
-                    <td>#12354890</td>
-                    <td class="name-Report">Jose Fernando</td>
-                    <td>03-18-2025</td>
-                    <td>09987654321</td>
-                    <td>Orchid Arrangement</td>
-                    <td>3</td>
-                    <td>₱3,600.00</td>
-                  </tr>
-                  <tr>
-                    <td>#12354901</td>
-                    <td class="name-Report">Maria Santos</td>
-                    <td>03-17-2025</td>
-                    <td>09229876543</td>
-                    <td>Roses Bouquet</td>
-                    <td>1</td>
-                    <td>₱500.00</td>
-                  </tr>
-                  <tr>
-                    <td>#12355012</td>
-                    <td class="name-Report">Carlos Dela Peña</td>
-                    <td>03-16-2025</td>
-                    <td>09123456789</td>
-                    <td>Tulip Arrangement</td>
-                    <td>2</td>
-                    <td>₱1,500.00</td>
-                  </tr>
-                  <tr>
-                    <td>#12355012</td>
-                    <td class="name-Report">Carlos Dela Peña</td>
-                    <td>03-16-2025</td>
-                    <td>09123456789</td>
-                    <td>Tulip Arrangement</td>
-                    <td>2</td>
-                    <td>₱1,500.00</td>
-                  </tr>
-                  <tr>
-                    <td>#12355012</td>
-                    <td class="name-Report">Carlos Dela Peña</td>
-                    <td>03-16-2025</td>
-                    <td>09123456789</td>
-                    <td>Tulip Arrangement</td>
-                    <td>2</td>
-                    <td>₱1,500.00</td>
-                  </tr>
-                  <tr>
-                    <td>#12355012</td>
-                    <td class="name-Report">Carlos Dela Peña</td>
-                    <td>03-16-2025</td>
-                    <td>09123456789</td>
-                    <td>Tulip Arrangement</td>
-                    <td>2</td>
-                    <td>₱1,500.00</td>
-                  </tr>
-
+                {% endfor %}
                 </tbody>
               </table>
-
-
               <nav>
                 <ul class="pagination justify-content-end">
                   <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
@@ -343,28 +211,13 @@
               </nav>
             </div>
           </div>
-
         </div>
     </div>
-
-
     </main>
-
   </div>
   </div>
-
-
-
-
-
-
 </body>
-
-
-
-<script src="../public/js/nav.js"></script>
+<script src="/js/nav.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../public/js/generate-report.js"></script>
-
-
+<script src="/js/generate-report.js"></script>
 </html>
