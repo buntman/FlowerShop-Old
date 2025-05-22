@@ -152,14 +152,16 @@ body {
 
 #product-details {
     background-color: #FFA8D4;
-    height: 890px;
+    height: 720px;
     width: 550px;
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
 }
 
 .stocks {
-    height: auto;
+    max-height: 720px;
+    overflow-y: auto;
+    overflow-x: hidden;
     width: 1110px;
 }
 
