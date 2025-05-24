@@ -3,12 +3,14 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
+use App\Models\EmployeeService;
 use App\Models\InventoryService;
 use App\Config\database;
 
 class InventoryController extends Controller
 {
     private $inventory;
+    private $employee;
 
     public function __construct(database $db)
     {
@@ -19,11 +21,12 @@ class InventoryController extends Controller
     private function initializeInventoryService()
     {
         $this->inventory = new InventoryService($this->db->getConnection());
+        $this->employee = new EmployeeService($this->db->getConnection());
     }
 
     public function inventory()
     {
-        $this->render("admin-inventory", ['stocks' => $this->inventory->getProducts(), 'initial_item' => $this->inventory->getFirstProduct(), 'total_products' => $this->inventory->getNumberOfProducts()]);
+        $this->render("admin-inventory", ['name' => $this->employee->fetchEmployeeName(), 'stocks' => $this->inventory->getProducts(), 'initial_item' => $this->inventory->getFirstProduct(), 'total_products' => $this->inventory->getNumberOfProducts()]);
     }
 
     public function getProductDetails()

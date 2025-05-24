@@ -41,7 +41,7 @@ class EmployeeLoginController extends Controller
                 return;
             }
 
-            $employeeService = new EmployeeService($clean_form, $this->db->getConnection());
+            $employeeService = new EmployeeService($this->db->getConnection(), $clean_form);
             $employee = $employeeService->findByUsername();
             if ($employee['status'] == 'INACTIVE') {
                 echo json_encode(["authorized" => false, "redirect" => "/employee/pending-request"]);

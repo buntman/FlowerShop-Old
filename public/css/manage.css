@@ -1,16 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 body {
     background-color: #FFE3EB;
-}
-
-.title-manage-accounts {
-    font-family: 'Poppins', sans-serif;
-    font-size: 25px !important;
-    font-weight: 500 !important;
-    color: #1C000E;
-}
-
-.input-group.search-bar {
-    width: 40%;
+    overflow-y:hidden;
 }
 
 .table th,
@@ -42,25 +34,6 @@ body {
     font-size: 12px !important;
     color: #B5B7C0 !important;
 }
-
-
-
-
-.remove-btn {
-    border: none;
-    background: transparent;
-    font-size: 18px;
-}
-
-.remove-btn i {
-    color: black;
-    transition: color 0.3s ease-in-out;
-}
-
-.remove-btn:hover i {
-    color: #d9534f;
-}
-
 
 .text-success {
     color: #28a745 !important;

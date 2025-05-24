@@ -21,15 +21,6 @@ class ManageAccountsService
         return $rows;
     }
 
-    public function deleteAccount($id)
-    {
-        $sql = "DELETE FROM employees where id = ?";
-        $sql_statement = mysqli_prepare($this->connect, $sql);
-        mysqli_stmt_bind_param($sql_statement, 'i', $id);
-        mysqli_stmt_execute($sql_statement);
-    }
-
-
     public function activateAccount($id)
     {
         $sql = "UPDATE employees SET status = 'ACTIVE' where id = ?";

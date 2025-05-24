@@ -4,11 +4,13 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Config\database;
+use App\Models\EmployeeService;
 use App\Models\ManageAccountsService;
 
 class AccountManagementController extends Controller
 {
     private $account;
+    private $employee;
 
     public function __construct(database $db)
     {
@@ -19,21 +21,12 @@ class AccountManagementController extends Controller
     private function initializeAccountService()
     {
         $this->account = new ManageAccountsService($this->db->getConnection());
+        $this->employee = new EmployeeService($this->db->getConnection());
     }
 
     public function getAccountManagement()
     {
-        $this->render("admin-manage-account", ['accounts' => $this->account->getEmployees()]);
-    }
-
-    public function deleteAccount()
-    {
-        header("Content-Type: application/json");
-        $json = file_get_contents('php://input');
-        $data = json_decode($json, false);
-        $id = $data->id;
-        $this->account->deleteAccount($id);
-        echo json_encode(["success" => true, "message" => "Deleted Successfully!"]);
+        $this->render("admin-manage-account", ['accounts' => $this->account->getEmployees(), 'name' => $this->employee->fetchEmployeeName()]);
     }
 
     public function activateAccount()

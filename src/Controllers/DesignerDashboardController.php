@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Config\database;
+use App\Models\EmployeeService;
 use App\Models\OrderService;
 
 class DesignerDashboardController extends Controller
@@ -16,7 +17,8 @@ class DesignerDashboardController extends Controller
     public function getDashboard()
     {
         $order_service = new OrderService($this->db->getConnection());
-        $this->render("designer-dashboard", ["orders" => $order_service->fetchPendingOrders()]);
+        $employee = new EmployeeService($this->db->getConnection());
+        $this->render("designer-dashboard", ["orders" => $order_service->fetchPendingOrders(), 'name' => $employee->fetchEmployeeName()]);
     }
 
     public function updatePendingOrderStatus()

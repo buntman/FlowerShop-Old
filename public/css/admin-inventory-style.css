@@ -3,25 +3,19 @@
 
 body {
     background-color: #FFE3EB;
+    overflow-y: hidden;
 }
 
-.sidebar {
-  font-family: 'Poppins', sans-serif;
-  background-color: #FFA8D4;
-  position: fixed;
-  transition: all .25s ease-in-out;
-  top: 0;
-  left: 0;
-  border-radius: 0 25px 25px 0;
+.inventory p {
+    border-right: 1px solid #FF69B5 !important;
+    margin: auto;
+    color: #FF69B5;
 }
 
-.sidebar {
-  width: 160px;
-  height: 100vh;
-}
+.inventory img {
+    width: 37px;
+    height: 37px;
 
-.sidebar p {
-  color: #FA2290;
 }
 
 .menu-text {
@@ -65,13 +59,6 @@ body {
   top: 0;
 }
 
-.border_box {
-  border: 2px solid #FA2290;
-  border-radius: 8px;
-  padding: 7px 17px;
-  transition: border 0.10s ease-in-out 0.10s, box-shadow 0.01s ease-in-out 0.01s;
-}
-
 .nav-link i {
   font-size: 30px;
   color: #FA2290;
@@ -100,39 +87,6 @@ body {
   display: none;
 }
 
-
-.sidebar:not(.expand) .nav-link p,
-.sidebar:not(.expand) .border_bottom::after,
-.sidebar:not(.expand) .border_top::after,
-.sidebar:not(.expand) .toggle-btn p {
-  display: none !important;
-}
-
-
-.sidebar:not(.expand) .nav-link {
-  padding: 50px 0;
-  height: 50px;
-}
-
-.sidebar:not(.expand) .nav-pills {
-  margin-top: 20px;
-}
-
-
-.sidebar:not(.expand) .border_box {
-  border: none;
-  box-shadow: none;
-}
-
-.sidebar:not(.expand) .toggle-btn i {
-  display: block;
-}
-
-.sidebar:not(.expand) {
-  width: 80px;
-  height: 100vh;
-  border-radius: 0;
-}
 
 .button-container button {
     font-family: Poppins;

@@ -8,10 +8,10 @@ class EmployeeService
     private $connect;
 
 
-    public function __construct($postData, $connection)
+    public function __construct($connection, $postData = null)
     {
-        $this->data = $postData;
         $this->connect = $connection;
+        $this->data = $postData;
     }
 
 
@@ -46,5 +46,17 @@ class EmployeeService
         mysqli_stmt_execute($sql_statement);
         $result = mysqli_stmt_get_result($sql_statement);
         return mysqli_fetch_assoc($result);
+    }
+
+    public function fetchEmployeeName()
+    {
+        $id = $_SESSION['user_id'];
+        $sql = "SELECT first_name FROM employees where id = ? LIMIT 1";
+        $stmt = mysqli_prepare($this->connect, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $name = mysqli_fetch_assoc($result);
+        return $name['first_name'];
     }
 }
