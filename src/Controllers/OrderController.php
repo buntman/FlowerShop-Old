@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\Controller;
+use App\Controllers\PaymentController;
 use App\Config\database;
 use App\Config\JwtConfig;
 use App\Models\OrderService;
@@ -55,6 +56,7 @@ class OrderController extends Controller
             echo json_encode(["success" => false, "message" => "Missing pickup time!"]);
             return;
         }
+
         $user_id = JwtConfig::getInstance()->getUserId();
         $order_id = $this->order_service->addOrderDetails($data, $user_id);
         if (!isset($data->items) || !is_array($data->items)) {
@@ -67,6 +69,14 @@ class OrderController extends Controller
             $product = $inventory_service->findProductByName($item->product_name);
             $this->order_service->addOrderItems($order_id, $product['id'], $item->quantity);
         }
+
+        if ($data->payment_method == 'GCash') {
+            $pay = new PaymentController();
+            $checkout_url = $pay->payment($data->total_price);
+            echo json_encode(["success" => true, "checkout_url" => $checkout_url]);
+            return;
+        }
+
         echo json_encode(["success" => true, "message" => "Ordered successfully!"]);
     }
 

@@ -13,7 +13,7 @@ class CartService
 
     public function addProductToCart($product, $user_id): bool
     {
-        $check_query = "SELECT * FROM cart where product_id = ? and user_id = ?";
+        $check_query = "SELECT * FROM cart where product_id = ? and user_id = ? and status = 'active'";
         $check_query_statement_prepare = mysqli_prepare($this->connect, $check_query);
         mysqli_stmt_bind_param($check_query_statement_prepare, 'ii', $product['id'], $user_id);
         mysqli_stmt_execute($check_query_statement_prepare);

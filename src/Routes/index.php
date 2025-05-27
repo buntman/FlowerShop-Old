@@ -11,7 +11,6 @@ use App\Controllers\ProductController;
 use App\Controllers\ReportsController;
 use App\Controllers\AccountManagementController;
 use App\Controllers\DesignerDashboardController;
-use App\Controllers\NotificationController;
 use App\Controllers\PendingController;
 use App\Controllers\UserLoginController;
 use App\Controllers\GalleryController;
@@ -59,7 +58,6 @@ $router->get('/admin/reports', ReportsController::class, 'getReports', Authentic
 //designer routes
 $router->get('/designer/dashboard', DesignerDashboardController::class, 'getDashboard', AuthenticateDesigner::class);
 $router->get('/designer/dashboard/complete', DesignerDashboardController::class, 'fetchCompleteOrders', AuthenticateDesigner::class);
-$router->get('/designer/notification', NotificationController::class, 'getNotification', AuthenticateDesigner::class);
 
 $router->post('/designer/dashboard/update', DesignerDashboardController::class, 'updatePendingOrderStatus', AuthenticateDesigner::class);
 

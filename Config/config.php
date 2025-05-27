@@ -21,4 +21,7 @@ return [
     'jwt' => [
         'secret_key' => $_ENV['SECRET_KEY'],
     ],
+    'paymongo' => [
+        'payment_key' => $_ENV['PAYMENT_KEY'],
+    ],
 ];
