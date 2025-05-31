@@ -7,7 +7,8 @@ class FormValidator
     private $data;
     private $EmployeeLoginFields = ['username', 'password'];
     private $EmployeeRegisterFields = ['first_name', 'last_name', 'email', 'contact_number', 'username', 'password'];
-    private $userFields = ['email', 'password'];
+    private $userLoginFields = ['email', 'password'];
+    private $userRegisterFields = ['email', 'password', 'confirm_password'];
     private $editProfileFields = ['name', 'contact_number'];
     private $errors = [];
 
@@ -18,12 +19,12 @@ class FormValidator
 
     public function validateUserLogin(): bool
     {
-        return $this->validateUserFields();
+        return $this->validateUserLoginFields();
     }
 
     public function validateUserRegister(): bool
     {
-        if (!$this->validateUserFields() or !$this->validateEmail() or !$this->validatePassword()) {
+        if (!$this->validateUserRegisterFields() or !$this->validateEmail() or !$this->validatePassword()) {
             return false;
         }
         return true;
@@ -172,13 +173,15 @@ class FormValidator
             $this->errors['password'] = "Password must have one digit.";
         } elseif (strlen($this->data['password']) < 8 || strlen($this->data['password']) > 16) {
             $this->errors['password'] = "Password must be 8-16 characters long.";
+        } elseif ($this->data['password'] != $this->data['confirm_password']) {
+            $this->errors['password'] = "Passwords does not match.";
         }
         return empty($this->errors);
     }
 
-    private function validateUserFields(): bool
+    private function validateUserLoginFields(): bool
     {
-        foreach ($this->userFields as $field) {
+        foreach ($this->userLoginFields as $field) {
             if (empty($this->data[$field])) {
                 switch ($field) {
                     case 'email':
@@ -186,6 +189,26 @@ class FormValidator
                         break;
                     case 'password':
                         $this->errors['password'] = "{$field} is required.";
+                        break;
+                }
+            }
+        }
+        return empty($this->errors);
+    }
+
+    private function validateUserRegisterFields(): bool
+    {
+        foreach ($this->userRegisterFields as $field) {
+            if (empty($this->data[$field])) {
+                switch ($field) {
+                    case 'email':
+                        $this->errors['email'] = "{$field} is required.";
+                        break;
+                    case 'password':
+                        $this->errors['password'] = "{$field} is required.";
+                        break;
+                    case 'confirm_password':
+                        $this->errors['confirm_password'] = "{$field} is required.";
                         break;
                 }
             }
