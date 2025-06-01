@@ -173,7 +173,7 @@ class FormValidator
             $this->errors['password'] = "Password must have one digit.";
         } elseif (strlen($this->data['password']) < 8 || strlen($this->data['password']) > 16) {
             $this->errors['password'] = "Password must be 8-16 characters long.";
-        } elseif ($this->data['password'] != $this->data['confirm_password']) {
+        } elseif (isset($this->data['confirm_password']) && $this->data['password'] != $this->data['confirm_password']) { //for mobile side
             $this->errors['password'] = "Passwords does not match.";
         }
         return empty($this->errors);
