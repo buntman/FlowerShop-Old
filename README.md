@@ -1,4 +1,9 @@
-# Flower Shop Web and Mobile Application
+# rizza-flowershop-management-system
 
-# About the Project
-The Flower Shop Web and Mobile Application is a complete solution for managing inventory and customer orders. The web-based platform is designed for admins and designers to efficiently track inventory, manage product listings, and process orders, ensuring smooth business operations. Meanwhile, the mobile application provides customers with a seamless shopping experience, allowing them to browse products, place orders, and track their purchases in real time.
+This application is designed for admins and designers to efficiently track inventory, monitor transaction history, and process orders, ensuring smooth business operations.
+
+## Technologies Used
+- ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+- ![Twig](https://img.shields.io/badge/Twig-FFF000?style=for-the-badge&logo=twig&logoColor=black)
+- ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+- ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
